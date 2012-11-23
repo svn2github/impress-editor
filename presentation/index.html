@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>Layout Example</TITLE>
+<SCRIPT  src="js/jquery.js"></SCRIPT>
+<SCRIPT  src="js/jquery.layout.js"></SCRIPT>
+<script>
+$(document).ready(function () {
+	$('body').layout({ applyDefaultStyles: true });
+});
+</SCRIPT>
+<style>
+	div.menuBarBorderLayout
+	{
+		border-style:groove;
+		border-color:#98bf21;
+		height:3%;
+	}	 
+</style>
+</HEAD>
+<BODY>
+	<div class="menuBarBorderLayout">A solid green border</div>
+<DIV class="ui-layout-center">Center
+	<P><A href="http://layout.jquery-dev.net/demos.html">Go to the Demos page</A></P>
+	<P>* Pane-resizing is disabled because ui.draggable.js is not linked</P>
+	<P>* Pane-animation is disabled because ui.effects.js is not linked</P>
+</DIV>
+
+
+<DIV class="ui-layout-north">North1</DIV>
+<!--<DIV class="ui-layout-east">East</DIV>-->
+<DIV class="ui-layout-west">West</DIV>
+</BODY>
+</HTML>

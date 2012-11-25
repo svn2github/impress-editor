@@ -50,7 +50,7 @@
 					<input id="spinner" class="ui-spinner-input" name="value" autocomplete="off" role="spinbutton">
 					<a class="ui-spinner-button ui-spinner-up ui-corner-tr ui-button ui-widget ui-state-default ui-button-text-only" tabindex="-1" role="button" aria-disabled="false">
 						<span class="ui-button-text">
-							<span class="ui-icon ui-icon-triangle-1-n"></span>
+							<span class="ui-icon ui-icon-triangle-1-n">s</span>
 						</span>
 					</a>
 					<a class="ui-spinner-button ui-spinner-down ui-corner-br ui-button ui-widget ui-state-default ui-button-text-only" tabindex="-1" role="button" aria-disabled="false">
@@ -76,11 +76,42 @@
 					<option value="60">60</option>
 					<option value="72">72</option>
 				</select>
+				<select id="fontFamiliesTypes" name="font">
+					<option value="Times New Roman">Times New Roman</option>
+					<option value="Georgia">Georgia</option>
+					<option value="Arial">Arial</option>
+					<option value="Verdana">Verdana</option>
+					<option value="Courier New">Courier New</option>
+					<option value="Lucida Console">Lucida Console</option>
+					<option value="Helvetica">Helvetica</option>
+					<option value="Gill Sans">Gill Sans</option>
+					<option value="Avantgarde">Avantgarde</option>
+					<option value="Palatino">Palatino</option>
+					<option value="Andale Mono">Andale Mono</option>
+					<option value="Florence">Florence</option>
+					<option value="Impact">Impact</option>
+					<option value="fantasy">fantasy</option>
+				</select>
+				<button onclick="">List</p> </button>
+				<button onclick="">Title</p> </button>
+				<p id="colorpickerHolder">
+                </p>
+                <script>
+					$('#colorpickerHolder').ColorPicker({flat: true});
+                </script>
+				
+				
+				
 			</div>
-				<div id="contentTab2" class="content">
-				    <button onclick="">List</p> </button>
-				    <button onclick="">Title</p> </button>
-				</div>
+			<div id="contentTab2" class="content">
+				<button onclick="">+</br>Slide</p> </button>
+				<button onclick="">Text</p> </button>  
+				<button onclick="">Image</p> </button>  
+				<button onclick="">Video</p> </button>  
+				<button onclick="">Overview</p> </button>  
+				<button onclick="">Present</p> </button>  
+			</div>
+		
 		
 
 	</div>

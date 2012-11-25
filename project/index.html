@@ -10,7 +10,15 @@
 
 </HEAD>
 <BODY>
-	<div class="menuBarBorderLayout">A solid green border</div>
+	<div class="menuBarBorderLayout">
+	<button onclick="">New File</p> </button>
+	<button onclick="">Save</p> </button>
+	<button onclick="">Open</p> </button>
+	<p id="colorpickerHolder"></p>
+    <script>
+    $('#colorpickerHolder').ColorPicker({flat: true});
+    </script>
+	</div>
 <DIV class="ui-layout-center">Center
 	<P><A href="http://layout.jquery-dev.net/demos.html">Go to the Demos page</A></P>
 	<P>* Pane-resizing is disabled because ui.draggable.js is not linked</P>

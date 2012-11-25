@@ -1,0 +1,104 @@
+<HTML>
+<HEAD>
+	<TITLE>Layout Example</TITLE>
+	
+	<SCRIPT  src="js/jquery.js"></SCRIPT>
+	<SCRIPT  src="js/jquery.layout.js"></SCRIPT>
+	<SCRIPT  src="js/tabs.js"></SCRIPT>
+	<link rel="stylesheet" href="css/jquery-ui.css" />
+	<link rel="stylesheet" href="css/main.css"/>
+
+</HEAD>
+<BODY>
+	<div class="menuBarBorderLayout">A solid green border</div>
+<DIV class="ui-layout-center">Center
+	<P><A href="http://layout.jquery-dev.net/demos.html">Go to the Demos page</A></P>
+	<P>* Pane-resizing is disabled because ui.draggable.js is not linked</P>
+	<P>* Pane-animation is disabled because ui.effects.js is not linked</P>
+</DIV>
+
+
+
+	<div id="tabs" class="ui-layout-north ui-tabs ui-widget ui-widget-content ui-corner-all">
+			<ul id="list-tabs" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+				<li id="tab1" class="tab ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="format" aria-labelledby="ui-id-1" aria-selected="true">
+					<a id="ui-id-1" class="ui-tabs-anchor" onclick="swap('1')" role="presentation" tabindex="-1">text</a>
+				</li>
+				<li id="tab2" class="tab ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="adding" aria-labelledby="ui-id-2" aria-selected="false">
+					<a id="ui-id-2" class="ui-tabs-anchor" onclick="swap('2')" role="presentation" tabindex="-1">add</a>
+				</li>
+			</ul>
+			<div id="contentTab1" class="content ui-buttonset ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="ui-id-1" role="tabpanel" aria-expanded="true" aria-hidden="false">
+				<input id="check1" class="ui-helper-hidden-accessible" type="checkbox">
+				<label id="bold-button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left" for="check1" role="button" aria-disabled="false">
+					<span class="ui-button-text">N</span>	
+				</label>
+				<input id="check2" class="ui-helper-hidden-accessible" type="checkbox">
+				<label id="italic-button" class="ui-button ui-widget ui-state-default ui-button-text-only" for="check2" role="button" aria-disabled="false">
+					<span class="ui-button-text">N</span>
+				</label>
+					<input id="check3" class="ui-helper-hidden-accessible" type="checkbox">
+				<label id="underline-button" class="ui-button ui-widget ui-state-default ui-button-text-only" for="check3" role="button" aria-disabled="false">
+					<span class="ui-button-text">N</span>
+				</label>
+					<input id="check4" class="ui-helper-hidden-accessible" type="checkbox">
+				<label id="cross-button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" for="check4" role="button" aria-disabled="false">
+					<span class="ui-button-text">N</span>
+				</label>
+				<label for="spinner">Size:</label>
+				<span class="ui-spinner ui-widget ui-widget-content ui-corner-all">
+					<input id="spinner" class="ui-spinner-input" name="value" autocomplete="off" role="spinbutton">
+					<a class="ui-spinner-button ui-spinner-up ui-corner-tr ui-button ui-widget ui-state-default ui-button-text-only" tabindex="-1" role="button" aria-disabled="false">
+						<span class="ui-button-text">
+							<span class="ui-icon ui-icon-triangle-1-n"></span>
+						</span>
+					</a>
+					<a class="ui-spinner-button ui-spinner-down ui-corner-br ui-button ui-widget ui-state-default ui-button-text-only" tabindex="-1" role="button" aria-disabled="false">
+						<span class="ui-button-text">
+							<span class="ui-icon ui-icon-triangle-1-s"></span>
+						</span>	
+					</a>
+				</span>
+				<select id="sizeTypes" name="size">
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="16">16</option>
+					<option value="18">18</option>
+					<option value="20">20</option>
+					<option value="25">25</option>
+					<option value="32">32</option>
+					<option value="48">48</option>
+					<option value="60">60</option>
+					<option value="72">72</option>
+				</select>
+			</div>
+				<div id="contentTab2" class="content">
+				    <button onclick="">List</p> </button>
+				    <button onclick="">Title</p> </button>
+				</div>
+		
+
+	</div>
+
+
+<DIV class="ui-layout-west">
+	
+	
+	
+	
+	
+	</DIV>
+	<script>
+	$(document).ready(function () {
+	$('body').layout({ applyDefaultStyles: true });
+	});
+	$(".content").hide();
+	$("#contentTab1").show();
+    </script>
+</BODY>
+</HTML>

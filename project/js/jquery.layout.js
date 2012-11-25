@@ -102,7 +102,7 @@ $.fn.layout = function (opts) {
 	,	north: {
 			paneSelector:			"."+prefix+"north" // default = .ui-layout-north
 			/* The size of the north part of the layout can be adjusted from here */
-		,	size:					100
+		,	size:					145
 		,	resizerCursor:			"n-resize"
 		}
 	,	south: {

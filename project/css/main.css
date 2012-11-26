@@ -5,8 +5,8 @@
 div.menuBarBorderLayout
 {
 	border-style:groove;
-	border-color:#98bf21;
-	height:3%;
+	border-color:#C0C0C0;
+	height:6%;
 }	 /*Style for the tabs of the toolbar*/
 #list-tabs{
 	height:20px;

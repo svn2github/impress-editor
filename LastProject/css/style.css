@@ -57,7 +57,7 @@
 }
 #slide-displayed{
 	width:150px;
-	z-index: 1;
+	z-index:2;
 }
 /*Style for the tabs of the toolbar*/
 
@@ -148,4 +148,18 @@ label{
 #colorSelector{
 	z-index:1000;
 	
+}
+/*Slide-bar*/
+/*Slide-bar slides*/
+#slide1{
+	border: 1px solid #AAA;
+	height: 100px;
+	position:absolute;
+	top: 25px;
+	left: 20px;
+	right: 20px;
+	text-align:center;
+	-moz-box-shadow: 10px 10px 5px #888;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	box-shadow: 10px 10px 5px #888;	 
 }

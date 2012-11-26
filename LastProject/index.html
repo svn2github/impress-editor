@@ -22,9 +22,24 @@
     </head>
 	<body>
 	<div id="menu-bar">
-			<button class="menu-button" onclick="">New File </button>
-			<button class="menu-button" onclick="">Save </button>
-			<button class="menu-button" onclick="">Open </button>
+			<label id="nameWebPage" class="identifiers">name</label><label id="logoWebPage" class="identifiers">logo</label>
+			
+			<div id="file-displayer">
+		        <button id="file-menu">File</button>
+		    </div>
+		    <ul id="file-displayed">
+		        <li><button onclick="">New</button></li>
+		        <li><button onclick="">Open</button></li>
+		        <li><button onclick="">Save</button></li>
+		        <li><button onclick="">Save As</button></li>
+		    </ul>
+		    <div id="slide-displayer">
+		        <button id="slide-menu">Slide</button>
+		    </div>
+		    <ul id="slide-displayed">
+		        <li><button onclick="">Export as webpage</button></li>
+		        <li><button onclick="">Zip presentation</button></li>
+		    </ul>
 		</div>
 	<div id="tool-bar">
 	<div id="tabs">
@@ -79,12 +94,12 @@
 			
 		</div>
 		<div id="adding">
-		    				<button onclick="">+</br>Slide</p> </button>
-				<button onclick="">Text</p> </button>  
+		    	<button class="addSlide" onclick="">+</br>Slide</p> </button>
+				<button class="addText" onclick="">Text</p> </button>  
 				<button onclick="">Image</p> </button>  
 				<button onclick="">Video</p> </button>  
-				<button onclick="">Overview</p> </button>  
-				<button onclick="">Present</p> </button>  
+				<button class="button-rigth" onclick="">Overview</p> </button>  
+				<button class="button-rigth" onclick="">Present</p> </button>  
 		    
 		</div>
 
@@ -98,6 +113,42 @@
 		hi
 	</div>
 	<script>
+		$(function() {
+        $( "#file-menu" ).click(function() {
+                    var menu = $( this ).parent().next().show().position({
+                        my: "left top",
+                        at: "left bottom",
+                        of: this
+                    });
+                    $( document ).one( "click", function() {
+                        menu.hide();
+                    });
+                    return false;
+                })
+                .parent()
+                    .buttonset()
+                    .next()
+                        .hide()
+                        .menu();
+    });
+    $(function() {
+            $( "#slide-menu" ).click(function() {
+                    var menu = $( this ).parent().next().show().position({
+                        my: "left top",
+                        at: "left bottom",
+                        of: this
+                    });
+                    $( document ).one( "click", function() {
+                        menu.hide();
+                    });
+                    return false;
+                })
+                .parent()
+                    .buttonset()
+                    .next()
+                        .hide()
+                        .menu();
+    });
 
     $(function() {
         $( "#format" ).buttonset();
@@ -117,6 +168,11 @@
     $(function(){
     	$("#addList").button();
     });
+    $(function(){
+    	$( "#menu" ).menu();
+    });
+
+    
     </script>
 
 	<!--	<div class="toolbar" style="height: 70px;background:white">

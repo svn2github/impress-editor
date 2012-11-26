@@ -43,9 +43,11 @@
 	left: 15px;
     position: absolute;
     top: 10px;
+    
 }
 #file-displayed{
 	width:150px;
+	z-index: 1;
 }
 #slide-displayer{
 	float:left;
@@ -55,6 +57,7 @@
 }
 #slide-displayed{
 	width:150px;
+	z-index: 1;
 }
 /*Style for the tabs of the toolbar*/
 

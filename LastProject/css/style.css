@@ -145,8 +145,8 @@ label{
 	margin-right:10px;
 }
 
-#colorSelector{
-	z-index:1000;
+.collorpicker{
+	z-index:999;
 	
 }
 /*Slide-bar*/

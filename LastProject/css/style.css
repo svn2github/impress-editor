@@ -131,3 +131,21 @@ label{
 .ui-button-text-only .ui-button-text {
     padding: 0.3em 0em;
 }
+
+.colorSelectorHide{
+	display:none;
+}
+
+#btnColorSelector{
+	height:30px;
+	width:30px;
+	background-color:lightgreen;
+	padding:inherit;
+	top:10px;
+	margin-right:10px;
+}
+
+#colorSelector{
+	z-index:1000;
+	
+}

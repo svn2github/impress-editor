@@ -8,15 +8,25 @@
         <meta charset="utf-8">
       
         <title>Impress.js</title>
-        <meta name="description" content="Webpage from Hugo Diaz">
-        <meta name="author" content="Hugo Diaz Ferreiro">
+        <meta name="description" content="Webpage from Samaras Georgios,Hugo Diaz">
+        <meta name="author" content="Hugo Diaz Ferreiro & Samaras Georgios & Filippo Ferrario & Georgios Kokosioulis">
         <meta name="viewport" content="width=device-width">
+		
+		<!-- colorSelector -->
+		<link rel="stylesheet" media="screen" type="text/css" href="css/colorpicker.css" />
+		<script src="js/jquery-1.8.2.js"></script>
+  		<script src="js/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/colorpicker.js"></script>
+		<script type="text/javascript" src="js/eye.js"></script>
+		<script type="text/javascript" src="js/layout.js"></script>
+		<script type="text/javascript" src="js/utils.js"></script>
 		
 		<link rel="stylesheet" href="css/jquery-ui.css" />
 		<link rel="stylesheet" href="css/style.css">
-	    <script src="js/jquery-1.8.2.js"></script>
-  		<script src="js/jquery-ui.js"></script>
+	    
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		
+	
 		
 
     </head>
@@ -89,8 +99,10 @@
 					<option value="fantasy">fantasy</option>
 				</select>
 				
+				<button id="btnColorSelector" value="hide"></button>
 				<button id="addList" onclick="">List </button>
 				<button id="addTitle" onclick="">Title </button>
+				<div class="colorSelectorHide" id="colorSelector"></div>
 			
 		</div>
 		<div id="adding">
@@ -112,6 +124,46 @@
 	<div id="display-bar">
 		hi
 	</div>
+	
+	<script>
+	/***********************For the colorSelector*****************************/		
+			$('#colorSelector').ColorPicker({
+				flat: 'true',
+				onChange: function(hsb, hex, rgb, el) {
+					returnRGB(rgb);
+					var str = "";
+					str += "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
+					var cssObj = {
+      					'background-color' : str
+    				};
+					$('#btnColorSelector').css(cssObj);
+				},
+				onSubmit: function(){
+					$('#colorSelector').addClass("colorSelectorHide");
+					$('#btnColorSelector').value = "hide";
+				}
+			});
+			
+			
+			function returnRGB( rgb )
+			{
+			     /* rgb is the color selected */
+			     console.log(rgb);
+			}
+
+			(function() {
+				$('#btnColorSelector').click(function() {
+					if(this.value === "hide") {
+						this.value="show";
+						$('#colorSelector').removeClass("colorSelectorHide");
+					}
+					else {
+						this.value="hide";
+						$('#colorSelector').addClass("colorSelectorHide");
+					}
+				});
+			})();
+		</script>
 	<script>
 		$(function() {
         $( "#file-menu" ).click(function() {

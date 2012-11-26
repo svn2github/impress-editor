@@ -53,7 +53,7 @@
 		    <input type="checkbox" id="check2" /><label id="italic-button" for="check2">N</label>
 		    <input type="checkbox" id="check3" /><label id="underline-button" for="check3">N</label>
 		    <input type="checkbox" id="check4" /><label id="cross-button" for="check4">N</label>
-			<label for="spinner">Size:</label><input id="spinner" name="value" />
+			<label for="spinner">Size:</label>
 			
 			<select name="size" id="sizeTypes">
 			    <option value="8">8</option>
@@ -156,12 +156,7 @@
     $(function() {
         $( "#tabs" ).tabs();
     });
-    $(function() {
-    	 $("#spinner" ).spinner({
-    	 	width:200
-    	 	
-    	 });
-    });
+    
     $(function(){
     	$("button").button();
     });

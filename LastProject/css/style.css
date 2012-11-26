@@ -1,0 +1,96 @@
+/*Making the layout*/
+#menu-bar{
+	height: 30px;
+	border: 1px solid #AAA;
+	
+}
+#slide-bar{
+	bottom: 0px;
+    float: left;
+    position: absolute;
+    top: 130px;
+    width: 250px;
+	border: 2px solid #AAA;
+}
+#display-bar{
+	bottom: 0px;
+    float: right;
+    position: absolute;
+    top: 130px;
+	border: 2px solid #AAA;
+	left:260px;
+	right: 8px
+	
+}
+/*Menu buttons*/
+.menu-button{
+	height: 25px;
+	margin-left: 2px;
+    margin-top: 2px;
+}
+#menu-bar .ui-button-text-only .ui-button-text{
+	padding-top: 0em;
+}
+
+
+/*Style for the tabs of the toolbar*/
+
+#list-tabs{
+	height:20px;
+}
+.tab{
+	height:20px;
+}
+.ui-tabs .ui-tabs-nav li a{
+	padding: 0em 1em;
+}
+.ui-tabs .ui-tabs-panel {
+    padding: 0.4em 1.5em;
+}
+/*Making the bar of Size narrower*/
+#spinner {
+width: 40px;
+}
+
+/*Style for the buttons of the toolbar*/
+#tabs{
+	height: 81px;
+}
+#adding .ui-button-text-only .ui-button-text {
+padding: 0.0em 0em;
+line-height: 1.0;
+}
+label{
+	border-width:thick;
+	-moz-border-radius:3px; /* Firefox */ 
+	-webkit-border-radius:3px; /* Safari y Chrome */ 
+	background-color:lightgray;
+	height: 40px;
+	width: 40px;
+}
+#bold-button{
+	font: 900 20px arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+#italic-button{
+	font: 100 italic 20px arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+#underline-button{
+	font: 100 20px arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration:underline;
+}
+
+#cross-button{
+	font: 100 20px arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration:line-through;
+}
+.ui-button-text-only .ui-button-text {
+    padding: 0.3em 0em;
+}

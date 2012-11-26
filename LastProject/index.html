@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+      
+        <title>Impress.js</title>
+        <meta name="description" content="Webpage from Hugo Diaz">
+        <meta name="author" content="Hugo Diaz Ferreiro">
+        <meta name="viewport" content="width=device-width">
+		
+		<link rel="stylesheet" href="css/jquery-ui.css" />
+		<link rel="stylesheet" href="css/style.css">
+	    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+  		<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		
+
+    </head>
+	<body>
+	<div id="menu-bar">
+			<button class="menu-button" onclick="">New File </button>
+			<button class="menu-button" onclick="">Save </button>
+			<button class="menu-button" onclick="">Open </button>
+		</div>
+	<div id="tool-bar">
+	<div id="tabs">
+ 		<ul id="list-tabs">
+	        <li class="tab"><a href="#format">text</a></li>
+	        <li class="tab"><a href="#adding">add</a></li>
+   		</ul>
+		<div id="format">
+			
+		    <input type="checkbox" id="check1" /><label id="bold-button" for="check1">N</label>
+		    <input type="checkbox" id="check2" /><label id="italic-button" for="check2">N</label>
+		    <input type="checkbox" id="check3" /><label id="underline-button" for="check3">N</label>
+		    <input type="checkbox" id="check4" /><label id="cross-button" for="check4">N</label>
+			<label for="spinner">Size:</label><input id="spinner" name="value" />
+			
+			<select name="size" id="sizeTypes">
+			    <option value="8">8</option>
+			    <option value="9">9</option>
+			    <option value="10">10</option>
+			    <option value="11">11</option>
+			    <option value="12">12</option>
+			    <option value="13">13</option>
+			    <option value="14">14</option>
+			    <option value="16">16</option>
+			    <option value="18">18</option>
+			    <option value="20">20</option>
+			    <option value="25">25</option>
+			    <option value="32">32</option>
+			    <option value="48">48</option>
+			    <option value="60">60</option>
+			    <option value="72">72</option>
+			</select>
+			<select id="fontFamiliesTypes" name="font">
+					<option value="Times New Roman">Times New Roman</option>
+					<option value="Georgia">Georgia</option>
+					<option value="Arial">Arial</option>
+					<option value="Verdana">Verdana</option>
+					<option value="Courier New">Courier New</option>
+					<option value="Lucida Console">Lucida Console</option>
+					<option value="Helvetica">Helvetica</option>
+					<option value="Gill Sans">Gill Sans</option>
+					<option value="Avantgarde">Avantgarde</option>
+					<option value="Palatino">Palatino</option>
+					<option value="Andale Mono">Andale Mono</option>
+					<option value="Florence">Florence</option>
+					<option value="Impact">Impact</option>
+					<option value="fantasy">fantasy</option>
+				</select>
+				
+				<button id="addList" onclick="">List </button>
+				<button id="addTitle" onclick="">Title </button>
+			
+		</div>
+		<div id="adding">
+		    				<button onclick="">+</br>Slide</p> </button>
+				<button onclick="">Text</p> </button>  
+				<button onclick="">Image</p> </button>  
+				<button onclick="">Video</p> </button>  
+				<button onclick="">Overview</p> </button>  
+				<button onclick="">Present</p> </button>  
+		    
+		</div>
+
+
+	</div>
+	</div>
+	<div id="slide-bar">
+		hi
+	</div>
+	<div id="display-bar">
+		hi
+	</div>
+	<script>
+
+    $(function() {
+        $( "#format" ).buttonset();
+    });
+    $(function() {
+        $( "#tabs" ).tabs();
+    });
+    $(function() {
+    	 $("#spinner" ).spinner({
+    	 	width:200
+    	 	
+    	 });
+    });
+    $(function(){
+    	$("button").button();
+    });
+    $(function(){
+    	$("#addList").button();
+    });
+    </script>
+
+	<!--	<div class="toolbar" style="height: 70px;background:white">
+			<input type="checkbox" id="check1" /><label for="check1">B</label>
+			<button onclick="">
+				<p id="italic-button">
+					N
+				</p>
+			</button>
+			<button onclick="">
+				<p id="underline-button">
+					N
+				</p>
+			</button>
+			<button onclick="">
+				<p id="cross-button">
+					N
+				</p>
+			</button>
+		</div>-->
+
+	</body>
+</html>

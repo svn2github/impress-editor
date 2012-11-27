@@ -46,12 +46,12 @@
     
 }
 #file-displayed{
-	width:150px;
+	width:125px;
 	z-index: 1;
 }
 #slide-displayer{
 	float:left;
-	left: 70px;
+	left: 100px;
     position: absolute;
     top: 10px;
 }

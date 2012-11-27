@@ -34,7 +34,7 @@
 /*Menu buttons*/
 .identifiers{
 	margin-left:7px;
-	margin-right:7px;
+	margin-right:40px;
 	float:right;
 	
 }
@@ -162,4 +162,7 @@ label{
 	-moz-box-shadow: 10px 10px 5px #888;
 	-webkit-box-shadow: 10px 10px 5px #888;
 	box-shadow: 10px 10px 5px #888;	 
+}
+#nameWebPage{
+	right:20px;
 }

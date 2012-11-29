@@ -87,7 +87,9 @@ builder=(function(){
     
     $('<div></div>').addClass('bt-move').attr('title','Move').data('func','move').appendTo($controls);
     $('<div></div>').addClass('bt-rotate').attr('title','Rotate').data('func','rotate').appendTo($controls);
-    $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($controls);
+    $('<div></div>').addClass('bt-scale').attr('title','Scale_set').data('func','scale').appendTo($controls);
+    $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls); //added
+    $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls); //added
     
     $('<span></span>').addClass('builder-bt').text('Edit').appendTo($controls).click(editContents);
     //$('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls).click(wrapContents);

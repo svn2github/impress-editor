@@ -30,7 +30,7 @@ builder=(function(){
   handlers={},
   redrawTimeout,
   //nodes
-  $menu,$controls,$impress,$overview;
+  $menu,$controls,$controls2,$impress,$overview;
 
   handlers.move=function(x,y){
     
@@ -84,17 +84,28 @@ builder=(function(){
     
     
     $controls=$('<div></div>').addClass('builder-controls').hide();
-    
     $('<div></div>').addClass('bt-move').attr('title','Move').data('func','move').appendTo($controls);
     $('<div></div>').addClass('bt-rotate').attr('title','Rotate').data('func','rotate').appendTo($controls);
     $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($controls);
-    
-    $('<span></span>').addClass('builder-bt').text('Edit').appendTo($controls).click(editContents);
+    $controls2=$('<div></div>').addClass('builder-controls').hide();
+    $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     //$('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls).click(wrapContents);
     
+    var showTimer2;
+    $controls2.appendTo('body').on('mousedown','div',function(e){
+      e.preventDefault();
+      mouse.activeFunction=handlers[$(this).data('func')];
+      loadData();
+      mouse.prevX=e.pageX;
+      mouse.prevY=e.pageY;
+      $(document).on('mousemove.handler1',handleMouseMove);
+      return false;
+    }).on('mouseenter',function(){
+      clearTimeout(showTimer2);
+      
+    });
     var showTimer;
-    
-    $controls.appendTo('body').on('mousedown','div',function(e){
+    $controls.appendTo('.step').on('mousedown','div',function(e){
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -104,6 +115,7 @@ builder=(function(){
       return false;
     }).on('mouseenter',function(){
       clearTimeout(showTimer);
+      
     });
     $(document).on('mouseup',function(){
       mouse.activeFunction=false;
@@ -117,6 +129,7 @@ builder=(function(){
           //show controls
           state.$node=$t;
           showControls(state.$node);
+          appear();
         }
       },500);
       $t.data('showTimer',showTimer);
@@ -130,6 +143,12 @@ builder=(function(){
     config['goto']('start');
     
     
+  }
+  function appear(){
+  	console.log(state.editing);
+  	$(".builder-controls").hide();
+  	$(".active .builder-controls").show();
+  	$(".edit .builder-controls").show();
   }
   
   var sequence = (function(){
@@ -222,7 +241,7 @@ builder=(function(){
       });
       $t.text('OK');
       state.editing=true;
-      $t.after($txt.val(state.$node.html()));
+      $t.after($txt.val($(".active").html()));
     }
   }
   
@@ -233,13 +252,14 @@ builder=(function(){
   function showControls($where){
     var top,left,pos=$where.offset();
     //not going out the edges (at least one way)
-    top=(pos.top>0)? pos.top+(100/config.visualScaling) : 0;
-    left=(pos.left>0)? pos.left+(100/config.visualScaling) : 0;
+    // top=(pos.top>0)? pos.top+(100/config.visualScaling) : 0;
+    // left=(pos.left>0)? pos.left+(100/config.visualScaling) : 0;
+     
     
-    $controls.show().offset({
-      top:top,
-      left:left
-    });
+    // $controls.show().offset({
+     // // top:top,
+     // // left:left
+    // });
   }
   
   

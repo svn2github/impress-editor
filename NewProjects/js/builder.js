@@ -12,6 +12,7 @@ builder=(function(){
     }
   },
   config={
+  	rotation:0,
     rotateStep:0.5,
     scaleStep:0.005,
     visualScaling:10,
@@ -37,9 +38,13 @@ builder=(function(){
   handlers.move=function(x,y){
     
     var v=fixVector(x,y);
-
-    state.data.x = (state.data.x)? (state.data.x)+v.x : v.x;
-    state.data.y = (state.data.y)? (state.data.y)+v.y : v.y;
+	
+	//console.log(v.x)
+	//console.log(v.y)
+    state.data.x = state.data.x+v.x;
+    state.data.y = state.data.y+v.y;
+    //console.log(state.data.x)
+	//console.log(state.data.y)
   };
   handlers.scale=function(x){
     state.data.scale+= -x * config.scaleStep*config.visualScaling/10;
@@ -64,13 +69,14 @@ builder=(function(){
     if(config.setTransformationCallback){
       config.setTransformationCallback(function(x){
         // guess what, it indicates slide change too :)
-        $controls.hide();
+       // $controls.hide();
         
         //setting pu movement scale
         config.visualScaling=x.scale;
         console.log(x.scale);
       //TODO: implement rotation handling for move
-        config.rotation=~~(x.rotate.z);
+      
+        config.rotation=(x.rotate.z);
         console.log('rotate',x.rotate.z);
       //I don't see why I should need translation right now, but who knows...
       })
@@ -93,19 +99,19 @@ builder=(function(){
     $menu.appendTo('body');
     
     
-    $controls=$('<div></div>').addClass('builder-controls').hide();
+    $controls=$('<div></div>').addClass('builder-controls');
     $('<div></div>').addClass('bt-move').attr('title','Move').data('func','move').appendTo($controls);
-    $controls3=$('<div></div>').addClass('builder-controls').hide();
+    $controls3=$('<div></div>').addClass('builder-controls');
     $('<div></div>').addClass('bt-rotate').attr('title','Rotate').data('func','rotate').appendTo($controls3);
-    $controls4=$('<div></div>').addClass('builder-controls').hide();
+    $controls4=$('<div></div>').addClass('builder-controls');
     $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($controls4);
-    $controls5=$('<div></div>').addClass('builder-controls').hide();
+    $controls5=$('<div></div>').addClass('builder-controls');
     $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls5); //added
-    $controls6=$('<div></div>').addClass('builder-controls').hide();
+    $controls6=$('<div></div>').addClass('builder-controls');
     $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
     
     
-    $controls2=$('<div></div>').addClass('builder-controls').hide();
+    $controls2=$('<div></div>').addClass('builder-controls text');
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     //$('<input type="text" onkeyup="coor(event, this)">').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2);
     //$('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls).click(wrapContents);
@@ -196,7 +202,7 @@ builder=(function(){
           //show controls
           state.$node=$t;
           showControls(state.$node);
-          appear();
+          
         }
       },500);
       $t.data('showTimer',showTimer);
@@ -213,13 +219,7 @@ builder=(function(){
   }
   
 
-  
-  function appear(){
-  	console.log(state.editing);
-  	$(".builder-controls").hide();
-  	$(".active .builder-controls").show();
-  	$(".edit .builder-controls").show();
-  }
+ 
   
   var sequence = (function(){
     var s=2;
@@ -350,7 +350,7 @@ builder=(function(){
     clearTimeout(redrawTimeout);
     redrawTimeout=setTimeout(function(){
       //state.$node[0].dataset=state.data;
-      
+      //console.log("redraw");
       state.$node[0].dataset.scale=state.data.scale;
       state.$node[0].dataset.rotate=state.data.rotate;
       state.$node[0].dataset.rotateX=state.data.rotateX;
@@ -368,12 +368,18 @@ builder=(function(){
   
   function fixVector(x,y){
     var result={x:0,y:0},
-      angle=(config.rotation/180)*Math.PI,
+      angle=(state.data.rotate/180)*Math.PI,
       cs=Math.cos(angle),
       sn=Math.sin(angle);
-
-    result.x = (x*cs - y*sn) * config.visualScaling;
-    result.y = (x*sn + y*cs) * config.visualScaling;
+      //console.log(state.data.rotate);
+	var scale;
+	scale=state.data.scale;
+	if(scale==0){
+		scale=0.1;
+	}
+	console.log(scale)
+    result.x = (x*cs - y*sn) * config.visualScaling*scale;
+    result.y = (x*sn + y*cs) * config.visualScaling*scale;
     return result;
   }
   

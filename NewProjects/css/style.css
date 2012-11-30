@@ -1,10 +1,19 @@
 
 .step.flash.future {opacity:0}
 .step.flash.past {opacity:0}
+
+.active .builder-controls{
+	display: block;
+}
 .builder-controls{
 	top:0;
 	left:0;
 	position:relative;
+	margin-bottom: 10px;
+	display:none;
+}
+.text{
+	display: block;
 }
 #edit{
 	position:absolute;

@@ -6,12 +6,14 @@ builder=(function(){
       x:0,
       y:0,
       rotate:0,
+      rotateX:0,
+      rotateY:0,
       scale:0
     }
   },
   config={
-    rotateStep:1,
-    scaleStep:0.1,
+    rotateStep:0.5,
+    scaleStep:0.005,
     visualScaling:10,
     redrawFunction:false,
     setTransformationCallback:false
@@ -30,7 +32,7 @@ builder=(function(){
   handlers={},
   redrawTimeout,
   //nodes
-  $menu,$controls,$controls2,$impress,$overview;
+  $menu,$controls,$controls2,$controls3,$controls4,$controls5,$controls6,$controls7,$controls8,$impress,$overview;
 
   handlers.move=function(x,y){
     
@@ -40,11 +42,19 @@ builder=(function(){
     state.data.y = (state.data.y)? (state.data.y)+v.y : v.y;
   };
   handlers.scale=function(x){
-    state.data.scale-= -x * config.scaleStep*config.visualScaling/10;
+    state.data.scale+= -x * config.scaleStep*config.visualScaling/10;
   };
   handlers.rotate=function(x){
    // console.log(state.rotate);
     state.data.rotate-= -x*config.rotateStep;
+  };
+    handlers.rotateX=function(x,y){
+   // console.log(state.rotate);
+    state.data.rotateX+= -y*config.rotateStep;
+  };
+  handlers.rotateY=function(x,y){
+   // console.log(state.rotate);
+    state.data.rotateY-= -x*config.rotateStep;
   };
   
 
@@ -85,13 +95,19 @@ builder=(function(){
     
     $controls=$('<div></div>').addClass('builder-controls').hide();
     $('<div></div>').addClass('bt-move').attr('title','Move').data('func','move').appendTo($controls);
-    $('<div></div>').addClass('bt-rotate').attr('title','Rotate').data('func','rotate').appendTo($controls);
-    $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($controls);
-    $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls); //added
-    $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls); //added
+    $controls3=$('<div></div>').addClass('builder-controls').hide();
+    $('<div></div>').addClass('bt-rotate').attr('title','Rotate').data('func','rotate').appendTo($controls3);
+    $controls4=$('<div></div>').addClass('builder-controls').hide();
+    $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($controls4);
+    $controls5=$('<div></div>').addClass('builder-controls').hide();
+    $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls5); //added
+    $controls6=$('<div></div>').addClass('builder-controls').hide();
+    $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
+    
     
     $controls2=$('<div></div>').addClass('builder-controls').hide();
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
+    //$('<input type="text" onkeyup="coor(event, this)">').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2);
     //$('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls).click(wrapContents);
     
     var showTimer2;
@@ -109,6 +125,54 @@ builder=(function(){
     });
     var showTimer;
     $controls.appendTo('.step').on('mousedown','div',function(e){
+      e.preventDefault();
+      mouse.activeFunction=handlers[$(this).data('func')];
+      loadData();
+      mouse.prevX=e.pageX;
+      mouse.prevY=e.pageY;
+      $(document).on('mousemove.handler1',handleMouseMove);
+      return false;
+    }).on('mouseenter',function(){
+      clearTimeout(showTimer);
+      
+    });
+    $controls3.appendTo('.step').on('mousedown','div',function(e){
+      e.preventDefault();
+      mouse.activeFunction=handlers[$(this).data('func')];
+      loadData();
+      mouse.prevX=e.pageX;
+      mouse.prevY=e.pageY;
+      $(document).on('mousemove.handler1',handleMouseMove);
+      return false;
+    }).on('mouseenter',function(){
+      clearTimeout(showTimer);
+      
+    });
+    $controls4.appendTo('.step').on('mousedown','div',function(e){
+      e.preventDefault();
+      mouse.activeFunction=handlers[$(this).data('func')];
+      loadData();
+      mouse.prevX=e.pageX;
+      mouse.prevY=e.pageY;
+      $(document).on('mousemove.handler1',handleMouseMove);
+      return false;
+    }).on('mouseenter',function(){
+      clearTimeout(showTimer);
+      
+    });
+    $controls5.appendTo('.step').on('mousedown','div',function(e){
+      e.preventDefault();
+      mouse.activeFunction=handlers[$(this).data('func')];
+      loadData();
+      mouse.prevX=e.pageX;
+      mouse.prevY=e.pageY;
+      $(document).on('mousemove.handler1',handleMouseMove);
+      return false;
+    }).on('mouseenter',function(){
+      clearTimeout(showTimer);
+      
+    });
+     $controls6.appendTo('.step').on('mousedown','div',function(e){
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -147,6 +211,9 @@ builder=(function(){
     
     
   }
+  
+
+  
   function appear(){
   	console.log(state.editing);
   	$(".builder-controls").hide();
@@ -283,13 +350,15 @@ builder=(function(){
     clearTimeout(redrawTimeout);
     redrawTimeout=setTimeout(function(){
       //state.$node[0].dataset=state.data;
-        
+      
       state.$node[0].dataset.scale=state.data.scale;
       state.$node[0].dataset.rotate=state.data.rotate;
+      state.$node[0].dataset.rotateX=state.data.rotateX;
+      state.$node[0].dataset.rotateY=state.data.rotateY;
       state.$node[0].dataset.x=state.data.x;
       state.$node[0].dataset.y=state.data.y;
       /**/
-      console.log(state.data,state.$node[0].dataset,state.$node[0].dataset===state.data);
+      //console.log(state.data,state.$node[0].dataset,state.$node[0].dataset===state.data);
         
       config.redrawFunction(state.$node[0]);
       showControls(state.$node);
@@ -331,3 +400,14 @@ builder=(function(){
   };
 
 })();
+
+  var coor=function (event,text){
+
+  	
+  	//check that is a number
+  	//check that the key is enter(checking the value)
+
+  	if(event.keyCode==13){
+  		console.log("hi")
+  	}
+  }

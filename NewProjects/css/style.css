@@ -4,7 +4,7 @@
 .builder-controls{
 	top:0;
 	left:0;
-	
+	position:relative;
 }
 #edit{
 	position:absolute;

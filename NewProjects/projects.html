@@ -1,182 +1,363 @@
-<html style="height: 100%;" lang="en"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Atelier Final Projects Kick-Off</title>
-    
-    
-    <meta name="description" content="Kick-Off of the atelier final projects">
-    <meta name="author" content="Cesare Pautasso">
+<html style="height: 100%;" lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<title>Atelier Final Projects Kick-Off</title>
 
-	
-    <link href="css/font.css" rel="stylesheet">
-    <link href="css/default.css" rel="stylesheet">
-    <link href="css/builder.css" rel="stylesheet">
-    <link href="css/sunburst.css" rel="stylesheet">
-   <link href="css/style.css" rel="stylesheet">
-   
-    <link rel="shortcut icon" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    
-    <script src="js/jquery.1.7.1.min.js"></script>
-    <script src="js/img-svg.js"></script>
+		<meta name="description" content="Kick-Off of the atelier final projects">
+		<meta name="author" content="Cesare Pautasso">
 
-</head>
+<!----------------------- Include aloha editor and our modifications ------------------------>
+		<!--
+		Load the CSS styles for Aloha Editor
+		-->
+		<link rel="stylesheet" href="css/aloha.css" type="text/css">
+		<script src="js/aloha-config.js"></script>
+		<script src="lib/require.js"></script>
+		<script src="lib/vendor/jquery-1.7.2.js"></script>
+		<script>
+			// Passing jQuery into Aloha explicitly is not necessary since
+			// newer versions of jQuery will make a call to define which will
+			// be picked up in aloha.js
+			//Aloha.settings.jQuery = $.noConflict(true);
+		</script>
+		<!--
+		Load the Aloha Editor library.
+		The plugin list could also be added to the configuration.
+		-->
+		<!-- Don't commit the sourceview plugin to the list of enabled plugins! -->
+		<script src="lib/aloha.js"
+		data-aloha-plugins="common/ui,
+		common/format,
+		common/table,
+		common/list,
+		common/link,
+		common/highlighteditables,
+		common/undo,
+		common/contenthandler,
+		common/paste,
+		common/characterpicker,
+		common/commands,
+		common/block,
+		common/image,
+		common/abbr,
+		common/horizontalruler,
+		common/align,
+		common/dom-to-xhtml,
+		extra/formatlesspaste,
+		extra/toc,
+		extra/headerids,
+		extra/listenforcer,
+		extra/metaview,
+		extra/numerated-headers,
+		extra/ribbon,
+		extra/wai-lang,
+		extra/flag-icons,
+		extra/linkbrowser,
+		extra/imagebrowser,
+		extra/cite"></script>
 
-<body>
-<div class="fallback-message">
-    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
-    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
-</div>
+		<!-- Include the fake-jquery to make sure that Aloha works even if
+		the user includes his own global jQuery after aloha.js. -->
+		<script src="js/fake-jquery.js"></script>
+		<!--<script src="ribbon-example.js"></script>--
+		<link rel="stylesheet" href="css/styleForAloha.js">-->
+		<script src="js/aloha-boilerplate.js"></script>
+		
+<!----------------------- End of include aloha editor and our modifications ------------------------>
 
+		<link href="css/font.css" rel="stylesheet">
+		<link href="css/default.css" rel="stylesheet">
+		<link href="css/builder.css" rel="stylesheet">
+		<link href="css/sunburst.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
 
+		<link rel="shortcut icon" href="favicon.png">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-<div id="impress" data-transition-duration="1000"><div><div><div>
+		<script src="js/jquery.1.7.1.min.js"></script>
+		<script src="js/img-svg.js"></script>
 
-	<div id="title" class="step" data-x="0" data-y="0" data-scale="1" data-rotate="0">
-		<img src="img/logo_info_color_en.svg"><br>
-        <h1>Final Team Projects</h1>
-        <p style="text-align:center">
-        Prof. Cesare Pautasso<br>
-        <a href="http://www.pautasso.info/">http://www.pautasso.info</a><br>
-        cesare.pautasso@usi.ch<br>
-        <a href="http://twitter.com/pautasso">@pautasso</a></p>
-    </div>
-      
-      
-<div id="cal" class="step " data-x="0" data-y="-1000" data-scale="0.5" data-rotate="0">
-<h2>Calendar</h2>
+	</head>
 
-<ul><li>21.11.2012 (today) Kick-Off</li>
-	<li>27.11.2012 Milestone 1</li>
-	<li>&nbsp;5.12.2012 Milestone 2</li>
-	<li>11.12.2012 Milestone 3</li>
-	<li>18.12.2012 Milestone 4</li>
-	<li>19.12.2012 End of Semester Presentations</li>
-</ul>
+	<body>
+		<div class="fallback-message">
+			<p>
+				Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.
+			</p>
+			<p>
+				For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.
+			</p>
+		</div>
 
-</div>
+		<div id="impress" data-transition-duration="1000">
+			<div>
+				<div>
+					<div>
 
-<div id="prj" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
-<h2>Projects</h2>
+						<div id="title" class="step" data-x="0" data-y="0" data-scale="1" data-rotate="0">
+							<!--<img src="img/logo_info_color_en.svg">-->	
+							<br>
+							<h1>Final Team Projects</h1>
+							<p style="text-align:center">
+								Prof. Cesare Pautasso
+								<br>
+								<a href="http://www.pautasso.info/">http://www.pautasso.info</a>
+								<br>
+								cesare.pautasso@usi.ch
+								<br>
+								<a href="http://twitter.com/pautasso">@pautasso</a>
+							</p>
+						</div>
 
-<ol>
-	<li>webTunes</li>
-	<li>ASQ</li>
-	<li>Impress.js WYSIWYG Editor</li>
-	<li>USI.INF Research Project Visualization</li>
-</ol>
+						<div id="cal" class="step " data-x="0" data-y="-1000" data-scale="0.5" data-rotate="0">
+							<h2>Calendar</h2>
 
-</div>
+							<ul>
+								<li>
+									21.11.2012 (today) Kick-Off
+								</li>
+								<li>
+									27.11.2012 Milestone 1
+								</li>
+								<li>
+									&nbsp;5.12.2012 Milestone 2
+								</li>
+								<li>
+									11.12.2012 Milestone 3
+								</li>
+								<li>
+									18.12.2012 Milestone 4
+								</li>
+								<li>
+									19.12.2012 End of Semester Presentations
+								</li>
+							</ul>
 
-<div id="prj-wt" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
-<h2>webTunes</h2>
+						</div>
 
-<ul><li>Giorgio Gori</li>
-	<li>Antonio Azara</li>
-	<li>Giovanni Viviani</li>
-	<li>Alessio Aurecchia</li>
-</ul>
+						<div id="prj" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
+							<h2>Projects</h2>
 
-<p>TA: Daniele Bonetta</p>
+							<ol>
+								<li>
+									webTunes
+								</li>
+								<li>
+									ASQ
+								</li>
+								<li>
+									Impress.js WYSIWYG Editor
+								</li>
+								<li>
+									USI.INF Research Project Visualization
+								</li>
+							</ol>
 
+						</div>
 
+						<div id="prj-wt" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
+							<h2>webTunes</h2>
 
-</div>
+							<ul>
+								<li>
+									Giorgio Gori
+								</li>
+								<li>
+									Antonio Azara
+								</li>
+								<li>
+									Giovanni Viviani
+								</li>
+								<li>
+									Alessio Aurecchia
+								</li>
+							</ul>
 
-<div id="prj-asq" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
-<h2>ASQ</h2>
+							<p>
+								TA: Daniele Bonetta
+							</p>
 
-<ul><li>Jacques Dafflon</li>
-	<li>Margarita Grinvald</li>
-	<li>Max von B&uuml;low</li>
-</ul>
+						</div>
 
-<p>TA: Vasileios Triglianos</p>
+						<div id="prj-asq" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
+							<h2>ASQ</h2>
 
+							<ul>
+								<li>
+									Jacques Dafflon
+								</li>
+								<li>
+									Margarita Grinvald
+								</li>
+								<li>
+									Max von B&uuml;low
+								</li>
+							</ul>
 
+							<p>
+								TA: Vasileios Triglianos
+							</p>
 
-</div>
+						</div>
 
+						<div id="prj-ie" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
+							<h2>Impress.js WYSIWYG Editor</h2>
 
-<div id="prj-ie" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
-<h2>Impress.js WYSIWYG Editor</h2>
+							<ul>
+								<li>
+									Hugo Diaz Ferrero
+								</li>
+								<li>
+									Georgios Kokosioulis
+								</li>
+								<li>
+									Georgios Samaras
+								</li>
+								<li>
+									Filippo Ferrario
+								</li>
+							</ul>
 
-<ul><li>Hugo Diaz Ferrero</li>
-	<li>Georgios Kokosioulis</li>
-	<li>Georgios Samaras</li>
-	<li>Filippo Ferrario</li>
-</ul>
+							<p>
+								TA: Saeed Aghaee
+							</p>
 
-<p>TA: Saeed Aghaee</p>
+						</div>
 
+						<div id="prj-rv" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
+							<h2>USI.INF Research Project Visualization</h2>
 
-</div>
+							<ul>
+								<li>
+									Christine Graff
+								</li>
+								<li>
+									Daneks Gricuks
+								</li>
+								<li>
+									Nabeel Hafeez Hoorani
+								</li>
+							</ul>
 
-<div id="prj-rv" class="step flash" data-x="1000" data-y="-1000" data-scale="0.5" data-rotate="0">
-<h2>USI.INF Research Project Visualization</h2>
+							<p>
+								TA: Cesare Pautasso
+							</p>
 
-<ul><li>Christine Graff</li>
-	<li>Daneks Gricuks</li>
-	<li>Nabeel Hafeez Hoorani</li>
-</ul>
+						</div>
 
-<p>TA: Cesare Pautasso</p>
+						<div id="prj-ta" class="step flash" data-x="1000" data-y="0" data-scale="0.5" data-rotate="0">
+							<h2>TA Support</h2>
 
+							<ul>
+								<li>
+									Tuesday 13:30-15:30 (after milestone presentations)
+								</li>
+								<li>
+									Wednesday 13:30-15:30
+								</li>
+								<li>
+									Thursday 13:30-15:30
+								</li>
+							</ul>
 
+							<p>
+								Outside the atelier hours only remote support through the forum is available
+							</p>
 
-</div>
+						</div>
 
-<div id="prj-ta" class="step flash" data-x="1000" data-y="0" data-scale="0.5" data-rotate="0">
-<h2>TA Support</h2>
+						<div id="prj-ev" class="step flash" data-x="1000" data-y="0" data-scale="0.5" data-rotate="0">
+							<h2>Project Evaluation Criteria</h2>
 
-<ul><li>Tuesday 13:30-15:30 (after milestone presentations)</li>
-	<li>Wednesday 13:30-15:30</li>
-	<li>Thursday 13:30-15:30</li>
-</ul>
+							<ul>
+								<li>
+									Quality of the resulting prototype
+								</li>
+								<li>
+									Quality of the team collaboration
+								</li>
+								<li>
+									Quality of the final presentation/demonstration
+								</li>
+								<li>
+									Quality of the 4 milestone presentations
+								</li>
+							</ul>
 
-<p>Outside the atelier hours only remote support through the forum is available</p>
+						</div>
 
-</div>
+						<div id="prj-next" class="step flash" data-x="1000" data-y="0" data-scale="0.5" data-rotate="0">
+							<h2>Next Steps</h2>
 
-<div id="prj-ev" class="step flash" data-x="1000" data-y="0" data-scale="0.5" data-rotate="0">
-<h2>Project Evaluation Criteria</h2>
+							<ol>
+								<li>
+									Setup collaboration infrastructure (git, svn)
+								</li>
+								<li>
+									Agree on your project objective
+								</li>
+								<li>
+									Define which features and who will do them
+								</li>
+								<li>
+									Design the architecture...
+								</li>
+								<li>
+									... start coding the first iteration
+								</li>
+								<li>
+									Tip: Integrate continuously (every day)
+								</li>
+							</ol>
 
-<ul><li>Quality of the resulting prototype</li>
-	<li>Quality of the team collaboration</li>
-	<li>Quality of the final presentation/demonstration</li>
-	<li>Quality of the 4 milestone presentations</li>
-</ul>
+						</div>
 
-</div>
+						<div id="overview" class="step" data-x="1000" data-y="-1000" data-scale="5" data-rotate="0"></div>
 
+						<div class="hint">
+							<p>
+								Use a spacebar or arrow keys to navigate
+							</p>
+						</div>
 
-<div id="prj-next" class="step flash" data-x="1000" data-y="0" data-scale="0.5" data-rotate="0">
-<h2>Next Steps</h2>
+						<script src="js/highlight.pack.js"></script>
+						<script src="js/impress.js"></script>
+						<script src="js/builder.js"></script>
+						<script src="js/main.js"></script>
+						
+						<script>
+							document.ondblclick = function(){
+								Aloha.ready( function(){
+								var $ = Aloha.jQuery;
+								// register all editable areas
+					
+								$('#title').aloha();
+								$('#cal').aloha();
+								$('#prj').aloha();
+								$('#prj-wt').aloha();
+								$('#prj-asq').aloha();
+								$('#prj-ie').aloha();
+								$('#prj-rv').aloha();
+								$('#prj-ta').aloha();
+								$('#prj-ev').aloha();
+								$('#prj-next').aloha();
+								$('#overview').aloha();
+								
+								// hide loading div
+								$('#aloha-loading').hide();
+								$('#aloha-loading span').html('Loading Plugins');
+				
+								
+								});
+							};
+						</script>
+			
+					</div>
+				</div>
+			</div>
+		</div>
 
-<ol><li>Setup collaboration infrastructure (git, svn)</li>
-	<li>Agree on your project objective</li>
-	<li>Define which features and who will do them</li>
-	<li>Design the architecture...</li>
-	<li>... start coding the first iteration</li>
-	<li>Tip: Integrate continuously (every day)</li>
-</ol>
-
-</div>
-
-
-	  <div id="overview" class="step" data-x="1000" data-y="-1000" data-scale="5" data-rotate="0"></div>
-
-
-
-<div class="hint">
-    <p>Use a spacebar or arrow keys to navigate</p>
-</div>
-
-
-<script src="js/highlight.pack.js"></script>
-<script src="js/impress.js"></script>
-<script src="js/builder.js"></script>
-<script src="js/main.js"></script></div></div></div></div>
-
-</body></html>
+	</body>
+</html>

@@ -4,6 +4,7 @@
 
 .active .builder-controls{
 	display: inline-block;
+	margin:5px;
 }
 .builder-controls{
 	top:0;

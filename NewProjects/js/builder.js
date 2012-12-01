@@ -115,6 +115,8 @@ builder=(function(){
     
     $controls2=$('<div></div>').addClass('builder-controls text');
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
+    $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
+    $('<span></span>').addClass('builder-bt').text('Delete').appendTo($controls2).click(deleteContents);
     $('<input type="text" onkeyup="movex(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
     $('<input type="text" onkeyup="movey(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
     $('<input type="text" onkeyup="movez(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
@@ -122,7 +124,7 @@ builder=(function(){
     $('<input type="text" onkeyup="roty(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
     $('<input type="text" onkeyup="rotz(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
     $('<input type="text" onkeyup="scale(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
-    //$('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls).click(wrapContents);
+    
     
     var showTimer2;
     $controls2.appendTo('body').on('mousedown','div',function(e){
@@ -257,20 +259,68 @@ builder=(function(){
   
   
   function downloadStyle(){
+   
     var uriContent,content,$doc;
     
     var BlobBuilder = (function(w) {
       return w.BlobBuilder || w.WebKitBlobBuilder || w.MozBlobBuilder;
     })(window);
-    $.get('style.css', function (content) {
+
+    // Chrome bug and but if is runned in server it works!
+    // for example try: python -m SimpleHTTPServer
+    // then run the project and try to download css 
+    $.get('css/style.css', function (content) {
       var bb = new BlobBuilder;
       bb.append(content);
-      saveAs(bb.getBlob("text/css;charset=utf-8"), "style.css");
+      saveAs(bb.getBlob("text/css;charset=utf-8"), "default.css");
     });
-   
+
   }
   
-  function downloadResults(){
+  function downloadResults() {
+    // var uriContent,content,$doc;
+    
+    // var BlobBuilder = (function(w) {
+    //   return w.BlobBuilder || w.WebKitBlobBuilder || w.MozBlobBuilder;
+    // })(window);
+
+    // $doc=$(document.documentElement).clone();
+    // //remove all scripting
+    // //$doc.find('script').remove();
+    // //remove all current transforms
+    // $doc.find('.step, body, #impress, #impress>div').removeAttr('style');
+    // $doc.find('body').removeAttr('class');
+    // //remove gui
+    // $doc.find('.builder-controls, .builder-main, .counter').remove();
+    
+    // $doc.find('.previous').each(function(index,element){element.classList.remove('previous');});
+    // $doc.find('.active').each(function(index,element){element.classList.remove('active');});
+    // $doc.find('.present').each(function(index,element){element.classList.remove('present');});
+    // $doc.find('.past').each(function(index,element){element.classList.remove('past');});
+    // $doc.find('.future').each(function(index,element){element.classList.remove('future');});
+    // //put overview at the end
+    // //$doc.find('#overview').appendTo($doc.find('#impress'));
+    // //add impress.js simple init
+    // //$doc.find('body').attr('class','impress-not-supported')[0].innerHTML+='<script src="https://raw.github.com/bartaz/impress.js/master/js/impress.js"></script><script>impress().init()</script>';
+    // content=$doc[0].outerHTML;
+    // //remove stuff
+    // var bb = new BlobBuilder;
+    // bb.append(content);
+    // //saveAs(bb.getBlob("text/html;charset=utf-8"), "presentation.html");
+    
+    // var $t = $(this);
+    // var $txt=$('<textarea>').on('keydown keyup',function(e){
+    // 	if (e.keyCode == 27) {
+    // 		$txt.remove();
+    // 	}
+    //     e.stopPropagation();
+    //   });
+    // $t.after($txt.val(content));  
+
+
+    // NEW CODE DON'T DELETE THE COMMENTED ONE ABOVE!!
+    // Need some extra modifications 
+
     var uriContent,content,$doc;
     
     var BlobBuilder = (function(w) {
@@ -278,36 +328,21 @@ builder=(function(){
     })(window);
     $doc=$(document.documentElement).clone();
     //remove all scripting
-    //$doc.find('script').remove();
+    $doc.find('script').remove();
     //remove all current transforms
     $doc.find('.step, body, #impress, #impress>div').removeAttr('style');
-    $doc.find('body').removeAttr('class');
     //remove gui
-    $doc.find('.builder-controls, .builder-main, .counter').remove();
-    
-    $doc.find('.previous').each(function(index,element){element.classList.remove('previous');});
-    $doc.find('.active').each(function(index,element){element.classList.remove('active');});
-    $doc.find('.present').each(function(index,element){element.classList.remove('present');});
-    $doc.find('.past').each(function(index,element){element.classList.remove('past');});
-    $doc.find('.future').each(function(index,element){element.classList.remove('future');});
+    $doc.find('.builder-controls, .builder-main').remove();
     //put overview at the end
-    //$doc.find('#overview').appendTo($doc.find('#impress'));
+    $doc.find('#overview').appendTo($doc.find('#impress'));
     //add impress.js simple init
-    //$doc.find('body').attr('class','impress-not-supported')[0].innerHTML+='<script src="https://raw.github.com/bartaz/impress.js/master/js/impress.js"></script><script>impress().init()</script>';
+    $doc.find('body').attr('class','impress-not-supported')[0].innerHTML+='<script src="https://raw.github.com/bartaz/impress.js/master/js/impress.js"></script><script>impress().init()</script>';
     content=$doc[0].outerHTML;
     //remove stuff
     var bb = new BlobBuilder;
     bb.append(content);
-    //saveAs(bb.getBlob("text/html;charset=utf-8"), "presentation.html");
-    
-    var $t = $(this);
-    var $txt=$('<textarea>').on('keydown keyup',function(e){
-    	if (e.keyCode == 27) {
-    		$txt.remove();
-    	}
-        e.stopPropagation();
-      });
-    $t.after($txt.val(content));  
+    saveAs(bb.getBlob("text/html;charset=utf-8"), "presentation.html");
+
     
   }
   
@@ -329,10 +364,19 @@ builder=(function(){
     }
   }
   
+
+  // Put the content of each slide inside a white box with some css
   function wrapContents() {
     state.$node.toggleClass('slide');
   }
-  
+
+
+  // Upcoming delete function
+  function deleteContents() {
+    
+  }
+
+
   function showControls($where){
     var top,left,pos=$where.offset();
     //not going out the edges (at least one way)

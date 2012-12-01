@@ -21,6 +21,7 @@
 }
 .trans{
 	width:100px;
+	color: white;
 }
 
 textarea{
@@ -28,3 +29,4 @@ textarea{
     position: absolute;
     top: 27px;
 }
+

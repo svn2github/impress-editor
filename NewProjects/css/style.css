@@ -3,7 +3,7 @@
 .step.flash.past {opacity:0}
 
 .active .builder-controls{
-	display: block;
+	display: inline-block;
 }
 .builder-controls{
 	top:0;

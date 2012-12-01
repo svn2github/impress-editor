@@ -13,13 +13,17 @@
 	display:none;
 }
 .text{
-	display: block;
+	display: inline;
+    position: absolute;
+    top: 165px;
+    width: 120px;
 }
-#edit{
-	position:absolute;
-	top:150px;
+.trans{
+	width:100px;
 }
+
 textarea{
-	position: absolute;
-	top:181px;
+	left: 130px;
+    position: absolute;
+    top: 27px;
 }

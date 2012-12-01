@@ -5,6 +5,7 @@ builder=(function(){
     data:{
       x:0,
       y:0,
+      z:0,
       rotate:0,
       rotateX:0,
       rotateY:0,
@@ -22,6 +23,7 @@ builder=(function(){
   defaults={
     x:0,
     y:0,
+    z:0,
     rotate:0,
     scale:1
   },
@@ -47,7 +49,7 @@ builder=(function(){
 	//console.log(state.data.y)
   };
   handlers.scale=function(x){
-    state.data.scale+= -x * config.scaleStep*config.visualScaling/10;
+    state.data.scale+= -x * config.scaleStep/10;
   };
   handlers.rotate=function(x){
    // console.log(state.rotate);
@@ -113,11 +115,18 @@ builder=(function(){
     
     $controls2=$('<div></div>').addClass('builder-controls text');
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
-    //$('<input type="text" onkeyup="coor(event, this)">').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2);
+    $('<input type="text" onkeyup="movex(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
+    $('<input type="text" onkeyup="movey(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
+    $('<input type="text" onkeyup="movez(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
+    $('<input type="text" onkeyup="rotx(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
+    $('<input type="text" onkeyup="roty(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
+    $('<input type="text" onkeyup="rotz(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
+    $('<input type="text" onkeyup="scale(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
     //$('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls).click(wrapContents);
     
     var showTimer2;
     $controls2.appendTo('body').on('mousedown','div',function(e){
+      state.$node=$(".active");	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -131,6 +140,7 @@ builder=(function(){
     });
     var showTimer;
     $controls.appendTo('.step').on('mousedown','div',function(e){
+    	state.$node=$(".active");	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -143,6 +153,7 @@ builder=(function(){
       
     });
     $controls3.appendTo('.step').on('mousedown','div',function(e){
+    	state.$node=$(".active");	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -155,6 +166,7 @@ builder=(function(){
       
     });
     $controls4.appendTo('.step').on('mousedown','div',function(e){
+    	state.$node=$(".active");	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -167,6 +179,7 @@ builder=(function(){
       
     });
     $controls5.appendTo('.step').on('mousedown','div',function(e){
+    	state.$node=$(".active");	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -179,6 +192,7 @@ builder=(function(){
       
     });
      $controls6.appendTo('.step').on('mousedown','div',function(e){
+     	state.$node=$(".active");	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -334,15 +348,18 @@ builder=(function(){
   
   
   function loadData(){
-    console.log('load',state.$node[0].dataset.x);
+    console.log('load',state.$node[0]);
     //state.data=state.$node[0].dataset;
     //add defaults
     
     
     state.data.x=parseFloat(state.$node[0].dataset.x) || defaults.x;   
-    state.data.y=parseFloat(state.$node[0].dataset.y) || defaults.y;   
+    state.data.y=parseFloat(state.$node[0].dataset.y) || defaults.y;  
+    state.data.z=parseFloat(state.$node[0].dataset.z) || defaults.z;    
     state.data.scale=parseFloat(state.$node[0].dataset.scale) || defaults.scale;   
-    state.data.rotate=parseFloat(state.$node[0].dataset.rotate) || defaults.rotate;   
+    state.data.rotate=parseFloat(state.$node[0].dataset.rotate) || defaults.rotate;
+    state.data.rotateX=parseFloat(state.$node[0].dataset.rotateX) || defaults.rotate;
+    state.data.rotateY=parseFloat(state.$node[0].dataset.rotateY) || defaults.rotate;   
     
   }
   
@@ -358,7 +375,7 @@ builder=(function(){
       state.$node[0].dataset.x=state.data.x;
       state.$node[0].dataset.y=state.data.y;
       /**/
-      //console.log(state.data,state.$node[0].dataset,state.$node[0].dataset===state.data);
+      console.log(state.data,state.$node[0].dataset,state.$node[0].dataset===state.data);
         
       config.redrawFunction(state.$node[0]);
       showControls(state.$node);
@@ -378,8 +395,8 @@ builder=(function(){
 		scale=0.1;
 	}
 	console.log(scale)
-    result.x = (x*cs - y*sn) * config.visualScaling*scale;
-    result.y = (x*sn + y*cs) * config.visualScaling*scale;
+    result.x = (x*cs - y*sn) * config.visualScaling*0.2;
+    result.y = (x*sn + y*cs) * config.visualScaling*0.2;
     return result;
   }
   
@@ -407,13 +424,74 @@ builder=(function(){
 
 })();
 
-  var coor=function (event,text){
+  var movex=function (event,text){
 
   	
   	//check that is a number
   	//check that the key is enter(checking the value)
 
   	if(event.keyCode==13){
-  		console.log("hi")
+  		console.log("1")
   	}
   }
+  var movey=function (event,text){
+
+  	
+  	//check that is a number
+  	//check that the key is enter(checking the value)
+
+  	if(event.keyCode==13){
+  		console.log("2")
+  	}
+  }
+var movez=function (event,text){
+
+  	
+  	//check that is a number
+  	//check that the key is enter(checking the value)
+
+  	if(event.keyCode==13){
+  		console.log("3")
+  	}
+  }
+var rotx=function (event,text){
+
+  	
+  	//check that is a number
+  	//check that the key is enter(checking the value)
+
+  	if(event.keyCode==13){
+  		console.log("4")
+  	}
+  }
+var roty=function (event,text){
+
+  	
+  	//check that is a number
+  	//check that the key is enter(checking the value)
+
+  	if(event.keyCode==13){
+  		console.log("5")
+  	}
+  }
+var rotz=function (event,text){
+
+  	
+  	//check that is a number
+  	//check that the key is enter(checking the value)
+
+  	if(event.keyCode==13){
+  		console.log("6")
+  	}
+  }
+  var scale=function (event,text){
+
+  	
+  	//check that is a number
+  	//check that the key is enter(checking the value)
+
+  	if(event.keyCode==13){
+  		console.log("6")
+  	}
+  }
+

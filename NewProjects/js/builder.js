@@ -119,13 +119,13 @@ builder=(function(){
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Delete').appendTo($controls2).click(deleteContents);
-    $('<input type="text" onkeyup="movex(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
-    $('<input type="text" onkeyup="movey(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
-    $('<input type="text" onkeyup="movez(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
-    $('<input type="text" onkeyup="rotx(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
-    $('<input type="text" onkeyup="roty(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
-    $('<input type="text" onkeyup="rotz(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
-    $('<input type="text" onkeyup="scale(event, this)">').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2);
+    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movex);
+    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movey);
+    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movez);
+    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotx);
+    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",roty);
+    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotz);
+    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",scale);
     
     
     var showTimer2;
@@ -450,39 +450,15 @@ builder=(function(){
     result.y = (x*sn + y*cs) * config.visualScaling*0.2;
     return result;
   }
-  
-  function handleMouseMove(e){
-    e.preventDefault();
-    e.stopPropagation();
-      
-      
-    var x=e.pageX-mouse.prevX,
-    y=e.pageY-mouse.prevY;
-        
-    mouse.prevX=e.pageX;
-    mouse.prevY=e.pageY;
-    if(mouse.activeFunction){
-      mouse.activeFunction(x,y);
-      redraw();
-    }
-    
-    return false;
-  }
-  
-  return {
-    init:init
-  };
-
-})();
-
-  var movex=function (event,text){
+    var movex=function  (event){
 
   	
   	//check that is a number
   	//check that the key is enter(checking the value)
 	console.log(event.keyCode)
-  	if(event.keyCode==13 && IsNumeric(text)){
-  		console.log("1")
+  	if(event.keyCode==13){
+  		//state.data.x = text.value;
+  		//console.log(text.value)
   	}
   }
   var movey=function (event,text){
@@ -545,6 +521,33 @@ var rotz=function (event,text){
   		console.log("6")
   	}
   }
+  
+  function handleMouseMove(e){
+    e.preventDefault();
+    e.stopPropagation();
+      
+      
+    var x=e.pageX-mouse.prevX,
+    y=e.pageY-mouse.prevY;
+        
+    mouse.prevX=e.pageX;
+    mouse.prevY=e.pageY;
+    if(mouse.activeFunction){
+      mouse.activeFunction(x,y);
+      redraw();
+    }
+    
+    return false;
+  }
+  
+  return {
+    init:init
+  };
+
+})();
+
+
+  
   //Function to prevent the user of setting as input letters
   $(document).ready(function(){
   $(".trans").keydown(function(event) {

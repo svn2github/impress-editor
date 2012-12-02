@@ -374,7 +374,7 @@ builder=(function(){
 
   // Put the content of each slide inside a white box with some css
   function wrapContents() {
-    state.$node.toggleClass('slide');
+	    $(".active").toggleClass('slide');
   }
 
 

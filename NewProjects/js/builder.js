@@ -56,13 +56,15 @@ builder=(function(){
     state.data.rotate-= -x*config.rotateStep;
   };
     handlers.rotateX=function(x,y){
+    	var v=fixVector(x,y);
    // console.log(state.rotate);
-    state.data.rotateX+= -y*config.rotateStep;
+    state.data.rotateX+= -v.y*config.rotateStep;
+    state.data.rotateY+= v.x*config.rotateStep;
   };
-  handlers.rotateY=function(x,y){
-   // console.log(state.rotate);
-    state.data.rotateY-= -x*config.rotateStep;
-  };
+  // handlers.rotateY=function(x,y){
+   // // console.log(state.rotate);
+    // state.data.rotateY-= -x*config.rotateStep;
+  // };
   
 
   function init(conf){
@@ -109,10 +111,10 @@ builder=(function(){
     $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($controls4);
     $controls5=$('<div></div>').addClass('builder-controls');
     $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls5); //added
-    $controls6=$('<div></div>').addClass('builder-controls');
-    $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
-    
-    
+    // $controls6=$('<div></div>').addClass('builder-controls');
+    // $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
+//     
+//     
     $controls2=$('<div></div>').addClass('builder-controls text');
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
@@ -193,19 +195,19 @@ builder=(function(){
       clearTimeout(showTimer);
       
     });
-     $controls6.appendTo('.step').on('mousedown','div',function(e){
-     	state.$node=$(".active");	
-      e.preventDefault();
-      mouse.activeFunction=handlers[$(this).data('func')];
-      loadData();
-      mouse.prevX=e.pageX;
-      mouse.prevY=e.pageY;
-      $(document).on('mousemove.handler1',handleMouseMove);
-      return false;
-    }).on('mouseenter',function(){
-      clearTimeout(showTimer);
-      
-    });
+     // $controls6.appendTo('.step').on('mousedown','div',function(e){
+     	// state.$node=$(".active");	
+      // e.preventDefault();
+      // mouse.activeFunction=handlers[$(this).data('func')];
+      // loadData();
+      // mouse.prevX=e.pageX;
+      // mouse.prevY=e.pageY;
+      // $(document).on('mousemove.handler1',handleMouseMove);
+      // return false;
+    // }).on('mouseenter',function(){
+      // clearTimeout(showTimer);
+//       
+    // });
     $(document).on('mouseup',function(){
       mouse.activeFunction=false;
       $(document).off('mousemove.handler1');
@@ -255,7 +257,7 @@ builder=(function(){
     $controls3.appendTo($step);
     $controls4.appendTo($step);
     $controls5.appendTo($step);
-    $controls6.appendTo($step);
+    //$controls6.appendTo($step);
     $step.insertAfter($('.step:last')); //not too performant, but future proof
     config.creationFunction($step[0]);
     // jump to the overview slide to make some room to look around

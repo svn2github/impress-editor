@@ -231,6 +231,8 @@ builder=(function(){
     
     $(window).on('beforeunload',function(){ return 'All changes will be lost'; });
     
+    $("#overview .builder-controls").hide();
+    
     config['goto']('start');
     
     

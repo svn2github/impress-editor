@@ -119,13 +119,13 @@ builder=(function(){
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Delete').appendTo($controls2).click(deleteContents);
-    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movex);
-    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movey);
-    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movez);
-    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotx);
-    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",roty);
-    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotz);
-    $('<input type="text" >').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",scale);
+    $('<input type="text" placeholder="Move X">').attr('id', 'mx').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movex);
+    $('<input type="text" placeholder="Move Y">').attr('id', 'my').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movey);
+    $('<input type="text" placeholder="Move Z">').attr('id', 'mz').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movez);
+    $('<input type="text" placeholder="Rotate X">').attr('id', 'rx').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotx);
+    $('<input type="text" placeholder="Rotate Y">').attr('id', 'ry').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",roty);
+    $('<input type="text" placeholder="Rotate Z">').attr('id', 'rz').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotz);
+    $('<input type="text" placeholder="Scale">').attr('id', 's').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",scale);
     
     
     var showTimer2;
@@ -230,7 +230,6 @@ builder=(function(){
     });
     
     $(window).on('beforeunload',function(){ return 'All changes will be lost'; });
-    
     $("#overview .builder-controls").hide();
     
     config['goto']('start');
@@ -376,7 +375,7 @@ builder=(function(){
 
   // Put the content of each slide inside a white box with some css
   function wrapContents() {
-	    $(".active").toggleClass('slide');
+    $(".active").toggleClass('slide');
   }
 
 
@@ -427,6 +426,7 @@ builder=(function(){
       state.$node[0].dataset.rotateY=state.data.rotateY;
       state.$node[0].dataset.x=state.data.x;
       state.$node[0].dataset.y=state.data.y;
+      state.$node[0].dataset.z=state.data.z;
       /**/
       console.log(state.data,state.$node[0].dataset,state.$node[0].dataset===state.data);
         
@@ -459,8 +459,11 @@ builder=(function(){
   	//check that the key is enter(checking the value)
 	console.log(event.keyCode)
   	if(event.keyCode==13){
-  		//state.data.x = text.value;
-  		//console.log(text.value)
+  		state.$node=$(".active");
+  		loadData();
+  		state.data.x = $("#mx").val();
+  		// console.log($("#mx").val())
+  		redraw();
   	}
   }
   var movey=function (event,text){
@@ -469,8 +472,13 @@ builder=(function(){
   	//check that is a number
   	//check that the key is enter(checking the value)
 
+  	console.log(event.keyCode)
   	if(event.keyCode==13){
-  		console.log("2")
+  		state.$node=$(".active");
+  		loadData();
+  		state.data.y = $("#my").val();
+  		// console.log($("#mx").val())
+  		redraw();
   	}
   }
 var movez=function (event,text){
@@ -479,8 +487,13 @@ var movez=function (event,text){
   	//check that is a number
   	//check that the key is enter(checking the value)
 
+  	console.log(event.keyCode)
   	if(event.keyCode==13){
-  		console.log("3")
+  		state.$node=$(".active");
+  		loadData();
+  		state.data.z = $("#mz").val();
+  		// console.log($("#mx").val())
+  		redraw();
   	}
   }
 var rotx=function (event,text){
@@ -489,8 +502,13 @@ var rotx=function (event,text){
   	//check that is a number
   	//check that the key is enter(checking the value)
 
+  	console.log(event.keyCode)
   	if(event.keyCode==13){
-  		console.log("4")
+  		state.$node=$(".active");
+  		loadData();
+  		state.data.rotateX = $("#rx").val();
+  		// console.log($("#mx").val())
+  		redraw();
   	}
   }
 var roty=function (event,text){
@@ -499,8 +517,13 @@ var roty=function (event,text){
   	//check that is a number
   	//check that the key is enter(checking the value)
 
+  	console.log(event.keyCode)
   	if(event.keyCode==13){
-  		console.log("5")
+  		state.$node=$(".active");
+  		loadData();
+  		state.data.rotateY = $("#ry").val();
+  		// console.log($("#mx").val())
+  		redraw();
   	}
   }
 var rotz=function (event,text){
@@ -509,8 +532,13 @@ var rotz=function (event,text){
   	//check that is a number
   	//check that the key is enter(checking the value)
 
+  	console.log(event.keyCode)
   	if(event.keyCode==13){
-  		console.log("6")
+  		state.$node=$(".active");
+  		loadData();
+  		state.data.rotate = $("#rz").val();
+  		// console.log($("#mx").val())
+  		redraw();
   	}
   }
   var scale=function (event,text){
@@ -519,8 +547,13 @@ var rotz=function (event,text){
   	//check that is a number
   	//check that the key is enter(checking the value)
 
+  	console.log(event.keyCode)
   	if(event.keyCode==13){
-  		console.log("6")
+  		state.$node=$(".active");
+  		loadData();
+  		state.data.scale = $("#s").val()*0.01;
+  		// console.log($("#mx").val())
+  		redraw();
   	}
   }
   
@@ -574,3 +607,8 @@ var rotz=function (event,text){
     });
 
 });
+ // $(document).ready(function(){
+ 	// $(".active").dataset.x;
+ 	// console.log()
+	// $("mx").attr("value",)
+// });

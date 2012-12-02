@@ -251,6 +251,11 @@ builder=(function(){
     $step=$('<div></div>').addClass('step builder-justcreated').html('<h1>This is a new step. </h1> How about some contents?');
     $step[0].id=id;
     $step[0].dataset.scale=3;
+    $controls.appendTo($step);
+    $controls3.appendTo($step);
+    $controls4.appendTo($step);
+    $controls5.appendTo($step);
+    $controls6.appendTo($step);
     $step.insertAfter($('.step:last')); //not too performant, but future proof
     config.creationFunction($step[0]);
     // jump to the overview slide to make some room to look around

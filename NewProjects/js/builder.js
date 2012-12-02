@@ -274,9 +274,7 @@ builder=(function(){
       return w.BlobBuilder || w.WebKitBlobBuilder || w.MozBlobBuilder;
     })(window);
 
-    // Chrome bug and but if is runned in server it works!
-    // for example try: python -m SimpleHTTPServer
-    // then run the project and try to download css 
+    // it works in server so run it from eclipse
     $.get('css/style.css', function (content) {
       var bb = new BlobBuilder;
       bb.append(content);
@@ -286,61 +284,26 @@ builder=(function(){
   }
   
   function downloadResults() {
-    // var uriContent,content,$doc;
-    
-    // var BlobBuilder = (function(w) {
-    //   return w.BlobBuilder || w.WebKitBlobBuilder || w.MozBlobBuilder;
-    // })(window);
-
-    // $doc=$(document.documentElement).clone();
-    // //remove all scripting
-    // //$doc.find('script').remove();
-    // //remove all current transforms
-    // $doc.find('.step, body, #impress, #impress>div').removeAttr('style');
-    // $doc.find('body').removeAttr('class');
-    // //remove gui
-    // $doc.find('.builder-controls, .builder-main, .counter').remove();
-    
-    // $doc.find('.previous').each(function(index,element){element.classList.remove('previous');});
-    // $doc.find('.active').each(function(index,element){element.classList.remove('active');});
-    // $doc.find('.present').each(function(index,element){element.classList.remove('present');});
-    // $doc.find('.past').each(function(index,element){element.classList.remove('past');});
-    // $doc.find('.future').each(function(index,element){element.classList.remove('future');});
-    // //put overview at the end
-    // //$doc.find('#overview').appendTo($doc.find('#impress'));
-    // //add impress.js simple init
-    // //$doc.find('body').attr('class','impress-not-supported')[0].innerHTML+='<script src="https://raw.github.com/bartaz/impress.js/master/js/impress.js"></script><script>impress().init()</script>';
-    // content=$doc[0].outerHTML;
-    // //remove stuff
-    // var bb = new BlobBuilder;
-    // bb.append(content);
-    // //saveAs(bb.getBlob("text/html;charset=utf-8"), "presentation.html");
-    
-    // var $t = $(this);
-    // var $txt=$('<textarea>').on('keydown keyup',function(e){
-    // 	if (e.keyCode == 27) {
-    // 		$txt.remove();
-    // 	}
-    //     e.stopPropagation();
-    //   });
-    // $t.after($txt.val(content));  
-
-
-    // NEW CODE DON'T DELETE THE COMMENTED ONE ABOVE!!
-    // Need some extra modifications 
-
     var uriContent,content,$doc;
     
     var BlobBuilder = (function(w) {
       return w.BlobBuilder || w.WebKitBlobBuilder || w.MozBlobBuilder;
     })(window);
+
     $doc=$(document.documentElement).clone();
     //remove all scripting
     $doc.find('script').remove();
     //remove all current transforms
     $doc.find('.step, body, #impress, #impress>div').removeAttr('style');
+    $doc.find('body').removeAttr('class');
     //remove gui
-    $doc.find('.builder-controls, .builder-main').remove();
+    $doc.find('.builder-controls, .builder-main, .counter').remove();
+    
+    $doc.find('.previous').each(function(index,element){element.classList.remove('previous');});
+    $doc.find('.active').each(function(index,element){element.classList.remove('active');});
+    $doc.find('.present').each(function(index,element){element.classList.remove('present');});
+    $doc.find('.past').each(function(index,element){element.classList.remove('past');});
+    $doc.find('.future').each(function(index,element){element.classList.remove('future');});
     //put overview at the end
     $doc.find('#overview').appendTo($doc.find('#impress'));
     //add impress.js simple init
@@ -350,8 +313,6 @@ builder=(function(){
     var bb = new BlobBuilder;
     bb.append(content);
     saveAs(bb.getBlob("text/html;charset=utf-8"), "presentation.html");
-
-    
   }
   
   function editContents() {

@@ -32,7 +32,7 @@ font-size:10pt
   padding:5px;
   background-color: #222;
   color: #fff;
-  width: 120px;
+  height: 40px;
   text-align: center;
   position: fixed;
   top:0;
@@ -40,7 +40,7 @@ font-size:10pt
 }
 
 .builder-main div,.builder-main a{
-  display: block;
+  display: inline-block;
   cursor: pointer;
   padding-left: 23px;
   

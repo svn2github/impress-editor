@@ -320,6 +320,8 @@
 								Use a spacebar or arrow keys to navigate
 							</p>
 						</div>
+						
+						
 
 						<script src="js/highlight.pack.js"></script>
 						<script src="js/impress.js"></script>
@@ -328,12 +330,39 @@
 						<script src="js/main.js"></script>
 						
 						<script>
-							document.ondblclick = function(){
+						document.ondblclick = function(){
+								
 								Aloha.ready( function(){
 								var $ = Aloha.jQuery;
 								// register all editable areas
 					
-								$('#title').aloha();
+															//$('#title > p').aloha();
+								//$('#title > h1').aloha();
+								$('#title').children().not(".builder-controls").aloha();
+								$('#cal').children().not(".builder-controls").each(function()
+								{
+									$(this).aloha();
+									if($(this).is("ul")){
+											console.log($(this)[0].FirstChild);
+										
+									}
+								});
+								
+								//$('#cal > ul').children().aloha();
+								//console.log($('#cal > ul').children());
+								
+								$('#prj').children().not(".builder-controls").aloha();
+								$('#prj-wt').children().not(".builder-controls").aloha();
+								$('#prj-asq').children().not(".builder-controls").aloha();
+								$('#prj-ie').children().not(".builder-controls").aloha();
+								$('#prj-rv').children().not(".builder-controls").aloha();
+								$('#prj-ta').children().not(".builder-controls").aloha();
+								$('#prj-ev').children().not(".builder-controls").aloha();
+								$('#prj-next').children().not(".builder-controls").aloha();
+								$('#overview').children().not(".builder-controls").aloha();
+								
+
+								/*
 								$('#cal').aloha();
 								$('#prj').aloha();
 								$('#prj-wt').aloha();
@@ -343,7 +372,11 @@
 								$('#prj-ta').aloha();
 								$('#prj-ev').aloha();
 								$('#prj-next').aloha();
-								$('#overview').aloha();
+								$('#overview').aloha();*/
+								
+								
+								//$(document).undind('keydown',foo);
+								//$(document).undind('keyup',foo);
 								
 								// hide loading div
 								$('#aloha-loading').hide();
@@ -352,12 +385,68 @@
 								
 								});
 							};
+							
+							
+							function goToEditMode(){
+								
+								
+								var currentURL = document.location.href;
+								var splitURL = currentURL.split("/");
+								var currentSlide = splitURL[splitURL.length-1];
+								var indexOfHashtag = currentURL.indexOf("#");
+								var targetURL = "";
+								for(var i = 0 ; i < indexOfHashtag ; i++) {
+									targetURL += currentURL[i];
+								}
+								targetURL += "?edit/" + currentSlide + "#/" +currentSlide;
+								
+								
+								
+								// go to the url that gets the edit mode on
+								document.location.href = targetURL;
+					
+							}
+							
+							function goToPresentationMode(){
+								
+								
+								var currentURL = document.location.href;
+								var splitURL = currentURL.split("/");
+								var currentSlide = splitURL[splitURL.length-1];
+								var indexOfQuestionMark = currentURL.indexOf("?");
+								var targetURL = "";
+								for(var i = 0 ; i < indexOfQuestionMark ; i++) {
+									targetURL += currentURL[i];
+								}
+								targetURL += "#/" +currentSlide;
+								
+								
+								
+								// go to the url that gets the edit mode on
+								document.location.href = targetURL;
+					
+							}
+							
+							// create the aloha button dynamically so that it won't
+							// be created when on edit mode
+							$(function() {
+								
+								// we are in the presentation mode and we want to go
+								// to the edit mode
+								if( (document.location.href).indexOf("?edit/") === -1 ) {
+									$('body').append('<button id="btnAloha" onclick="goToEditMode()">Edit</button>');
+								}
+								// We are in edit mode and want to go to presentation mode
+								else{
+									$('body').append('<button id="btnAloha" onclick="goToPresentationMode()"><p>Exit</p><p>edit</p><p>mode</p></button>');
+								}
+							});
 						</script>
 			
 					</div>
 				</div>
 			</div>
 		</div>
-
+		
 	</body>
 </html>

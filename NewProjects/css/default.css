@@ -517,3 +517,40 @@ rect:hover {stroke:#fff;}
  background-image: url("logo-info-en.gif");
  background-repeat: no-repeat;
 } */
+
+/**************** For the edit button ***********************/
+#btnAloha{
+	opacity : 0.5;
+	width:50px;
+	height:20px;
+	background:grey;
+	left:0px;
+	bottom:0px;
+	position:fixed;
+	/* W3C */
+	transition-property:width,height;
+	transition-duration:2s;
+
+	/* Firefox 4 */
+	-moz-transition-property:width,height;
+	-moz-transition-duration:2s;
+
+	/* Safari and Chrome */
+	-webkit-transition-property:width,height;
+	-webkit-transition-duration:2s;
+
+	/* Opera */
+	-o-transition-property:width,height;
+	-o-transition-duration:2s;
+}
+
+#btnAloha:hover {
+	display:center; 
+	opacity : 1.0;
+	width:100px;
+	height:100px;
+	background:red;
+	left:0px;
+	bottom:0px;
+	position:fixed;
+}

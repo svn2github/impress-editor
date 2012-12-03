@@ -13,6 +13,9 @@
 	margin-bottom: 10px;
 	display:none;
 }
+.builder-controls label{
+	font-size:10px
+}
 .text{
 	display: inline;
     position: absolute;

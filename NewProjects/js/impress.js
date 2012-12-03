@@ -562,7 +562,7 @@
             stepEnterTimeout = window.setTimeout(function() {
                 onStepEnter(activeStep);
             }, duration + delay);
-            
+            setValues();
             return el;
         };
         
@@ -960,3 +960,14 @@
 //
 // I've learnt a lot when building impress.js and I hope this code and comments
 // will help somebody learn at least some part of it.
+
+function setValues (){
+	$("#mx").attr("value",$(".active").attr("data-x") || 0);
+	$("#my").attr("value",$(".active").attr("data-y") || 0);
+	$("#mz").attr("value",$(".active").attr("data-z") || 0);
+	$("#rx").attr("value",$(".active").attr("data-rotate-x") || 0);
+	$("#ry").attr("value",$(".active").attr("data-rotate-y") || 0);
+	$("#rz").attr("value",$(".active").attr("data-rotate") || 0);
+	$("#s").attr("value",$(".active").attr("data-scale") || 0);
+	
+}

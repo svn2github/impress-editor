@@ -119,12 +119,19 @@ builder=(function(){
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Delete').appendTo($controls2).click(deleteContents);
+    $('<label for="mx">Move X</label>').appendTo($controls2);
     $('<input type="text" placeholder="Move X">').attr('id', 'mx').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movex);
+    $('<label for="my">Move Y</label>').appendTo($controls2);
     $('<input type="text" placeholder="Move Y">').attr('id', 'my').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movey);
+    $('<label for="mz">Move Z</label>').appendTo($controls2);
     $('<input type="text" placeholder="Move Z">').attr('id', 'mz').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movez);
+    $('<label for="rx">Rotate X</label>').appendTo($controls2);
     $('<input type="text" placeholder="Rotate X">').attr('id', 'rx').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotx);
+    $('<label for="ry">Rotate Y</label>').appendTo($controls2);
     $('<input type="text" placeholder="Rotate Y">').attr('id', 'ry').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",roty);
+    $('<label for="rz">Rotate Z</label>').appendTo($controls2);
     $('<input type="text" placeholder="Rotate Z">').attr('id', 'rz').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotz);
+    $('<label for="s">Scale</label>').appendTo($controls2);
     $('<input type="text" placeholder="Scale">').attr('id', 's').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",scale);
     
     
@@ -142,6 +149,14 @@ builder=(function(){
       clearTimeout(showTimer2);
       
     });
+    $("#mx").attr("value",$(".active").attr("data-x") || 0);
+	$("#my").attr("value",$(".active").attr("data-y") || 0);
+	$("#mz").attr("value",$(".active").attr("data-z") || 0);
+	$("#rx").attr("value",$(".active").attr("data-rotate-x") || 0);
+	$("#ry").attr("value",$(".active").attr("data-rotate-y") || 0);
+	$("#rz").attr("value",$(".active").attr("data-rotate") || 0);
+	$("#s").attr("value",$(".active").attr("data-scale") || 0);
+	
     var showTimer;
     $controls.appendTo('.step').on('mousedown','div',function(e){
     	state.$node=$(".active");	

@@ -103,14 +103,14 @@ builder=(function(){
     $menu.appendTo('body');
     
     
-    $controls=$('<div></div>').addClass('builder-controls');
+    $controls=$('<div></div>').addClass('builder-controls move');
     $('<div></div>').addClass('bt-move').attr('title','Move').data('func','move').appendTo($controls);
-    $controls3=$('<div></div>').addClass('builder-controls');
+    $controls3=$('<div></div>').addClass('builder-controls rotate');
     $('<div></div>').addClass('bt-rotate').attr('title','Rotate').data('func','rotate').appendTo($controls3);
-    $controls4=$('<div></div>').addClass('builder-controls');
+    $controls4=$('<div></div>').addClass('builder-controls scale');
     $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($controls4);
-    $controls5=$('<div></div>').addClass('builder-controls');
-    $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls5); //added
+    $controls5=$('<div></div>').addClass('builder-controls rotatex');
+    $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls5);  //added
     // $controls6=$('<div></div>').addClass('builder-controls');
     // $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
 //     

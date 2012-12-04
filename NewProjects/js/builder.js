@@ -362,10 +362,10 @@ builder=(function(){
 
   // Upcoming delete function
   function deleteContents() {
-	  
+	  if($(".active").attr("id")!="overview"){
 	config.deleteStep($(".active").attr("id"))
     $(".active").remove();
-	config['goto'](1);
+	config['goto'](1);}
 	
   }
 

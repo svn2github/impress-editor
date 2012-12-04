@@ -912,7 +912,7 @@
                 	event.preventDefault();
             	}
         	}, false);
-        }
+        
         
         
        		// delegated handler for clicking on the links to presentation steps
@@ -954,7 +954,7 @@
            	    	event.preventDefault();
             	}
         	}, false);
-        
+        }
         	// touch handler to detect taps on the left and right side of the screen
         	// based on awesome work of @hakimel: https://github.com/hakimel/reveal.js
         	document.addEventListener("touchstart", function ( event ) {

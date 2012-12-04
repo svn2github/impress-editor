@@ -115,7 +115,7 @@ builder=(function(){
     // $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
 //     
 //     
-    $controls2=$('<div></div>').addClass('builder-controls text');
+    $controls2=$('<div></div>').addClass('builder-controls text dragme');
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Delete').appendTo($controls2).click(deleteContents);
@@ -577,9 +577,10 @@ var rotz=function (event,text){
 })();
 
 
-  
+
   //Function to prevent the user of setting as input letters
   $(document).ready(function(){
+  $( ".dragme" ).draggable({ cursor: "move" }, { containment: "parent" });
   $(".trans").keydown(function(event) {
         // Allow: backspace, delete, tab, escape, and enter
         if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 

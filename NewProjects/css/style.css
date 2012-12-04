@@ -46,4 +46,8 @@ textarea{
     position: absolute;
     top: 27px;
 }
+#color{
+	width: 100px;
+	color: white;
+}
 

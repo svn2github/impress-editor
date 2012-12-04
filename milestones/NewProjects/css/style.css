@@ -1,0 +1,49 @@
+
+.step.flash.future {opacity:0}
+.step.flash.past {opacity:0}
+
+.active .builder-controls{
+	display: inline-block;
+	margin:5px;
+}
+.builder-controls{
+	position:absolute;
+	margin-bottom: 10px;
+	display:none;
+}
+.builder-controls label{
+	font-size:10px
+}
+.move{
+	top:-45px;
+	left:44%;
+}
+.scale{
+	top:45%;
+	left: -65px;
+}
+.rotate{
+	top:10%;
+	right:-65px;
+}
+.rotatex{
+	top:2%;
+	left:2%;
+}
+.text{
+	display: inline;
+    position: absolute;
+    top: 50px;
+    width: 120px;
+}
+.trans{
+	width:100px;
+	color: white;
+}
+
+textarea{
+	left: 130px;
+    position: absolute;
+    top: 27px;
+}
+

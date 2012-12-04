@@ -412,13 +412,6 @@ builder=(function(){
       state.$node[0].dataset.x=state.data.x;
       state.$node[0].dataset.y=state.data.y;
       state.$node[0].dataset.z=state.data.z;
-      $("#mx").attr("value",$(".active").attr("data-x") || 0);
-    $("#my").attr("value",$(".active").attr("data-y") || 0);
-  	$("#mz").attr("value",$(".active").attr("data-z") || 0);
-  	$("#rx").attr("value",$(".active").attr("data-rotate-x") || 0);
-  	$("#ry").attr("value",$(".active").attr("data-rotate-y") || 0);
-  	$("#rz").attr("value",$(".active").attr("data-rotate") || 0);
-  	$("#s").attr("value",$(".active").attr("data-scale") || 0); 
       /**/
       console.log(state.data,state.$node[0].dataset,state.$node[0].dataset===state.data);
         
@@ -588,11 +581,26 @@ var rotz=function (event,text){
 })();
 
 
-
-  //Function to prevent the user of setting as input letters
   $(document).ready(function(){
-  $( ".dragme" ).draggable({ cursor: "move" }, { containment: "parent" });
-  $(".trans").keydown(function(event) {
+  
+  // fix the draggable
+	  $( ".dragme" ).draggable({ cursor: "move" }, { containment: "parent" });
+  
+	  
+	  // add slideshow
+	  if( (document.location.href).indexOf("?edit/") === -1 ) {
+			$('body').append('<button id="btnShow">Auto</button>').click(function  () {
+				setInterval(impress().next, 3000);
+				document.addEventListener('impress:stepenter', function(e){
+					if (typeof timing !== 'undefined') clearInterval(timing);
+					var duration = (e.target.getAttribute('data-transition-duration') ? e.target.getAttribute('data-transition-duration') : 3000); // use the set duration or fallback to 2000ms
+					timing = setInterval(impress().next, duration);
+				});
+			});
+		}
+	  
+	//Function to prevent the user of setting as input letters
+	  $(".trans").keydown(function(event) {
         // Allow: backspace, delete, tab, escape, and enter
         if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
              // Allow: Ctrl+A

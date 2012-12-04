@@ -544,6 +544,7 @@ rect:hover {stroke:#fff;}
 	-o-transition-duration:2s;
 }
 
+
 #btnAloha:hover {
 	display:center; 
 	opacity : 1.0;
@@ -555,6 +556,7 @@ rect:hover {stroke:#fff;}
 	position:fixed;
 	z-index:1;
 }
+
 
 #prevBtnEditMode {
 	width:50px;
@@ -572,4 +574,30 @@ rect:hover {stroke:#fff;}
 	right:0px;
 	bottom:40px;
 	position:fixed;
+}
+
+/**************** For the slideshow button ***********************/
+#btnShow{
+  opacity : 0.5;
+  width:50px;
+  height:20px;
+  background:grey;
+  left:50px;
+  bottom:0px;
+  position:fixed;
+  /* W3C */
+  transition-property:width,height;
+  transition-duration:2s;
+
+  /* Firefox 4 */
+  -moz-transition-property:width,height;
+  -moz-transition-duration:2s;
+
+  /* Safari and Chrome */
+  -webkit-transition-property:width,height;
+  -webkit-transition-duration:2s;
+
+  /* Opera */
+  -o-transition-property:width,height;
+  -o-transition-duration:2s;
 }

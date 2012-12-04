@@ -553,4 +553,23 @@ rect:hover {stroke:#fff;}
 	left:0px;
 	bottom:0px;
 	position:fixed;
+	z-index:1;
+}
+
+#prevBtnEditMode {
+	width:50px;
+	height:20px;
+	background:grey;
+	left:0px;
+	bottom:40px;
+	position:fixed;
+}
+
+#nextBtnEditMode {
+	width:50px;
+	height:20px;
+	background:grey;
+	right:0px;
+	bottom:40px;
+	position:fixed;
 }

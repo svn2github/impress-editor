@@ -277,8 +277,10 @@ builder=(function(){
     $controls4.appendTo($step);
     $controls5.appendTo($step);
     //$controls6.appendTo($step);
-    $step.insertAfter($('.step:last')); //not too performant, but future proof
+    $step.insertBefore($('.step:last')); //not too performant, but future proof
+    config.deleteStep("overview");
     config.creationFunction($step[0]);
+    //config.creationFunction($overview);
     // jump to the overview slide to make some room to look around
     config['goto']('overview');
   }

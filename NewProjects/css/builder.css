@@ -94,7 +94,9 @@ font-size:10pt
 .bt-scale{
   background: transparent url(scale.png) no-repeat center;
 }
-
+.bt-rotateXaxial{
+  background: transparent url(3DRotation.png) no-repeat center;
+}
 
 .builder-controls div:before {
   content:'drag';

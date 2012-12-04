@@ -412,6 +412,13 @@ builder=(function(){
       state.$node[0].dataset.x=state.data.x;
       state.$node[0].dataset.y=state.data.y;
       state.$node[0].dataset.z=state.data.z;
+      $("#mx").attr("value",$(".active").attr("data-x") || 0);
+    $("#my").attr("value",$(".active").attr("data-y") || 0);
+  	$("#mz").attr("value",$(".active").attr("data-z") || 0);
+  	$("#rx").attr("value",$(".active").attr("data-rotate-x") || 0);
+  	$("#ry").attr("value",$(".active").attr("data-rotate-y") || 0);
+  	$("#rz").attr("value",$(".active").attr("data-rotate") || 0);
+  	$("#s").attr("value",$(".active").attr("data-scale") || 0); 
       /**/
       console.log(state.data,state.$node[0].dataset,state.$node[0].dataset===state.data);
         

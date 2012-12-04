@@ -266,7 +266,8 @@ builder=(function(){
     //query slide id
     var id,$step;
     id='builderAutoSlide'+sequence();
-    $step=$('<div></div>').addClass('step builder-justcreated').html('<h1>This is a new step. </h1> How about some contents?');
+    var $ = Aloha.jQuery;						
+    $step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
     $step[0].id=id;
     $step[0].dataset.scale=3;
     $controls.appendTo($step);

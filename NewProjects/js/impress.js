@@ -427,6 +427,19 @@
         var setTransformationCallback = function(callback){
           transformationCallback=callback;
         }
+      //function to delete a step, bby number, id or dom
+        var deleteStep = function(callback){
+        	var fhalf,shalf,i;
+          console.log(getStep(callback));
+          for (i in steps){
+          	if(getStep(callback)==steps[i]){
+          		fhalf=steps.slice(0,i)
+          		shalf=steps.slice(i*1+1,steps.length);
+          		steps=fhalf.concat(shalf);
+          		
+          	}
+          }
+        }
         
         // `goto` API function that moves to step given with `el` parameter (by index, id or element),
         // with a transition `duration` optionally given as second parameter.
@@ -796,7 +809,8 @@
             prev: prev,
             initStep: initStep,
             newStep:newStep,
-            setTransformationCallback:setTransformationCallback
+            setTransformationCallback:setTransformationCallback,
+            deleteStep:deleteStep
 
         });
 

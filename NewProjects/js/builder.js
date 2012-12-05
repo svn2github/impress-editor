@@ -119,6 +119,7 @@ builder=(function(){
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Delete').appendTo($controls2).click(deleteContents);
+    $('<span></span>').addClass('builder-bt').text('Swap').appendTo($controls2).click(goSwap);
     $('<label for="color">Background Color</label>').appendTo($controls2);
     $('<input type="text" placeholder="Color">').attr('id', 'color').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
     $('<label for="mx">Move X</label>').appendTo($controls2);
@@ -369,6 +370,16 @@ builder=(function(){
 	
   }
 
+  // testing swap function for specific slides.. but it doesn't work as it should 
+  function goSwap () {
+      $text = $("#prj");
+      $cal = $("#prj-wt");
+    
+      // put cal before text
+      var t = $($cal).clone();
+      $($cal).remove();
+      $($text).before(t);
+   }
 
   function showControls($where){
     var top,left,pos=$where.offset();

@@ -594,17 +594,37 @@ var rotz=function (event,text){
 	  $( ".dragme" ).draggable({ cursor: "move" }, { containment: "parent" });
   
 	  
-	  // add slideshow
-	  if( (document.location.href).indexOf("?edit/") === -1 ) {
-			$('body').append('<button id="btnShow">Auto</button>').click(function  () {
-				setInterval(impress().next, 3000);
-				document.addEventListener('impress:stepenter', function(e){
-					if (typeof timing !== 'undefined') clearInterval(timing);
-					var duration = (e.target.getAttribute('data-transition-duration') ? e.target.getAttribute('data-transition-duration') : 3000); // use the set duration or fallback to 2000ms
-					timing = setInterval(impress().next, duration);
-				});
+	  // slideshow with play and pause
+	  var timing;
+		function slideShow() {
+			setTimeout(impress().next, 3000);
+			document.addEventListener('impress:stepenter', function(e){
+				if (typeof timing !== 'undefined') clearTimeout(timing);
+				var duration = (e.target.getAttribute('data-transition-duration') ? e.target.getAttribute('data-transition-duration') : 3000); 
+				timing = setTimeout(impress().next, duration);
 			});
 		}
+		$(function(){
+			if( (document.location.href).indexOf("?edit/") === -1 ) {
+				$('body').append('<button id="btnShow">Play</button>');
+				$('body').append('<button id="btnPause">Pause</button>');
+			}
+			var auto = $('#btnShow');
+			var pause = $('#btnPause');
+			
+			auto.click(function () {
+				console.log('auto')
+				slideShow();
+			  	$('#btnShow').hide();
+				$('#btnPause').show();
+			});
+			pause.click(function () {
+				console.log('pause') 
+				clearTimeout(timing); 
+				$('#btnPause').hide();
+			 	$('#btnShow').show();    
+			});
+		});
 	  
 	//Function to prevent the user of setting as input letters
 	  $(".trans").keydown(function(event) {

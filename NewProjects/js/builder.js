@@ -413,6 +413,13 @@ builder=(function(){
       state.$node[0].dataset.y=state.data.y;
       state.$node[0].dataset.z=state.data.z;
       /**/
+      $("#mx").attr("value",$(".active").attr("data-x") || 0);		
+      416	    $("#my").attr("value",$(".active").attr("data-y") || 0);		
+      417	  	$("#mz").attr("value",$(".active").attr("data-z") || 0);		
+      418	  	$("#rx").attr("value",$(".active").attr("data-rotate-x") || 0);		
+      419	  	$("#ry").attr("value",$(".active").attr("data-rotate-y") || 0);		
+      420	  	$("#rz").attr("value",$(".active").attr("data-rotate") || 0);		
+      421	  	$("#s").attr("value",$(".active").attr("data-scale") || 0);
       console.log(state.data,state.$node[0].dataset,state.$node[0].dataset===state.data);
         
       config.redrawFunction(state.$node[0]);

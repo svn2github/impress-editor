@@ -440,6 +440,16 @@
           	}
           }
         }
+        var newStepAtPosition = function(el,index){
+        	if(index>=0 && index<=steps.length){
+        		initStep(el);
+        		var fhalf,shalf;
+          		fhalf=steps.slice(0,index)
+          		shalf=steps.slice(index,steps.length);
+          		steps=fhalf.concat(el,shalf);
+          		
+          }
+        }
         
         // `goto` API function that moves to step given with `el` parameter (by index, id or element),
         // with a transition `duration` optionally given as second parameter.
@@ -810,7 +820,8 @@
             initStep: initStep,
             newStep:newStep,
             setTransformationCallback:setTransformationCallback,
-            deleteStep:deleteStep
+            deleteStep:deleteStep,
+            newStepAtPosition:newStepAtPosition
 
         });
 

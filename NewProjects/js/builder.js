@@ -15,8 +15,9 @@ builder=(function(){
   config={
   	rotation:0,
     rotateStep:0.5,
-    scaleStep:0.005,
+    scaleStep:0.02,
     visualScaling:10,
+    visualRotation:0,
     redrawFunction:false,
     setTransformationCallback:false
   },
@@ -69,7 +70,10 @@ builder=(function(){
 
   function init(conf){
     config=$.extend(config,conf);
+    config.visualScaling=$(".active").attr("data-scale");
+    config.visualRotation=$(".active").attr("data-rotate");
     
+    //console.log($(".active").attr("data-scale"))
     if(config.setTransformationCallback){
       config.setTransformationCallback(function(x){
         // guess what, it indicates slide change too :)
@@ -77,7 +81,11 @@ builder=(function(){
         
         //setting pu movement scale
         config.visualScaling=x.scale;
-        console.log(x.scale);
+        
+        if(x.rotate.z==undefined)
+        config.visualRotation= x.rotate;
+        else config.visualRotation= x.rotate.z;
+        //console.log(x.scale);
       //TODO: implement rotation handling for move
       
         config.rotation=(x.rotate.z);
@@ -111,6 +119,7 @@ builder=(function(){
     $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($controls4);
     $controls5=$('<div></div>').addClass('builder-controls rotatex');
     $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls5);  //added
+
     // $controls6=$('<div></div>').addClass('builder-controls');
     // $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
 //     
@@ -277,11 +286,9 @@ builder=(function(){
     $controls3.appendTo($step);
     $controls4.appendTo($step);
     $controls5.appendTo($step);
-    //$controls6.appendTo($step);
     $step.insertBefore($('.step:last')); //not too performant, but future proof
-    config.deleteStep("overview");
-    config.creationFunction($step[0]);
-    //config.creationFunction($overview);
+    config.newStepAtPosition($step[0],10);//get number of childs minus 1;
+    
     // jump to the overview slide to make some room to look around
     config['goto']('overview');
   }
@@ -358,6 +365,8 @@ builder=(function(){
   // Put the content of each slide inside a white box with some css
   function wrapContents() {
     $(".active").toggleClass('slide');
+    console.log(config.visualRotation)
+    console.log(state.data.rotate)
   }
 
 
@@ -369,17 +378,16 @@ builder=(function(){
 	config['goto'](1);}
 	
   }
-
-  // testing swap function for specific slides.. but it doesn't work as it should 
-  function goSwap () {
-      $text = $("#prj");
-      $cal = $("#prj-wt");
-    
-      // put cal before text
-      var t = $($cal).clone();
-      $($cal).remove();
-      $($text).before(t);
-   }
+	// testing swap function for specific slides.. but it doesn't work as it should
+	  function goSwap () {
+	      $text = $("#prj");
+	      $cal = $("#prj-wt");
+	
+	      // put cal before text
+	      var t = $($cal).clone();
+	      $($cal).remove();
+	      $($text).before(t);
+	   }
 
   function showControls($where){
     var top,left,pos=$where.offset();
@@ -396,7 +404,7 @@ builder=(function(){
   
   
   function loadData(){
-    console.log('load',state.$node[0]);
+    //console.log('load',state.$node[0]);
     //state.data=state.$node[0].dataset;
     //add defaults
     
@@ -441,18 +449,17 @@ builder=(function(){
   
   function fixVector(x,y){
     var result={x:0,y:0},
-      angle=(state.data.rotate/180)*Math.PI,
+      angle=(config.visualRotation/180)*Math.PI,
+     
       cs=Math.cos(angle),
       sn=Math.sin(angle);
       //console.log(state.data.rotate);
-	var scale;
-	scale=state.data.scale;
-	if(scale==0){
-		scale=0.1;
-	}
-	console.log(scale)
-    result.x = (x*cs - y*sn) * config.visualScaling*0.2;
-    result.y = (x*sn + y*cs) * config.visualScaling*0.2;
+	 
+    result.x = (x*cs - y*sn) * config.visualScaling;
+    result.y = (x*sn + y*cs) * config.visualScaling;
+    console.log(cs)
+    console.log(config.visualScaling)
+    console.log(result.x)
     return result;
   }
   var setColor=function  (event){
@@ -577,10 +584,10 @@ var rotz=function (event,text){
   function handleMouseMove(e){
     e.preventDefault();
     e.stopPropagation();
+    //console.log(e.pageX)
       
-      
-    var x=e.pageX-mouse.prevX,
-    y=e.pageY-mouse.prevY;
+    var x=((e.pageX-mouse.prevX)/screen.width)*1980,
+    y=((e.pageY-mouse.prevY)/screen.height)*1430;
         
     mouse.prevX=e.pageX;
     mouse.prevY=e.pageY;

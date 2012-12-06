@@ -30,6 +30,15 @@
 	top:2%;
 	left:2%;
 }
+.delete{
+	top:-7%;
+	left:-6%;
+}
+.bt-delete{
+	font-size:25;
+	content:none !important; 
+	cursor:pointer !important;
+}
 .text{
 	display: inline;
     position: absolute;

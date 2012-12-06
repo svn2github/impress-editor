@@ -36,7 +36,7 @@ builder=(function(){
   handlers={},
   redrawTimeout,
   //nodes
-  $menu,$controls,$controls2,$controls3,$controls4,$controls5,$controls6,$controls7,$controls8,$impress,$overview;
+  $menu,$controls,$controls2,$controls3,$controls4,$controls5,$controls6,$impress,$overview;
 
   handlers.move=function(x,y){
     
@@ -119,7 +119,8 @@ builder=(function(){
     $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($controls4);
     $controls5=$('<div></div>').addClass('builder-controls rotatex');
     $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls5);  //added
-
+    $controls6=$('<div></div>').addClass('builder-controls delete');
+	$('<div>X</div>').addClass('bt-delete').appendTo($controls6).click(deleteContents);
     // $controls6=$('<div></div>').addClass('builder-controls');
     // $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
 //     
@@ -127,7 +128,7 @@ builder=(function(){
     $controls2=$('<div></div>').addClass('builder-controls text dragme');
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
-    $('<span></span>').addClass('builder-bt').text('Delete').appendTo($controls2).click(deleteContents);
+    
     $('<span></span>').addClass('builder-bt').text('Swap').appendTo($controls2).click(goSwap);
     $('<label for="color">Background Color</label>').appendTo($controls2);
     $('<input type="text" placeholder="Color">').attr('id', 'color').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
@@ -222,19 +223,7 @@ builder=(function(){
       clearTimeout(showTimer);
       
     });
-     // $controls6.appendTo('.step').on('mousedown','div',function(e){
-     	// state.$node=$(".active");	
-      // e.preventDefault();
-      // mouse.activeFunction=handlers[$(this).data('func')];
-      // loadData();
-      // mouse.prevX=e.pageX;
-      // mouse.prevY=e.pageY;
-      // $(document).on('mousemove.handler1',handleMouseMove);
-      // return false;
-    // }).on('mouseenter',function(){
-      // clearTimeout(showTimer);
-//       
-    // });
+      $controls6.appendTo('.step')
     $(document).on('mouseup',function(){
       mouse.activeFunction=false;
       $(document).off('mousemove.handler1');

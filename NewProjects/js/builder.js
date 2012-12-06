@@ -106,7 +106,7 @@ builder=(function(){
     });
     $('<div></div>').addClass('builder-bt bt-download').appendTo($menu).text('Get file').on('click',downloadResults);
     $('<div></div>').addClass('builder-bt bt-download').appendTo($menu).text('style.css').on('click',downloadStyle);
-    
+    $('<div></div>').addClass('builder-bt bt-new').appendTo($menu).text('New Presentation').on('click',newFile);
     
     $menu.appendTo('body');
     
@@ -271,15 +271,44 @@ builder=(function(){
     $step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
     $step[0].id=id;
     $step[0].dataset.scale=3;
-    $controls.appendTo($step);
-    $controls3.appendTo($step);
-    $controls4.appendTo($step);
-    $controls5.appendTo($step);
+    console.log($controls)
+    $controls.appendTo($step[0]);
+    $controls3.appendTo($step[0]);
+    $controls4.appendTo($step[0]);
+    $controls5.appendTo($step[0]);
+    $controls6.appendTo($step[0]);
     $step.insertBefore($('.step:last')); //not too performant, but future proof
-    config.newStepAtPosition($step[0],10);//get number of childs minus 1;
+    //console.log($step[0],$(".active").parent().children(".step"))
+    config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
     
     // jump to the overview slide to make some room to look around
     config['goto']('overview');
+  }
+  function newFile(){
+  	var r=confirm("Are you sure you want to create a new file.\n If you create a new file you will lose all your slides. ");
+	if (r==true)
+	  {
+	  	var parent=$(".active").parent();
+	  	var children=$(".active").parent().children();
+	 	  //console.log($(".active").parent().children())
+	 	  for(var i=0;i<children.length;i++){
+	 	  	//console.log(children[i].id)
+	 	  	config.deleteStep(children[i].id)
+  			children[i].parentNode.removeChild(children[i]);
+	 	  }
+	 	  var id,$step;
+		    id='overview';
+		    $step=$('<div></div>').addClass('step');
+		    $step[0].id=id;
+		    $step[0].dataset.scale=1;
+		    $step[0].dataset.z=5000;
+		    parent.append($step[0]) //not too performant, but future proof
+		    config.creationFunction($step[0]);
+		    // jump to the overview slide to make some room to look around
+		    config['goto']('overview');
+	 	  addSlide();
+	  }
+	else return;
   }
   
   

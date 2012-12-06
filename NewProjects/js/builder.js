@@ -464,7 +464,7 @@ builder=(function(){
   	if(event.keyCode==13){
   		state.$node=$(".active").css("background-color",$("#color").val());
   		loadData();
-  		state.data.x = $("#color").val();
+  		//state.data.x = $("#color").val();
   		$('body').css("background", $("#color").val());
   		redraw();
   	}

@@ -629,6 +629,11 @@ var rotz=function (event,text){
   // fix the draggable
 	  $( ".dragme" ).draggable({ cursor: "move" }, { containment: "parent" });
   
+	// for the .hint message
+    var fade_out = function() {
+      $(".hint").fadeOut('slow');
+    }
+    setTimeout(fade_out, 5000);
 	  
 	  // slideshow with play and pause
 	  var timing;

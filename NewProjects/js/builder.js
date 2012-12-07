@@ -649,18 +649,34 @@ var rotz=function (event,text){
 			var pause = $('#btnPause');
 			
 			auto.click(function () {
-				console.log('auto')
 				slideShow();
 			  	$('#btnShow').hide();
 				$('#btnPause').show();
 			});
-			pause.click(function () {
-				console.log('pause') 
-				clearTimeout(timing); 
-				$('#btnPause').hide();
-			 	$('#btnShow').show();    
-			});
-		});
+      pause.click(function () {
+        clearTimeout(timing); 
+        $('#btnPause').hide();
+        $('#btnShow').show();    
+      });
+
+      // press keys for play and pause
+      // press 'p' for play
+      $('.impress-supported').keydown(function(event) {
+        if (event.keyCode == 80) {
+          slideShow();
+          $('#btnShow').hide();
+          $('#btnPause').show();
+        }
+        // press 'o' for pause
+        else {
+          if (event.keyCode == 79) {
+            clearTimeout(timing); 
+            $('#btnPause').hide();
+            $('#btnShow').show();   
+          }
+        }
+      });
+    });
 	  
 	//Function to prevent the user of setting as input letters
 	  $(".trans").keydown(function(event) {

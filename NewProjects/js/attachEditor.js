@@ -54,25 +54,6 @@ document.onclick = function() {
 	});
 };
 
-
-function goToEditMode() {
-
-	var currentURL = document.location.href;
-	var splitURL = currentURL.split("/");
-	var currentSlide = splitURL[splitURL.length - 1];
-	var indexOfHashtag = currentURL.indexOf("#");
-	var targetURL = "";
-	for (var i = 0; i < indexOfHashtag; i++) {
-		targetURL += currentURL[i];
-	}
-	targetURL += "?edit/" + currentSlide + "#/" + currentSlide;
-
-	// go to the url that gets the edit mode on
-	document.location.href = targetURL;
-	
-	
-}
-
 function saveTextChanges() {
 	var arrayOfTextOfSlides = new Array();
 	
@@ -143,6 +124,26 @@ function loadTextOfSlides() {
 	}
 }
 
+function goToEditMode() {
+
+	saveTextChanges();
+
+	var currentURL = document.location.href;
+	var splitURL = currentURL.split("/");
+	var currentSlide = splitURL[splitURL.length - 1];
+	var indexOfHashtag = currentURL.indexOf("#");
+	var targetURL = "";
+	for (var i = 0; i < indexOfHashtag; i++) {
+		targetURL += currentURL[i];
+	}
+	targetURL += "?edit/" + currentSlide + "#/" + currentSlide;
+
+	// go to the url that gets the edit mode on
+	document.location.href = targetURL;
+	
+	
+}
+
 function goToPresentationMode() {	
 
 	saveTextChanges();
@@ -173,6 +174,7 @@ $(function() {
 	}
 	// We are in edit mode and want to go to presentation mode
 	else {
+		loadTextOfSlides();
 		$('body').append('<button id="btnAloha" onclick="goToPresentationMode()"><p>Exit</p><p>edit</p><p>mode</p></button>');
 		$('body').append('<button id="nextBtnEditMode">Next</button>');
 		$('body').append('<button id="prevBtnEditMode">Prev</button>');

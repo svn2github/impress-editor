@@ -286,11 +286,23 @@ var activeStep;
             		
             		var contextOfStep = Aloha.jQuery(step).find(".fakeClassNameForAloha");          	
             		
-            		Aloha.jQuery(document).click(function(){
-            	//		console.log("onStepEnter the content of the div is");
-            	//	console.log(contextOfStep);
-            			Aloha.jQuery(contextOfStep).aloha().focus();
+            		Aloha.jQuery(document).click(function(e){
+            			console.log("onStepEnter the content of the div is");
+            		console.log(contextOfStep);
+            	console.log(e.srcElement);
+            		if( !(Aloha.jQuery(e.srcElement).is("input")) ) {
+            			if( !(Aloha.jQuery(e.srcElement).is("button")) ) {
+            				Aloha.jQuery(contextOfStep).aloha().focus();
+            			}
+            		}
+            		
+            		if( (Aloha.jQuery(e.srcElement).is("button")) ) {
+            			// Will produce an error in console, but
+            			// it does the work.
+            			Aloha.jQuery(contextOfStep).mahalo();
+            		}
             		});
+            		
             	}
         	
         	
@@ -299,6 +311,7 @@ var activeStep;
                 lastEntered = step;
             }
         };
+        
         
         // `onStepLeave` is called whenever the step element is left
         // but the event is triggered only if the step is the same as

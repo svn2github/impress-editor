@@ -661,7 +661,7 @@ var rotz=function (event,text){
 	      $(".hint").fadeOut('slow');
 	    }
 	    if( (document.location.href).indexOf("?edit/") === -1 ) {
-	      $('body').append('<div class="hint"><p>(Upcoming) press m for menu</p></div>');
+	      $('body').append('<div class="hint"><p>Press "p" for play and "o" for pause</p></div>');
 	       setTimeout(fade_out, 5000);
 	    }
 		  
@@ -677,21 +677,21 @@ var rotz=function (event,text){
 			}
 
 		if( (document.location.href).indexOf("?edit/") === -1 ) {
-			$('body').append('<button id="btnShow">Play</button>');
-			$('body').append('<button id="btnPause">Pause</button>');
-	        var auto = $('#btnShow');
-	        var pause = $('#btnPause');
-	        
-	        auto.click(function () {
-	          slideShow();
-	            $('#btnShow').hide();
-	          $('#btnPause').show();
-	        });
-	        pause.click(function () {
-	          clearTimeout(timing); 
-	          $('#btnPause').hide();
-	          $('#btnShow').show();    
-	        });
+//			$('body').append('<button id="btnShow">Play</button>');
+//			$('body').append('<button id="btnPause">Pause</button>');
+//	        var auto = $('#btnShow');
+//	        var pause = $('#btnPause');
+//	        
+//	        auto.click(function () {
+//	          slideShow();
+//	            $('#btnShow').hide();
+//	          $('#btnPause').show();
+//	        });
+//	        pause.click(function () {
+//	          clearTimeout(timing); 
+//	          $('#btnPause').hide();
+//	          $('#btnShow').show();    
+//	        });
 
 	        // press keys for play and pause
 	        // press 'p' for play

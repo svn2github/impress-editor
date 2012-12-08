@@ -48,27 +48,9 @@ document.onclick = function() {
 	
 	
 	Aloha.ready(function() {
-
-		var $ = Aloha.jQuery;
-		// register all editable areas
-		$('.fakeClassNameForAloha').each(function() {
-		//	console.log(this);
-		//	$(this).aloha();
-		});
-		
-		
-
 		// hide loading div
 		$('#aloha-loading').hide();
 		$('#aloha-loading span').html('Loading Plugins');
-		
-	//	Aloha.ready( function(){
-       	
-     //	});
-       
-		
-		 
-
 	});
 };
 
@@ -91,7 +73,79 @@ function goToEditMode() {
 	
 }
 
-function goToPresentationMode() {
+function saveTextChanges() {
+	var arrayOfTextOfSlides = new Array();
+	
+	
+	var $ = Aloha.jQuery;
+	
+	var counter = 0;
+	
+	$(".fakeClassNameForAloha").each(function(){
+		//console.log("bhka");
+		//console.log($(this).context.innerHTML);
+		arrayOfTextOfSlides[counter++] = $(this).context.innerHTML;
+		// This will be saved as a string, not as an array.
+		// So, we will use the *& to seperate
+		// HTML text of every slide.
+		arrayOfTextOfSlides[counter++] = "*&";
+	});
+	
+	if(typeof(Storage)!=="undefined") {
+		sessionStorage.HTMLtextOfSlidesArray = arrayOfTextOfSlides;
+	}
+	else {
+		console.log("ERROR. Web storage not supported!!!!!");
+	}
+}
+
+function loadTextOfSlides() {
+	
+	
+	if(typeof(Storage)!=="undefined") {
+		if(sessionStorage.HTMLtextOfSlidesArray !== undefined){
+			
+			var test = new Array();
+			var counter = 0;
+			test[0] = "";
+		
+			// length -1 because the last elements will be \0
+			for(var i=0;i<sessionStorage.HTMLtextOfSlidesArray.length-1;i++){
+				//	console.log("eimaste sto "+i+" loop");
+				//	console.log(sessionStorage.HTMLtextOfSlidesArray[i]);
+				if( sessionStorage.HTMLtextOfSlidesArray[i] == "," ) {
+					if( sessionStorage.HTMLtextOfSlidesArray[i+1] == "*" ) {
+						if( sessionStorage.HTMLtextOfSlidesArray[i+2] == "&" ) {
+							// we found the seperator
+							i += 3;
+							counter ++;
+							test[counter] = "";
+							continue;
+						}
+					}
+				}
+			
+				test[counter] += sessionStorage.HTMLtextOfSlidesArray[i];
+	
+			}
+		// for(var h =0;h<test.length;h++) {
+			// console.log("loop "+h);
+			// console.log(test[h]);
+		// }
+			$(".fakeClassNameForAloha").each(function(index){
+				$(this).context.innerHTML = test[index];
+				//console.log($(this));
+			});
+		}
+	}
+	else {
+		console.log("ERROR. Web storage not supported!!!!!");
+	}
+}
+
+function goToPresentationMode() {	
+
+	saveTextChanges();
 
 	var currentURL = document.location.href;
 	var splitURL = currentURL.split("/");
@@ -105,7 +159,6 @@ function goToPresentationMode() {
 
 	// go to the url that gets the edit mode on
 	document.location.href = targetURL;
-
 }
 
 // create the aloha button dynamically so that it won't
@@ -115,6 +168,7 @@ $(function() {
 	// we are in the presentation mode and we want to go
 	// to the edit mode
 	if ((document.location.href).indexOf("?edit/") === -1) {
+		loadTextOfSlides();
 		$('body').append('<button id="btnAloha" onclick="goToEditMode()">Edit</button>');
 	}
 	// We are in edit mode and want to go to presentation mode

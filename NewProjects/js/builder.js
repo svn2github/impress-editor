@@ -128,23 +128,23 @@ builder=(function(){
     $controls2=$('<div></div>').addClass('builder-controls text dragme');
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
-    
+    $('<span></span>').addClass('builder-bt').text('Input').appendTo($controls2).click(showMoves);
     $('<span></span>').addClass('builder-bt').text('Swap').appendTo($controls2).click(goSwap);
     $('<label for="color">Background Color</label>').appendTo($controls2);
     $('<input type="text" placeholder="Color">').attr('id', 'color').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
-    $('<label for="mx">Move X</label>').appendTo($controls2);
+    $('<label for="mx">Move X</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Move X">').attr('id', 'mx').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movex);
-    $('<label for="my">Move Y</label>').appendTo($controls2);
+    $('<label for="my">Move Y</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Move Y">').attr('id', 'my').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movey);
-    $('<label for="mz">Move Z</label>').appendTo($controls2);
+    $('<label for="mz">Move Z</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Move Z">').attr('id', 'mz').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movez);
-    $('<label for="rx">Rotate X</label>').appendTo($controls2);
+    $('<label for="rx">Rotate X</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Rotate X">').attr('id', 'rx').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotx);
-    $('<label for="ry">Rotate Y</label>').appendTo($controls2);
+    $('<label for="ry">Rotate Y</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Rotate Y">').attr('id', 'ry').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",roty);
-    $('<label for="rz">Rotate Z</label>').appendTo($controls2);
+    $('<label for="rz">Rotate Z</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Rotate Z">').attr('id', 'rz').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotz);
-    $('<label for="s">Scale</label>').appendTo($controls2);
+    $('<label for="s">Scale</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Scale">').attr('id', 's').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",scale);
     
     
@@ -383,9 +383,11 @@ builder=(function(){
   // Put the content of each slide inside a white box with some css
   function wrapContents() {
     $(".active").toggleClass('slide');
-    console.log(config.visualRotation)
-    console.log(state.data.rotate)
   }
+  function showMoves() {
+	    $(".trans").toggle( "slide", 500 );
+	    $(".ltrans").toggle( "scale", 500 );
+	      }
 
 
   // Upcoming delete function

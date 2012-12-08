@@ -146,6 +146,8 @@ builder=(function(){
     $('<input type="text" placeholder="Rotate Z">').attr('id', 'rz').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotz);
     $('<label for="s">Scale</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Scale">').attr('id', 's').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",scale);
+    $('<label for="slider">Zoom</label>').appendTo($controls2);
+    $('<div></div>').attr('id', 'zoomSlider').addClass('builder-bt').appendTo($controls2);
     
     
     var showTimer2;
@@ -761,3 +763,8 @@ var rotz=function (event,text){
  	// console.log()
 	// $("mx").attr("value",)
 // });
+
+
+$(function(){
+	$("#zoomSlider").slider();
+});

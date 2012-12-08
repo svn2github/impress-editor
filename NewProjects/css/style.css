@@ -66,4 +66,14 @@ textarea{
 	width: 100px;
 	color: white;
 }
+#zoomSlider{
+	height: 3px;
+}
+
+#zoomSlider a{
+	height: 60%;
+	width: 5px;
+	margin-left: 1px;
+	margin-top: 13px;
+}
 

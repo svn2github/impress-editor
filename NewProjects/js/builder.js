@@ -483,19 +483,20 @@ builder=(function(){
     return result;
   }
   var setColor=function  (event){
-	console.log("set color");
-  	
-  	//check that is a number
-  	//check that the key is enter(checking the value)
-	console.log(event.keyCode)
-  	if(event.keyCode==13){
-  		state.$node=$(".active").css("background-color",$("#color").val());
-  		loadData();
-  		//state.data.x = $("#color").val();
-  		$('body').css("background", $("#color").val());
-  		redraw();
-  	}
-  }
+		console.log("set color");
+	  	
+	  	//check that is a number
+	  	//check that the key is enter(checking the value)
+		console.log(event.keyCode)
+	  	if(event.keyCode==13){
+	  		state.$node=$(".active").css("background","-webkit-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
+	  		state.$node=$(".active").css("background","-moz-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
+	  		state.$node=$(".active").css("background","-o-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
+	  		state.$node=$(".active").css("background","radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
+	  		loadData();
+	  		redraw();
+	  	}
+	  }
     var movex=function  (event){
 
   	

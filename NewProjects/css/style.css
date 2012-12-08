@@ -49,6 +49,13 @@
 	width:100px;
 	color: white;
 }
+#nSlide{
+	width: 40px;
+height: 40px;
+text-align: center;
+color: white;
+font-size: 35px;
+}
 
 textarea{
 	left: 130px;

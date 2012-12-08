@@ -296,9 +296,10 @@ p.footer { font-size: 0.7em; text-align: right; margin-top: 4em; }
 
     display: none;
     
-    position: relative;
-    right: 50%;
-    width: 800px;
+    position: absolute;
+    right: 0;
+    left: 0;  
+    bottom: 250px;
     
     background: rgba(0,0,0,0.5);
     color: white;
@@ -316,12 +317,12 @@ p.footer { font-size: 0.7em; text-align: right; margin-top: 4em; }
   display: block;
   opacity: 1;
  }
-
+/*
 .hint:hover {
   opacity:0; 
   filter:alpha(opacity=0);
 }
-
+*/
 /* overview step */
 
 #overview {

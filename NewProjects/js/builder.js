@@ -130,7 +130,6 @@ builder=(function(){
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Input').appendTo($controls2).click(showMoves);
-    $('<span></span>').addClass('builder-bt').text('Swap').appendTo($controls2).click(goSwap);
     $('<label for="color">Background Color</label>').appendTo($controls2);
     $('<input type="text" placeholder="Color">').attr('id', 'color').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
     $('<label for="mx">Move X</label>').attr('class', 'ltrans').appendTo($controls2);
@@ -433,16 +432,6 @@ builder=(function(){
 	config['goto'](1);}
 	
   }
-	// testing swap function for specific slides.. but it doesn't work as it should
-	  function goSwap () {
-	      $text = $("#prj");
-	      $cal = $("#prj-wt");
-	
-	      // put cal before text
-	      var t = $($cal).clone();
-	      $($cal).remove();
-	      $($text).before(t);
-	   }
 
   function showControls($where){
     var top,left,pos=$where.offset();
@@ -668,59 +657,61 @@ var rotz=function (event,text){
 	  $( ".dragme" ).draggable({ cursor: "move" }, { containment: "parent" });
   
 	// for the .hint message
-    var fade_out = function() {
-      $(".hint").fadeOut('slow');
-    }
-    setTimeout(fade_out, 5000);
-	  
-	  // slideshow with play and pause
-	  var timing;
-		function slideShow() {
-			setTimeout(impress().next, 3000);
-			document.addEventListener('impress:stepenter', function(e){
-				if (typeof timing !== 'undefined') clearTimeout(timing);
-				var duration = (e.target.getAttribute('data-transition-duration') ? e.target.getAttribute('data-transition-duration') : 3000); 
-				timing = setTimeout(impress().next, duration);
-			});
-		}
-		$(function(){
-			if( (document.location.href).indexOf("?edit/") === -1 ) {
-				$('body').append('<button id="btnShow">Play</button>');
-				$('body').append('<button id="btnPause">Pause</button>');
+	    var fade_out = function() {
+	      $(".hint").fadeOut('slow');
+	    }
+	    if( (document.location.href).indexOf("?edit/") === -1 ) {
+	      $('body').append('<div class="hint"><p>(Upcoming) press m for menu</p></div>');
+	       setTimeout(fade_out, 5000);
+	    }
+		  
+		  // slideshow with play and pause
+		  var timing;
+			function slideShow() {
+				setTimeout(impress().next, 3000);
+				document.addEventListener('impress:stepenter', function(e){
+					if (typeof timing !== 'undefined') clearTimeout(timing);
+					var duration = (e.target.getAttribute('data-transition-duration') ? e.target.getAttribute('data-transition-duration') : 3000); 
+					timing = setTimeout(impress().next, duration);
+				});
 			}
-			var auto = $('#btnShow');
-			var pause = $('#btnPause');
-			
-			auto.click(function () {
-				slideShow();
-			  	$('#btnShow').hide();
-				$('#btnPause').show();
-			});
-      pause.click(function () {
-        clearTimeout(timing); 
-        $('#btnPause').hide();
-        $('#btnShow').show();    
-      });
 
-      // press keys for play and pause
-      // press 'p' for play
-      $('.impress-supported').keydown(function(event) {
-        if (event.keyCode == 80) {
-          slideShow();
-          $('#btnShow').hide();
-          $('#btnPause').show();
-        }
-        // press 'o' for pause
-        else {
-          if (event.keyCode == 79) {
-            clearTimeout(timing); 
-            $('#btnPause').hide();
-            $('#btnShow').show();   
-          }
-        }
-      });
-    });
-	  
+		if( (document.location.href).indexOf("?edit/") === -1 ) {
+			$('body').append('<button id="btnShow">Play</button>');
+			$('body').append('<button id="btnPause">Pause</button>');
+	        var auto = $('#btnShow');
+	        var pause = $('#btnPause');
+	        
+	        auto.click(function () {
+	          slideShow();
+	            $('#btnShow').hide();
+	          $('#btnPause').show();
+	        });
+	        pause.click(function () {
+	          clearTimeout(timing); 
+	          $('#btnPause').hide();
+	          $('#btnShow').show();    
+	        });
+
+	        // press keys for play and pause
+	        // press 'p' for play
+	        $('.impress-supported').keydown(function(event) {
+	          if (event.keyCode == 80) {
+	            slideShow();
+	            $('#btnShow').hide();
+	            $('#btnPause').show();
+	          }
+	          // press 'o' for pause
+	          else {
+	            if (event.keyCode == 79) {
+	              clearTimeout(timing); 
+	              $('#btnPause').hide();
+	              $('#btnShow').show();   
+	            }
+	          }
+	        });
+		}	
+
 	//Function to prevent the user of setting as input letters
 	  $(".trans").keydown(function(event) {
         // Allow: backspace, delete, tab, escape, and enter

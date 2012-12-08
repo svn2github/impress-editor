@@ -81,7 +81,7 @@ builder=(function(){
         
         //setting pu movement scale
         config.visualScaling=x.scale;
-        
+        numberSlide();
         if(x.rotate.z==undefined)
         config.visualRotation= x.rotate;
         else config.visualRotation= x.rotate.z;
@@ -126,6 +126,7 @@ builder=(function(){
 //     
 //     
     $controls2=$('<div></div>').addClass('builder-controls text dragme');
+    $('<input type="text" >').attr('id', 'nSlide').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",changeSlideOrder);
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Input').appendTo($controls2).click(showMoves);
@@ -162,6 +163,7 @@ builder=(function(){
       clearTimeout(showTimer2);
       
     });
+    numberSlide();
     $("#mx").attr("value",$(".active").attr("data-x") || 0);
 	$("#my").attr("value",$(".active").attr("data-y") || 0);
 	$("#mz").attr("value",$(".active").attr("data-z") || 0);
@@ -310,6 +312,39 @@ builder=(function(){
 	  }
 	else return;
   }
+  function changeSlideOrder(event){
+	  	if(event.keyCode==13){
+	  		var position= $("#nSlide").val();
+	  		if(position>0 && position<$(".active").parent().children(".step").length){
+	  			console.log("here");
+	  			var placeid=$(".active").parent().children(".step")[position]
+	  			$current = $(".active");
+	  			deleteContents();
+	  			$current.insertBefore(placeid);
+	  			 config.newStepAtPosition($current[0],position-1);
+	  		}
+	  		
+	  		
+	  		
+	  		
+	  		// console.log($("#mx").val())
+	  		
+	  	}
+	  	
+	  	//config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);
+	  }
+	  function numberSlide(){
+	  	var parent=$(".active").parent();
+		  	var children=$(".active").parent().children();
+		 	  //console.log($(".active").parent().children())
+		 	  for(var i=0;i<children.length;i++){
+		 	  	//console.log(children[i].id)
+		 	  	if(children[i].id==$(".active").attr("id")){
+		 	  		$("#nSlide").attr("value",i+1);
+		 	  		return;		
+		 	  	}
+		 	  }
+	  }
   
   
   function downloadStyle(){
@@ -707,7 +742,28 @@ var rotz=function (event,text){
             }   
         }
     });
-
+	    $("#nSlide").keydown(function(event) {
+	        // Allow: backspace, delete, tab, escape, and enter
+	        if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+	             // Allow: Ctrl+A
+	            (event.keyCode == 65 && event.ctrlKey === true) || 
+	             // Allow: home, end, left, right
+	            (event.keyCode >= 35 && event.keyCode <= 39)  ||
+	            (event.keyCode==189 || event.keyCode==173)
+	            
+	            ) {
+	                 // let it happen, don't do anything
+	                 return;
+	        }
+	        else {
+	            // Ensure that it is a number and stop the keypress
+	            if (event.shiftKey ||event.keyCode==109|| (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+	                event.preventDefault(); 
+	            }   
+	        }
+	    });
+	  
+	  
 });
  // $(document).ready(function(){
  	// $(".active").dataset.x;

@@ -50,7 +50,7 @@
 	color: white;
 }
 #nSlide{
-	width: 40px;
+	width: -moz-available;
 height: 40px;
 text-align: center;
 color: white;

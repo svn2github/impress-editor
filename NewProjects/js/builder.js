@@ -441,7 +441,7 @@ builder=(function(){
 	  if($(".active").attr("id")!="overview"){
 	config.deleteStep($(".active").attr("id"))
     $(".active").remove();
-	config['goto'](1);}
+	config['goto']("overview");}
 	
   }
 

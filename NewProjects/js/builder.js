@@ -78,7 +78,9 @@ builder=(function(){
       config.setTransformationCallback(function(x){
         // guess what, it indicates slide change too :)
        // $controls.hide();
-        
+    	  console.log("aki")
+    	  if(state.editing==true)
+    	  editContents()
         //setting pu movement scale
         config.visualScaling=x.scale;
         numberSlide();
@@ -401,6 +403,8 @@ builder=(function(){
     var $t = $(this);
     if(state.editing===true){
       state.editing=false;
+      state.$node=$(".active");
+      console.log(state.$node)
       state.$node.html($t.parent().find('textarea').val());
       state.$node.removeClass('builder-justcreated');
       $t.parent().find('textarea').remove();

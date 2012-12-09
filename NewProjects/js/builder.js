@@ -381,10 +381,13 @@ builder=(function(){
     })(window);
 
     $doc=$(document.documentElement).clone();
+    $doc.find(".step").css("width","512px");
     //remove all scripting
     $doc.find('script').remove();
     //remove all current transforms
-    $doc.find('.step, body, #impress, #impress>div').removeAttr('style');
+    $doc.find('.fallback-message').remove();
+    $doc.find('.menu, .aloha, .aloha-ui,#prevBtnEditMode ,#nextBtnEditMode,#btnAloha').remove();
+    $doc.find(' #impress>div').removeAttr('style');
     $doc.find('body').removeAttr('class');
     //remove gui
     $doc.find('.builder-controls, .builder-main, .counter').remove();

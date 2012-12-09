@@ -317,14 +317,20 @@ builder=(function(){
   }
   function changeSlideOrder(event){
 	  	if(event.keyCode==13){
-	  		var position= $("#nSlide").val();
-	  		if(position>0 && position<$(".active").parent().children(".step").length){
-	  			console.log("here");
-	  			var placeid=$(".active").parent().children(".step")[position]
+	  		var position=numberSlide(1);
+	  		var fposition= $("#nSlide").val();
+	  		console.log(position)
+	  		console.log(fposition)
+	  		if(fposition>0 && fposition<$(".active").parent().children(".step").length && (position+1)!=fposition){
+	  			console.log($(".active").parent().children(".step"))
+	  			var placeid=$(".active").parent().children(".step")[fposition-1]
+	  			console.log(placeid)
 	  			$current = $(".active");
 	  			deleteContents();
-	  			$current.insertBefore(placeid);
-	  			 config.newStepAtPosition($current[0],position-1);
+	  			if((position+1)<fposition)$current.insertAfter(placeid);
+	  			if((position+1)>fposition)$current.insertBefore(placeid);
+	  			 config.newStepAtPosition($current[0],fposition-1);
+	  			 numberSlide();
 	  		}
 	  		
 	  		
@@ -336,15 +342,15 @@ builder=(function(){
 	  	
 	  	//config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);
 	  }
-	  function numberSlide(){
+	  function numberSlide(input){
 	  	var parent=$(".active").parent();
 		  	var children=$(".active").parent().children();
 		 	  //console.log($(".active").parent().children())
 		 	  for(var i=0;i<children.length;i++){
 		 	  	//console.log(children[i].id)
 		 	  	if(children[i].id==$(".active").attr("id")){
-		 	  		$("#nSlide").attr("value",i+1);
-		 	  		return;		
+		 	  		if (input!=1)$("#nSlide").attr("value",i+1);
+		 	  		return(i);		
 		 	  	}
 		 	  }
 	  }

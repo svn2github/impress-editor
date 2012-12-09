@@ -660,3 +660,62 @@ rect:hover {stroke:#fff;}
   -o-transition-property:width,height;
   -o-transition-duration:2s;
 }
+
+/**************** MENU OF SLIDES ***********************/
+
+
+.menu {
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  top: 0px;
+  right: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 50px 0px 0px 0px;
+  background: #ddd;
+  border-radius: 10px;
+
+  -webkit-transition-property: width, height, padding, overflow;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-property: width, height, padding, overflow;
+  -moz-transition-duration: 1s;
+  -moz-transition-timing-function: ease-out;
+  -ms-transition-property: width, height, padding, overflow;
+  -ms-transition-duration: 1s;
+  -ms-transition-timing-function: ease-out;
+  -o-transition-property: width, height, padding, overflow;
+  -o-transition-duration: 1s;
+  -o-transition-timing-function: ease-out;
+  transition-property: width, height, padding, overflow;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+}
+
+.menu:hover {
+  width: 14%;
+  height: 100%;
+  padding: 50px 0px 0px 10px;
+  overflow: scroll;
+}
+
+.menu-item {
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin: 5px 0;
+  font-size: 20px;
+}
+
+.menu-button {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  padding: 10px;
+  background: #DDD;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 30px;
+}

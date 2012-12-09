@@ -228,7 +228,8 @@ var activeStep;
                 init: empty,
                 goto: empty,
                 prev: empty,
-                next: empty
+                next: empty,
+                showMenu: empty
             };
         }
         
@@ -287,9 +288,9 @@ var activeStep;
             		var contextOfStep = Aloha.jQuery(step).find(".fakeClassNameForAloha");          	
             		
             		Aloha.jQuery(document).click(function(e){
-            			console.log("onStepEnter the content of the div is");
-            		console.log(contextOfStep);
-            	console.log(e.srcElement);
+            		//	console.log("onStepEnter the content of the div is");
+            	//	console.log(contextOfStep);
+            	//console.log(e.srcElement);
             		if( !(Aloha.jQuery(e.srcElement).is("input")) ) {
             			if( !(Aloha.jQuery(e.srcElement).is("button")) ) {
             				Aloha.jQuery(contextOfStep).aloha().focus();
@@ -365,6 +366,7 @@ var activeStep;
         
         // `init` API function that initializes (and runs) the presentation.
         var init = function () {
+           // console.log('init')
             if (initialized) { return; }
             
             // First we set up the viewport for mobile devices.
@@ -460,7 +462,7 @@ var activeStep;
       //function to delete a step, bby number, id or dom
         var deleteStep = function(callback){
         	var fhalf,shalf,i;
-          console.log(getStep(callback));
+        //  console.log(getStep(callback));
           for (i in steps){
           	if(getStep(callback)==steps[i]){
           		fhalf=steps.slice(0,i)
@@ -634,7 +636,73 @@ var activeStep;
             
             return goto(next);
         };
-        
+
+
+        /* MENU inspired by a branch in github on impress.js */
+
+
+        // Capitalize first letter of string
+        var capitalize = function( str ) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        };
+
+    
+        // It defines the names of each entry by the id capitalized.
+        var showMenu = function() {
+            // Create the menu wrapper and the element that will be cloned
+            // for each entry.
+          //  console.log('showMenu')
+            var menu = document.createElement('div'),
+                frag = document.createDocumentFragment(),
+                el = document.createElement('div');
+
+            // Apply some classes
+            menu.className = 'menu';
+            el.className = 'menu-item';
+
+            // Create an element that will be the "button" and append it
+            // to the menu
+            var button = document.createElement('div');
+            button.className = 'menu-button';
+            button.textContent = 'Menu';
+            menu.appendChild(button);
+
+            // Now, for each div in the first element child of  #impress,
+            // add an entry to the menu         
+              arrayify(byId('impress').firstElementChild.children).forEach(
+                    function( child, index ) {
+
+                var newEl = el.cloneNode(),
+                    i = index + 1, // We don't want to start at 0
+                    text = i + '. ' + capitalize(child.id);
+
+                // Set the text of the new element
+                newEl.textContent = text;
+
+                // Add an onclick event to the new element
+                // We need to use a closure to make sure the index is correct
+                (function( index ) {
+                    newEl.addEventListener('click', function() {
+                        goto(index);
+                    });
+                }( index ));
+
+                // And append the new element to the menu
+                frag.appendChild(newEl);
+            });
+
+            // Add the frag to the menu
+            menu.appendChild(frag);
+
+            // And append the menu to the body.
+            // Appending it to #impress would mess things up, since
+            // `position: absolute` wouldn't work anymore in it.
+            document.body.appendChild(menu);
+        };
+
+
+    /* END OF MENU */
+ 
         
  //PATCH for SUBSTEPS
  	var forEach = Array.prototype.forEach,
@@ -774,7 +842,8 @@ var activeStep;
     };
  
  //END PATCH       
-        
+
+
         // Adding some useful classes to step elements.
         //
         // All the steps that have not been shown yet are given `future` class.
@@ -851,8 +920,8 @@ var activeStep;
             newStep:newStep,
             setTransformationCallback:setTransformationCallback,
             deleteStep:deleteStep,
-            newStepAtPosition:newStepAtPosition
-
+            newStepAtPosition:newStepAtPosition,
+            showMenu: showMenu
         });
 
     };
@@ -870,7 +939,7 @@ function clearEditor() {
 	var $ = Aloha.jQuery;
 		// register all editable areas
 		$('.fakeClassNameForAloha').each(function() {
-			console.log(this);
+		//	console.log(this);
 			$(this).mahalo();
 		});
 		$('#cal').find('.fakeClassNameForAloha').aloha();s

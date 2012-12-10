@@ -254,3 +254,28 @@ background: #0F3584;
   font-size: 30px;
 }
 
+.hint {
+
+    display: none;
+    
+    position: absolute;
+    right: 0;
+    left: 0;  
+    bottom: 250px;
+    
+    background: rgba(0,0,0,0.5);
+    color: white;
+    text-align: center;
+    
+    font-size: 50px;
+    padding: 20px;
+    
+    z-index: 100;
+
+    opacity: 0;
+}
+
+.impress-enabled .hint { 
+  display: block;
+  opacity: 1;
+ }

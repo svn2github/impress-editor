@@ -81,6 +81,13 @@ builder=(function(){
     	  console.log("aki")
     	  if(state.editing==true)
     	  editContents()
+    	  console.log($(".active").attr("id"))
+    	  if($(".active").attr("id")=="overview"){
+    		  $("#sidecontrolers").hide();
+    	  }
+    	  else{
+    		  $("#sidecontrolers").show();
+    	  }
         //setting pu movement scale
         config.visualScaling=x.scale;
         numberSlide();
@@ -97,7 +104,7 @@ builder=(function(){
     }
     
     $('body').addClass('edit');
-    
+    $(".step").css("width","512px");
     $impress=$('#impress');
     $overview=$('#overview');
     
@@ -127,7 +134,7 @@ builder=(function(){
     // $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
 //     
 //     
-    $controls2=$('<div></div>').addClass('builder-controls text dragme');
+    $controls2=$('<div></div>').addClass('builder-controls text dragme').attr('id', 'sidecontrolers');
     $('<input type="text" >').attr('id', 'nSlide').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",changeSlideOrder);
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
@@ -275,6 +282,7 @@ builder=(function(){
     var $ = Aloha.jQuery;						
     $step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
     $step[0].id=id;
+    
     $step[0].dataset.scale=3;
     console.log($controls)
     $controls.appendTo($step[0]);
@@ -283,6 +291,7 @@ builder=(function(){
     $controls5.appendTo($step[0]);
     $controls6.appendTo($step[0]);
     $step.insertBefore($('.step:last')); //not too performant, but future proof
+    $("#"+id).css("width","512px");
     //console.log($step[0],$(".active").parent().children(".step"))
     config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
     
@@ -381,7 +390,7 @@ builder=(function(){
     })(window);
 
     $doc=$(document.documentElement).clone();
-    $doc.find(".step").css("width","512px");
+    //$doc.find(".step").css("width","512px");
     //remove all scripting
     $doc.find('script').remove();
     //remove all current transforms

@@ -408,6 +408,8 @@ builder=(function(){
     $doc.find('.future').each(function(index,element){element.classList.remove('future');});
     //put overview at the end
     $doc.find('#overview').appendTo($doc.find('#impress'));
+    //add flash slides
+    $doc.find('body').innerHTML+='<style type="text/css">.step.flash.future {opacity:0}.step.flash.past {opacity:0}</style>';
     //add impress.js simple init
     $doc.find('body').attr('class','impress-not-supported')[0].innerHTML+='<script src="https://raw.github.com/bartaz/impress.js/master/js/impress.js"></script><script>impress().init()</script>';
     content=$doc[0].outerHTML;

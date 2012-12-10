@@ -259,7 +259,7 @@ builder=(function(){
     
     $(window).on('beforeunload',function(){ return 'All changes will be lost'; });
     $("#overview .builder-controls").hide();
-    
+    config.showMenu();
     config['goto']('start');
     
     
@@ -285,16 +285,17 @@ builder=(function(){
     
     $step[0].dataset.scale=3;
     console.log($controls)
-    $controls.appendTo($step[0]);
-    $controls3.appendTo($step[0]);
-    $controls4.appendTo($step[0]);
-    $controls5.appendTo($step[0]);
-    $controls6.appendTo($step[0]);
+    
     $step.insertBefore($('.step:last')); //not too performant, but future proof
+    $controls.appendTo($("#"+id+""));
+    $controls3.appendTo($("#"+id+""));
+    $controls4.appendTo($("#"+id+""));
+    $controls5.appendTo($("#"+id+""));
+    $controls6.appendTo($("#"+id+""));
     $("#"+id).css("width","512px");
     //console.log($step[0],$(".active").parent().children(".step"))
     config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
-    
+    config.showMenu();
     // jump to the overview slide to make some room to look around
     config['goto']('overview');
   }
@@ -321,6 +322,7 @@ builder=(function(){
 		    // jump to the overview slide to make some room to look around
 		    config['goto']('overview');
 	 	  addSlide();
+	 	 config.showMenu();
 	  }
 	else return;
   }
@@ -456,6 +458,7 @@ builder=(function(){
 	  if($(".active").attr("id")!="overview"){
 	config.deleteStep($(".active").attr("id"))
     $(".active").remove();
+	config.showMenu();
 	config['goto']("overview");}
 	
   }

@@ -809,6 +809,28 @@ var rotz=function (event,text){
 // });
 
 
-$(function(){
-	$("#zoomSlider").slider();
-});
+//$(function(){
+//	$("#zoomSlider").slider();
+//});
+
+$(function() {
+        $( "#zoomSlider" ).slider({
+            //range: "min",
+            min: 0,
+            max: 20,
+            value: 10,
+            slide: function( event, ui ) {
+            	var val= ui.value;
+            	$("#impress").css("-webkit-transform","scale("+val/10+")");
+            	$("#impress").css("-moz-transform","scale("+val/10+")");
+ //               $( "#amount" ).val( ui.value );
+//                state.$node=$(".active");
+//  				loadData();
+//  				state.data.scale = $("#amount").val()*0.01;
+//                redraw();
+                //$("impress").css("scale", $("#amount").val());
+               // state.$node=$(".active").css("scale", "-webkit-transform: scale(" + $("#zoomSlider").val() + ";)"
+            }
+        });
+        $( "#amount" ).val( $( "#zoomSlider" ).slider( "value" ) );
+    });

@@ -68,13 +68,13 @@ textarea{
 }
 #zoomSlider{
 	height: 3px;
+	margin-top: 10px;
 }
 
 #zoomSlider a{
-	height: 60%;
+	height: 22px;
 	width: 5px;
-	margin-left: 1px;
-	margin-top: 13px;
+	margin-left: -0.2em;
 }
 .fallback-message {
 font-family: sans-serif;

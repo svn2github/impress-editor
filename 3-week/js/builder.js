@@ -429,7 +429,7 @@ builder=(function(){
       state.editing=false;
       state.$node=$(".active");
       console.log(state.$node)
-      state.$node.html($t.parent().find('textarea').val());
+      $(".active .fakeClassNameForAloha").html($t.parent().find('textarea').val());
       state.$node.removeClass('builder-justcreated');
       $t.parent().find('textarea').remove();
       $t.text('Edit');

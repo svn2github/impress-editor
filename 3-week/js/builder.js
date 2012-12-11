@@ -186,7 +186,8 @@ builder=(function(){
 	
     var showTimer;
     $controls.appendTo('.step').on('mousedown','div',function(e){
-    	state.$node=$(".active");	
+    	console.log(this.parentNode.parentNode.id)
+    	state.$node=$("#"+this.parentNode.parentNode.id);	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -199,7 +200,7 @@ builder=(function(){
       
     });
     $controls3.appendTo('.step').on('mousedown','div',function(e){
-    	state.$node=$(".active");	
+    	state.$node=$("#"+this.parentNode.parentNode.id);	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -212,7 +213,7 @@ builder=(function(){
       
     });
     $controls4.appendTo('.step').on('mousedown','div',function(e){
-    	state.$node=$(".active");	
+    	state.$node=$("#"+this.parentNode.parentNode.id);	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();
@@ -225,7 +226,7 @@ builder=(function(){
       
     });
     $controls5.appendTo('.step').on('mousedown','div',function(e){
-    	state.$node=$(".active");	
+    	state.$node=$("#"+this.parentNode.parentNode.id);	
       e.preventDefault();
       mouse.activeFunction=handlers[$(this).data('func')];
       loadData();

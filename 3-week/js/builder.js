@@ -1,3 +1,5 @@
+var s=2;
+
 builder=(function(){
   var state={
     editing:false,
@@ -137,7 +139,7 @@ builder=(function(){
     $controls2=$('<div></div>').addClass('builder-controls text dragme').attr('id', 'sidecontrolers');
     $('<input type="text" >').attr('id', 'nSlide').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",changeSlideOrder);
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
-    $('<span></span>').addClass('builder-bt').text('Wrap').appendTo($controls2).click(wrapContents);
+    $('<span></span>').addClass('builder-bt').text('FlashSlide').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Input').appendTo($controls2).click(showMoves);
     $('<label for="color">Background Color</label>').appendTo($controls2);
     $('<input type="text" placeholder="Color">').attr('id', 'color').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
@@ -268,12 +270,12 @@ builder=(function(){
 
  
   
-  var sequence = (function(){
-    var s=2;
-    return function(){
+  var sequence = function(){
+    
+    //return function(){
       return s++;
-    }
-  })()
+    //}
+  }
   
   function addSlide(){
     //query slide id
@@ -284,14 +286,26 @@ builder=(function(){
     $step[0].id=id;
     
     $step[0].dataset.scale=3;
-    console.log($controls)
+    console.log(id)
     
     $step.insertBefore($('.step:last')); //not too performant, but future proof
-    $controls.appendTo($("#"+id+""));
-    $controls3.appendTo($("#"+id+""));
-    $controls4.appendTo($("#"+id+""));
-    $controls5.appendTo($("#"+id+""));
-    $controls6.appendTo($("#"+id+""));
+    
+    var $Scontrols=$('<div></div>').addClass('builder-controls move');
+    $('<div></div>').addClass('bt-move').attr('title','Move').data('func','move').appendTo($Scontrols);
+    var $Scontrols3=$('<div></div>').addClass('builder-controls rotate');
+    $('<div></div>').addClass('bt-rotate').attr('title','Rotate').data('func','rotate').appendTo($Scontrols3);
+    var $Scontrols4=$('<div></div>').addClass('builder-controls scale');
+    $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($Scontrols4);
+    var $Scontrols5=$('<div></div>').addClass('builder-controls rotatex');
+    $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($Scontrols5);  //added
+    var $Scontrols6=$('<div></div>').addClass('builder-controls delete');
+	$('<div>X</div>').addClass('bt-delete').appendTo($Scontrols6).click(deleteContents);
+    
+    $Scontrols.appendTo($("#"+id+""));
+    $Scontrols3.appendTo($("#"+id+""));
+    $Scontrols4.appendTo($("#"+id+""));
+    $Scontrols5.appendTo($("#"+id+""));
+    $Scontrols6.appendTo($("#"+id+""));
     $("#"+id).css("width","512px");
     //console.log($step[0],$(".active").parent().children(".step"))
     config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
@@ -446,7 +460,7 @@ builder=(function(){
 
   // Put the content of each slide inside a white box with some css
   function wrapContents() {
-    $(".active").toggleClass('slide');
+    $(".active").toggleClass('flash');
   }
   function showMoves() {
 	    $(".trans").toggle( "slide", 500 );

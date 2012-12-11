@@ -698,6 +698,7 @@ var activeStep;
             // Appending it to #impress would mess things up, since
             // `position: absolute` wouldn't work anymore in it.
             document.body.appendChild(menu);
+            
         };
 
 

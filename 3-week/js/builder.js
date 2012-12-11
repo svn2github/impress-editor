@@ -342,6 +342,7 @@ builder=(function(){
 	  			if((position+1)>fposition)$current.insertBefore(placeid);
 	  			 config.newStepAtPosition($current[0],fposition-1);
 	  			 numberSlide();
+	  			config.showMenu();
 	  		}
 	  		
 	  		

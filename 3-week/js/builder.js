@@ -279,41 +279,94 @@ builder=(function(){
   }
   
   function addSlide(){
-    //query slide id
-    var id,$step;
-    id='builderAutoSlide'+sequence();
-    var $ = Aloha.jQuery;						
-    $step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
-    $step[0].id=id;
-    
-    $step[0].dataset.scale=3;
-    console.log(id)
-    
-    $step.insertBefore($('.step:last')); //not too performant, but future proof
-    
-    var $Scontrols=$('<div></div>').addClass('builder-controls move');
-    $('<div></div>').addClass('bt-move').attr('title','Move').data('func','move').appendTo($Scontrols);
-    var $Scontrols3=$('<div></div>').addClass('builder-controls rotate');
-    $('<div></div>').addClass('bt-rotate').attr('title','Rotate').data('func','rotate').appendTo($Scontrols3);
-    var $Scontrols4=$('<div></div>').addClass('builder-controls scale');
-    $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($Scontrols4);
-    var $Scontrols5=$('<div></div>').addClass('builder-controls rotatex');
-    $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($Scontrols5);  //added
-    var $Scontrols6=$('<div></div>').addClass('builder-controls delete');
-	$('<div>X</div>').addClass('bt-delete').appendTo($Scontrols6).click(deleteContents);
-    
-    $Scontrols.appendTo($("#"+id+""));
-    $Scontrols3.appendTo($("#"+id+""));
-    $Scontrols4.appendTo($("#"+id+""));
-    $Scontrols5.appendTo($("#"+id+""));
-    $Scontrols6.appendTo($("#"+id+""));
-    $("#"+id).css("width","512px");
-    //console.log($step[0],$(".active").parent().children(".step"))
-    config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
-    config.showMenu();
-    // jump to the overview slide to make some room to look around
-    config['goto']('overview');
-  }
+	    //query slide id
+	    var id,$step;
+	    id='builderAutoSlide'+sequence();
+	    var $ = Aloha.jQuery;						
+	    $step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
+	    $step[0].id=id;
+	    
+	    $step[0].dataset.scale=3;
+	    console.log(id)
+	    
+	    $step.insertBefore($('.step:last')); //not too performant, but future proof
+	    
+	    var $Scontrols=$('<div></div>').addClass('builder-controls move');
+	    $('<div></div>').addClass('bt-move').attr('title','Move').data('func','move').appendTo($Scontrols);
+	    var $Scontrols3=$('<div></div>').addClass('builder-controls rotate');
+	    $('<div></div>').addClass('bt-rotate').attr('title','Rotate').data('func','rotate').appendTo($Scontrols3);
+	    var $Scontrols4=$('<div></div>').addClass('builder-controls scale');
+	    $('<div></div>').addClass('bt-scale').attr('title','Scale').data('func','scale').appendTo($Scontrols4);
+	    var $Scontrols5=$('<div></div>').addClass('builder-controls rotatex');
+	    $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($Scontrols5);  //added
+	    var $Scontrols6=$('<div></div>').addClass('builder-controls delete');
+		$('<div>X</div>').addClass('bt-delete').appendTo($Scontrols6).click(deleteContents);
+	        var showTimer;
+	    $Scontrols.appendTo($("#"+id+"")).on('mousedown','div',function(e){
+	    	console.log(this.parentNode.parentNode.id)
+	    	state.$node=$("#"+this.parentNode.parentNode.id);	
+	      e.preventDefault();
+	      mouse.activeFunction=handlers[$(this).data('func')];
+	      loadData();
+	      mouse.prevX=e.pageX;
+	      mouse.prevY=e.pageY;
+	      $(document).on('mousemove.handler1',handleMouseMove);
+	      return false;
+	    }).on('mouseenter',function(){
+	      clearTimeout(showTimer);
+	      
+	    });
+	    $Scontrols3.appendTo($("#"+id+"")).on('mousedown','div',function(e){
+	    	state.$node=$("#"+this.parentNode.parentNode.id);	
+	      e.preventDefault();
+	      mouse.activeFunction=handlers[$(this).data('func')];
+	      loadData();
+	      mouse.prevX=e.pageX;
+	      mouse.prevY=e.pageY;
+	      $(document).on('mousemove.handler1',handleMouseMove);
+	      return false;
+	    }).on('mouseenter',function(){
+	      clearTimeout(showTimer);
+	      
+	    });
+	    $Scontrols4.appendTo($("#"+id+"")).on('mousedown','div',function(e){
+	    	state.$node=$("#"+this.parentNode.parentNode.id);	
+	      e.preventDefault();
+	      mouse.activeFunction=handlers[$(this).data('func')];
+	      loadData();
+	      mouse.prevX=e.pageX;
+	      mouse.prevY=e.pageY;
+	      $(document).on('mousemove.handler1',handleMouseMove);
+	      return false;
+	    }).on('mouseenter',function(){
+	      clearTimeout(showTimer);
+	      
+	    });
+	    $Scontrols5.appendTo($("#"+id+"")).on('mousedown','div',function(e){
+	    	state.$node=$("#"+this.parentNode.parentNode.id);	
+	      e.preventDefault();
+	      mouse.activeFunction=handlers[$(this).data('func')];
+	      loadData();
+	      mouse.prevX=e.pageX;
+	      mouse.prevY=e.pageY;
+	      $(document).on('mousemove.handler1',handleMouseMove);
+	      return false;
+	    }).on('mouseenter',function(){
+	      clearTimeout(showTimer);
+	      
+	    });
+	    // $Scontrols.appendTo($("#"+id+""));
+	    // $Scontrols3.appendTo($("#"+id+""));
+	    // $Scontrols4.appendTo($("#"+id+""));
+	    // $Scontrols5.appendTo($("#"+id+""));
+	     $Scontrols6.appendTo($("#"+id+""));
+	    $("#"+id).css("width","512px");
+	    //console.log($step[0],$(".active").parent().children(".step"))
+	    config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
+	    config.showMenu();
+	    // jump to the overview slide to make some room to look around
+	    config['goto']('overview');
+	  }
   function newFile(){
   	var r=confirm("Are you sure you want to create a new file.\n If you create a new file you will lose all your slides. ");
 	if (r==true)

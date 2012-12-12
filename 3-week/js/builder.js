@@ -147,11 +147,11 @@ builder=(function(){
     $('<label for="color">Background Color</label>').attr('class', 'lctrans').appendTo($controls2);
     $('<input type="text" placeholder="Color">').attr('id', 'color').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
     $('<label for="color">Red Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'rColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<input type="text" placeholder="Color">').attr('id', 'rColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setRGB);
     $('<label for="color">Green Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'gColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<input type="text" placeholder="Color">').attr('id', 'gColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setRGB);
     $('<label for="color">Blue Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'bColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<input type="text" placeholder="Color">').attr('id', 'bColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setRGB);
     
     
     //Input Box for Move
@@ -177,6 +177,7 @@ builder=(function(){
     $('<input type="text" placeholder="Scale">').attr('id', 's').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",scale);
     $('<label for="slider">Zoom</label>').appendTo($controls2);
     $('<div></div>').attr('id', 'zoomSlider').addClass('builder-bt').appendTo($controls2);
+
     
     
     var showTimer2;
@@ -635,6 +636,8 @@ builder=(function(){
     console.log(result.x)
     return result;
   }
+  
+  //setting the color of the slide
   var setColor=function  (event){
 		console.log("set color");
 	  	
@@ -642,6 +645,8 @@ builder=(function(){
 	  	//check that the key is enter(checking the value)
 		console.log(event.keyCode)
 	  	if(event.keyCode==13){
+	  		//state.$node=$(".active").css("background","-webkit-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb("+ $("#rColor").val() + "," + $("#gColor").val() + "," + $("bColor").val() + "), rgb("+ $("#rColor").val() + "," + $("#gColor").val() + "," + $("bColor").val() + ");"
+	  		
 	  		state.$node=$(".active").css("background","-webkit-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
 	  		state.$node=$(".active").css("background","-moz-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
 	  		state.$node=$(".active").css("background","-o-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
@@ -650,6 +655,17 @@ builder=(function(){
 	  		redraw();
 	  	}
 	  }
+	  
+	
+	//setting RGB color for the slide
+	var setRGB=function (event){
+		if(event.keyCode==13){
+			$("body.style").css("background-image", "-webkit-radial-gradient(0% 100%, circle farthest-corner," + $("#rColor").val() + "," $("#gColor").val() + "," + $("#bColor").val());
+		}
+	}
+	  
+	  
+	  
     var movex=function  (event){
 
   	

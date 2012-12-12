@@ -874,7 +874,7 @@ var rotz=function (event,text){
 $(function() {
         $( "#zoomSlider" ).slider({
             //range: "min",
-            min: 0,
+            min: 1,
             max: 20,
             value: 10,
             slide: function( event, ui ) {

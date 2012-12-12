@@ -921,6 +921,7 @@ var activeStep;
             newStep:newStep,
             setTransformationCallback:setTransformationCallback,
             deleteStep:deleteStep,
+            getStep:getStep,
             newStepAtPosition:newStepAtPosition,
             showMenu: showMenu
         });

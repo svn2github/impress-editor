@@ -74,12 +74,6 @@ builder=(function(){
     config=$.extend(config,conf);
     config.visualScaling=$(".active").attr("data-scale");
     config.visualRotation=$(".active").attr("data-rotate");
-    if($(".active").attr("id")=="overview"){
-		  $("#sidecontrolers").hide();
-	  }
-	  else{
-		  $("#sidecontrolers").show();
-	  }
     //console.log($(".active").attr("data-scale"))
     if(config.setTransformationCallback){
       config.setTransformationCallback(function(x){
@@ -180,6 +174,12 @@ builder=(function(){
       clearTimeout(showTimer2);
       
     });
+    if($(".active").attr("id")=="overview"){
+		  $("#sidecontrolers").hide();
+	  }
+	  else{
+		  $("#sidecontrolers").show();
+	  }
     numberSlide();
     $("#mx").attr("value",$(".active").attr("data-x") || 0);
 	$("#my").attr("value",$(".active").attr("data-y") || 0);

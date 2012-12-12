@@ -62,7 +62,7 @@ textarea{
     position: absolute;
     top: 27px;
 }
-#color{
+.ctrans{
 	width: 100px;
 	color: white;
 }

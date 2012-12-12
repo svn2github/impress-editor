@@ -154,19 +154,25 @@ builder=(function(){
     $('<input type="text" placeholder="Color">').attr('id', 'bColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
     
     
-    //Input Box for edit
+    //Input Box for Move
     $('<label for="mx">Move X</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Move X">').attr('id', 'mx').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movex);
     $('<label for="my">Move Y</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Move Y">').attr('id', 'my').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movey);
     $('<label for="mz">Move Z</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Move Z">').attr('id', 'mz').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movez);
+    
+    
+    //Input Box for Rotate
     $('<label for="rx">Rotate X</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Rotate X">').attr('id', 'rx').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotx);
     $('<label for="ry">Rotate Y</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Rotate Y">').attr('id', 'ry').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",roty);
     $('<label for="rz">Rotate Z</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Rotate Z">').attr('id', 'rz').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",rotz);
+    
+    
+    //Scale & Zoom
     $('<label for="s">Scale</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Scale">').attr('id', 's').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",scale);
     $('<label for="slider">Zoom</label>').appendTo($controls2);
@@ -879,17 +885,9 @@ var rotz=function (event,text){
 	  
 	  
 });
- // $(document).ready(function(){
- 	// $(".active").dataset.x;
- 	// console.log()
-	// $("mx").attr("value",)
-// });
 
 
-//$(function(){
-//	$("#zoomSlider").slider();
-//});
-
+//Function for the zoom.
 $(function() {
         $( "#zoomSlider" ).slider({
             //range: "min",
@@ -900,13 +898,6 @@ $(function() {
             	var val= ui.value;
             	$("#impress").css("-webkit-transform","scale("+val/10+")");
             	$("#impress").css("-moz-transform","scale("+val/10+")");
- //               $( "#amount" ).val( ui.value );
-//                state.$node=$(".active");
-//  				loadData();
-//  				state.data.scale = $("#amount").val()*0.01;
-//                redraw();
-                //$("impress").css("scale", $("#amount").val());
-               // state.$node=$(".active").css("scale", "-webkit-transform: scale(" + $("#zoomSlider").val() + ";)"
             }
         });
         $( "#amount" ).val( $( "#zoomSlider" ).slider( "value" ) );

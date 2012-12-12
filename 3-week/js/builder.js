@@ -74,7 +74,12 @@ builder=(function(){
     config=$.extend(config,conf);
     config.visualScaling=$(".active").attr("data-scale");
     config.visualRotation=$(".active").attr("data-rotate");
-    
+    if($(".active").attr("id")=="overview"){
+		  $("#sidecontrolers").hide();
+	  }
+	  else{
+		  $("#sidecontrolers").show();
+	  }
     //console.log($(".active").attr("data-scale"))
     if(config.setTransformationCallback){
       config.setTransformationCallback(function(x){

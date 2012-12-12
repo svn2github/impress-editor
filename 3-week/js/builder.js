@@ -140,8 +140,21 @@ builder=(function(){
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('FlashSlide').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Input').appendTo($controls2).click(showMoves);
-    $('<label for="color">Background Color</label>').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'color').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<span></span>').addClass('builder-bt').text('RGB Color').appendTo($controls2).click(showColor);
+    
+    
+    //Input Box for Color
+    $('<label for="color">Background Color</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Color">').attr('id', 'color').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<label for="color">Red Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Color">').attr('id', 'rColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<label for="color">Green Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Color">').attr('id', 'gColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<label for="color">Blue Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Color">').attr('id', 'bColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    
+    
+    //Input Box for edit
     $('<label for="mx">Move X</label>').attr('class', 'ltrans').appendTo($controls2);
     $('<input type="text" placeholder="Move X">').attr('id', 'mx').attr('class', 'trans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",movex);
     $('<label for="my">Move Y</label>').attr('class', 'ltrans').appendTo($controls2);
@@ -521,10 +534,16 @@ builder=(function(){
   function wrapContents() {
     $(".active").toggleClass('flash');
   }
+  
   function showMoves() {
 	    $(".trans").toggle( "slide", 500 );
 	    $(".ltrans").toggle( "scale", 500 );
 	      }
+	      
+  function showColor(){
+  	$(".ctrans").toggle("slide", 500);
+  	$(".lctrans").toggle("scale", 500);
+  }
 
 
   // Upcoming delete function

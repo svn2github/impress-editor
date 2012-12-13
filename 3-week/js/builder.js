@@ -117,6 +117,13 @@ builder=(function(){
     $('<div></div>').addClass('builder-bt bt-download').appendTo($menu).text('Get file').on('click',downloadResults);
     $('<input type="file" id="files" name="files[]" multiple />').addClass('builder-bt bt-download').appendTo($menu);
     $('<div></div>').addClass('builder-bt bt-new').appendTo($menu).text('New Presentation').on('click',newFile);
+    $('<div></div>').addClass('builder-bt')
+    $('<label for="color">First Gredient</label>').attr('class', 'lctrans').appendTo($menu);
+    $('<input type="text" placeholder="Color">').attr('id', 'firstBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
+    $('<label for="color">Second Gredient</label>').attr('class', 'lctrans').appendTo($menu);
+    $('<input type="text" placeholder="Color">').attr('id', 'secondBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
+    $('<label for="color">Third Gredient</label>').attr('class', 'lctrans').appendTo($menu);
+    $('<input type="text" placeholder="Color">').attr('id', 'thirdBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
     
     $menu.appendTo('body');
     document.getElementById('files').addEventListener('change', openFile, false);
@@ -677,7 +684,7 @@ builder=(function(){
     
   
   //setting Background color for the bady
-  var setBackroung=function (event){
+  var setBackground=function (event){
     if(event.keyCode==13){
       $("body").css("background-image", "-webkit-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstBackground").val()+", "+$("#secondBackground").val()+", "+$("#thirdBackground").val() + ")");
         $("body").css("background-image", "-moz-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstBackground").val()+", "+$("#secondBackground").val()+", "+$("#thirdBackground").val() + ")");

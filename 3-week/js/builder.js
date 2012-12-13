@@ -115,11 +115,11 @@ builder=(function(){
       config['goto']('overview');
     });
     $('<div></div>').addClass('builder-bt bt-download').appendTo($menu).text('Get file').on('click',downloadResults);
-    $('<div></div>').addClass('builder-bt bt-download').appendTo($menu).text('style.css').on('click',downloadStyle);
+    $('<input type="file" id="files" name="files[]" multiple />').addClass('builder-bt bt-download').appendTo($menu);
     $('<div></div>').addClass('builder-bt bt-new').appendTo($menu).text('New Presentation').on('click',newFile);
     
     $menu.appendTo('body');
-    
+    document.getElementById('files').addEventListener('change', openFile, false);
     
     $controls=$('<div></div>').addClass('builder-controls move');
     $('<div></div>').addClass('bt-move').attr('title','Move').data('func','move').appendTo($controls);
@@ -275,7 +275,6 @@ builder=(function(){
         if(!mouse.activeFunction){
           //show controls
           state.$node=$t;
-          showControls(state.$node);
           
         }
       },500);
@@ -303,15 +302,25 @@ builder=(function(){
     //}
   }
   
-  function addSlide(){
+  function addSlide(contenido){
 	    //query slide id
 	    var id,$step;
+	    console.log(contenido)
 	    id='builderAutoSlide'+sequence();
-	    var $ = Aloha.jQuery;						
-	    $step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
+	    var $ = Aloha.jQuery;
+	    if (contenido==undefined || contenido.type=="click")		{		
+	    	$step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
+	    	$step[0].dataset.scale=3;
+	    	}
+	   	else{
+	   		$step=$('<div></div>');
+	   		$step[0]=contenido;
+	   		id=$step[0].id;
+	   		$($step[0]).addClass("future")
+	   	}
 	    $step[0].id=id;
 	    
-	    $step[0].dataset.scale=3;
+	    
 	    console.log(id)
 	    
 	    $step.insertBefore($('.step:last')); //not too performant, but future proof
@@ -461,22 +470,51 @@ builder=(function(){
 	  }
   
   
-  function downloadStyle(){
-   
-    var uriContent,content,$doc;
-    
-    var BlobBuilder = (function(w) {
-      return w.BlobBuilder || w.WebKitBlobBuilder || w.MozBlobBuilder;
-    })(window);
-
-    // it works in server so run it from eclipse
-    $.get('css/style.css', function (content) {
-      var bb = new BlobBuilder;
-      bb.append(content);
-      saveAs(bb.getBlob("text/css;charset=utf-8"), "default.css");
-    });
-
-  }
+	  function openFile(evento){
+			var files = evento.target.files; // FileList object
+			var file = files[0];
+			var start = 0;
+		    var stop = file.size - 1;
+		    var reader = new FileReader();
+		    	
+		    // If we use onloadend, we need to check the readyState.
+		    reader.onloadend = function(evt) {
+		      if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+		      	console.log("here");
+		        var $a=evt.target.result;
+		        //console.log($a);
+		        var test = $($a).find(".step");
+		        appendManySlides(test);
+		      }
+		      
+		    };
+		    reader.readAsBinaryString(file);
+		  }
+		  
+		  function appendManySlides(slides){
+		  	var parent=$(".active").parent();
+			  	var children=$(".active").parent().children();
+			 	  //console.log($(".active").parent().children())
+			 	  for(var i=0;i<children.length;i++){
+			 	  	//console.log(children[i].id)
+			 	  	config.deleteStep(children[i].id)
+		  			children[i].parentNode.removeChild(children[i]);
+			 	  }
+			 	  var id,$step;
+				    id='overview';
+				    $step=$('<div></div>').addClass('step');
+				    $step[0].id=id;
+				    $step[0].dataset.scale=1;
+				    $step[0].dataset.z=5000;
+				    parent.append($step[0]) //not too performant, but future proof
+				    config.creationFunction($step[0]);
+				    // jump to the overview slide to make some room to look around
+				config['goto']('overview');
+				for(var y=0;y<slides.length-1;y++){
+					addSlide(slides[y]);
+				}
+				
+		  }
   
   function downloadResults() {
     var uriContent,content,$doc;
@@ -563,19 +601,6 @@ builder=(function(){
 	
   }
 
-  function showControls($where){
-    var top,left,pos=$where.offset();
-    //not going out the edges (at least one way)
-    // top=(pos.top>0)? pos.top+(100/config.visualScaling) : 0;
-    // left=(pos.left>0)? pos.left+(100/config.visualScaling) : 0;
-     
-    
-    // $controls.show().offset({
-     // // top:top,
-     // // left:left
-    // });
-  }
-  
   
   function loadData(){
     //console.log('load',state.$node[0]);
@@ -616,7 +641,6 @@ builder=(function(){
       console.log(state.data,state.$node[0].dataset,state.$node[0].dataset===state.data);
         
       config.redrawFunction(state.$node[0]);
-      showControls(state.$node);
     //console.log(['redrawn',state.$node[0].dataset]);
     },20);
   }

@@ -146,7 +146,6 @@ function saveTextChanges(fromPresToEdit) {
 	
 	
 	while(newSlides[0] != undefined) {
-		//console.log($(newSlides[0]).find(".fakeClassNameForNewAloha")[0].innerHTML);
 		
 		HTMLOfNewSlidesID += $(newSlides[0]).attr("id") + "*&";
 		HTMLOfNewSlidesStyle += $(newSlides[0]).attr("style") + "*&";
@@ -443,11 +442,42 @@ function loadTextOfSlides() {
 	}
 }
 
+function loadEditor() {
+	$(".fakeClassNameForAloha").each(function(){
+		//console.log(this);
+		
+		Aloha.jQuery(this).aloha();
+		
+		//console.log("AFTER:");
+		//console.log(this);
+		
+	});
+}
+
+function rmvEditor() {
+	$(".fakeClassNameForAloha").each(function(){
+		//console.log($(this)[0].id);
+		var id = $(this)[0].id;
+		if(id) {
+			$(this).removeClass("aloha-editable")
+				.removeClass("aloha-block-blocklevel-sortable")
+				.removeClass("ui-sortable").removeClass("aloha-editable-highlight")
+				.attr("contenteditable","false");
+		}
+		// this will not work (we have modified it)
+		//	Aloha.jQuery("#"+id).mahalo();
+		
+		
+		//console.log("AFTER:");
+		//console.log($(this));
+		
+	});
+}
+
 function goToEditMode() {
 
 	saveTextChanges(true);
-
-	//saveSlides();
+	
 
 	var currentURL = document.location.href;
 	var splitURL = currentURL.split("/");
@@ -469,8 +499,7 @@ function goToEditMode() {
 function goToPresentationMode() {	
 
 	saveTextChanges(false);
-
-	//saveSlides();
+	
 
 	var currentURL = document.location.href;
 	var splitURL = currentURL.split("/");
@@ -494,8 +523,18 @@ $(function() {
 	// to the edit mode
 	if ((document.location.href).indexOf("?edit/") === -1) {
 		loadTextOfSlides();
-		//loadSlides();
 		$('body').append('<button id="btnAloha" onclick="goToEditMode()">Edit</button>');
+		rmvEditor();	
+		var data = Aloha.jQuery("body").find(".fakeClassNameForAloha");
+		console.log(data);
+            	var allSlides = new Array();
+            	for( var i = 0 ; i < data.length ; i++ ) {
+            		allSlides[i] = data[i].parentElement;
+            	}
+            	for(var i = 0 ; i < allSlides.length ; i++) {
+            			Aloha.jQuery(allSlides[i]).show();
+            			
+            		}	
 	}
 	// We are in edit mode and want to go to presentation mode
 	else {
@@ -504,5 +543,6 @@ $(function() {
 		$('body').append('<button id="btnAloha" onclick="goToPresentationMode()"><p>Exit</p><p>edit</p><p>mode</p></button>');
 		$('body').append('<button id="nextBtnEditMode">Next</button>');
 		$('body').append('<button id="prevBtnEditMode">Prev</button>');
+		loadEditor();
     }
 }); 

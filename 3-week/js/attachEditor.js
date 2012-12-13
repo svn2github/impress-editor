@@ -335,13 +335,13 @@ function loadTextOfSlides() {
 					for(var i = 0 ; i < index+deletedSlides ; i++) {
 						found = false;
 						currentStepId = impress().getStep(i).id;
-						console.log(currentStepId);
+						//console.log(currentStepId);
 						for(var j = 0 ; j < arrayID.length ; j++) {
 							if(arrayID[j] == currentStepId)
 								found = true;
 						}
 						if(!found) {
-							console.log(currentStepId);
+							//console.log(currentStepId);
 							if(currentStepId != "overview") {
 								impress().deleteStep(currentStepId);
 								$("#"+currentStepId).remove();
@@ -515,26 +515,46 @@ function goToPresentationMode() {
 	document.location.href = targetURL;
 }
 
+function removeWrapDivIfAny() {
+	$(".wrap").each(function(){
+		//console.log(this);
+		if(this){
+			if($(this).children()){
+				$(this).children().unwrap();
+			}
+		}
+	});
+}
+
+function displayAllSlides() {
+	removeWrapDivIfAny();
+	
+	var data = Aloha.jQuery("body").find(".fakeClassNameForAloha");
+		//console.log(data);
+    var allSlides = new Array();
+    for( var i = 0 ; i < data.length ; i++ ) {
+    	allSlides[i] = data[i].parentElement;
+	}            
+    for(var i = 0 ; i < allSlides.length ; i++) {
+    	Aloha.jQuery(allSlides[i]).css("display" , "inline");
+   	}	
+}
+
+function removeSidebar() {
+	$(".aloha-sidebar-bar").remove();
+}
+
 // create the aloha button dynamically so that it won't
 // be created when on edit mode
 $(function() {
 
 	// we are in the presentation mode and we want to go
 	// to the edit mode
+	
 	if ((document.location.href).indexOf("?edit/") === -1) {
 		loadTextOfSlides();
 		$('body').append('<button id="btnAloha" onclick="goToEditMode()">Edit</button>');
 		rmvEditor();	
-		var data = Aloha.jQuery("body").find(".fakeClassNameForAloha");
-		console.log(data);
-            	var allSlides = new Array();
-            	for( var i = 0 ; i < data.length ; i++ ) {
-            		allSlides[i] = data[i].parentElement;
-            	}
-            	for(var i = 0 ; i < allSlides.length ; i++) {
-            			Aloha.jQuery(allSlides[i]).show();
-            			
-            		}	
 	}
 	// We are in edit mode and want to go to presentation mode
 	else {
@@ -545,4 +565,6 @@ $(function() {
 		$('body').append('<button id="prevBtnEditMode">Prev</button>');
 		loadEditor();
     }
+    displayAllSlides();
+    removeSidebar();
 }); 

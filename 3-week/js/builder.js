@@ -660,7 +660,9 @@ builder=(function(){
 	//setting RGB color for the slide
 	var setRGB=function (event){
 		if(event.keyCode==13){
-			$("body.style").css("background-image", "-webkit-radial-gradient(0% 100%, circle farthest-corner," + $("#rColor").val() + "," $("#gColor").val() + "," + $("#bColor").val());
+		//$("#impress").css("-webkit-transform","scale("+val/10+")");
+			$("impress").css("background-image", "-webkit-radial-gradient(0% 100%, circle farthest-corner," + $("#rColor").val() + $("#gColor").val() + $("#bColor").val());
+			console.log(event);
 		}
 	}
 	  

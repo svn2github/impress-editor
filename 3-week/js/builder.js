@@ -118,12 +118,12 @@ builder=(function(){
     $('<input type="file" id="files" name="files[]" multiple />').addClass('builder-bt bt-download').appendTo($menu);
     $('<div></div>').addClass('builder-bt bt-new').appendTo($menu).text('New Presentation').on('click',newFile);
     $('<div></div>').addClass('builder-bt')
-    $('<label for="color">First Gredient</label>').attr('class', 'lctrans').appendTo($menu);
-    $('<input type="text" placeholder="Color">').attr('id', 'firstBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
-    $('<label for="color">Second Gredient</label>').attr('class', 'lctrans').appendTo($menu);
-    $('<input type="text" placeholder="Color">').attr('id', 'secondBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
-    $('<label for="color">Third Gredient</label>').attr('class', 'lctrans').appendTo($menu);
-    $('<input type="text" placeholder="Color">').attr('id', 'thirdBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
+    $('<label for="color">First Gradient</label>').attr('class', 'lctrans').appendTo($menu);
+    $('<input type="text" placeholder="Background">').attr('id', 'firstBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
+    $('<label for="color">Second Gradient</label>').attr('class', 'lctrans').appendTo($menu);
+    $('<input type="text" placeholder="Background">').attr('id', 'secondBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
+    $('<label for="color">Third Gradient</label>').attr('class', 'lctrans').appendTo($menu);
+    $('<input type="text" placeholder="Background">').attr('id', 'thirdBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
     
     $menu.appendTo('body');
     document.getElementById('files').addEventListener('change', openFile, false);
@@ -151,12 +151,12 @@ builder=(function(){
     
     
     //Input Box for Color
-    $('<label for="color">First Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'firstColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
-    $('<label for="color">Second Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'secondColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
-    $('<label for="color">Third Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'thirdColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<label for="color">First Gradient</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Slide Color">').attr('id', 'firstColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<label for="color">Second Gradient</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Slide Color">').attr('id', 'secondColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<label for="color">Third Gradient</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Slide Color">').attr('id', 'thirdColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
     
     
     //Input Box for Move

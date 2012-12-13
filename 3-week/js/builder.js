@@ -144,14 +144,12 @@ builder=(function(){
     
     
     //Input Box for Color
-    $('<label for="color">Background Color</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'color').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
-    $('<label for="color">Red Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'rColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setRGB);
-    $('<label for="color">Green Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'gColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setRGB);
-    $('<label for="color">Blue Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
-    $('<input type="text" placeholder="Color">').attr('id', 'bColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setRGB);
+    $('<label for="color">First Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Color">').attr('id', 'firstColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<label for="color">Second Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Color">').attr('id', 'secondColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
+    $('<label for="color">Third Gredient</label>').attr('class', 'lctrans').appendTo($controls2);
+    $('<input type="text" placeholder="Color">').attr('id', 'thirdColor').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",setColor);
     
     
     //Input Box for Move
@@ -663,32 +661,30 @@ builder=(function(){
   
   //setting the color of the slide
   var setColor=function  (event){
-		console.log("set color");
-	  	
-	  	//check that is a number
-	  	//check that the key is enter(checking the value)
-		console.log(event.keyCode)
-	  	if(event.keyCode==13){
-	  		//state.$node=$(".active").css("background","-webkit-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb("+ $("#rColor").val() + "," + $("#gColor").val() + "," + $("bColor").val() + "), rgb("+ $("#rColor").val() + "," + $("#gColor").val() + "," + $("bColor").val() + ");"
-	  		
-	  		state.$node=$(".active").css("background","-webkit-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
-	  		state.$node=$(".active").css("background","-moz-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
-	  		state.$node=$(".active").css("background","-o-radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
-	  		state.$node=$(".active").css("background","radial-gradient(left bottom, circle farthest-corner,"+$("#color").val()+", rgb(255,255,255), rgb(255,255,255))");
-	  		loadData();
-	  		redraw();
-	  	}
-	  }
-	  
-	
-	//setting RGB color for the slide
-	var setRGB=function (event){
-		if(event.keyCode==13){
-		//$("#impress").css("-webkit-transform","scale("+val/10+")");
-			$("impress").css("background-image", "-webkit-radial-gradient(0% 100%, circle farthest-corner," + $("#rColor").val() + $("#gColor").val() + $("#bColor").val());
-			console.log(event);
-		}
-	}
+    console.log("set color");
+      
+      //check that is a number
+      //check that the key is enter(checking the value)
+    console.log(event.keyCode)
+      if(event.keyCode==13){
+        console.log("-webkit-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")")
+        state.$node=$(".active").css("background-image", "-webkit-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
+        state.$node=$(".active").css("background-image", "-moz-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
+        state.$node=$(".active").css("background-image", "-o-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
+        state.$node=$(".active").css("background-image", "radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
+      }
+    }
+    
+  
+  //setting Background color for the bady
+  var setBackroung=function (event){
+    if(event.keyCode==13){
+      $("body").css("background-image", "-webkit-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstBackground").val()+", "+$("#secondBackground").val()+", "+$("#thirdBackground").val() + ")");
+        $("body").css("background-image", "-moz-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstBackground").val()+", "+$("#secondBackground").val()+", "+$("#thirdBackground").val() + ")");
+        $("body").css("background-image", "-o-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstBackground").val()+", "+$("#secondBackground").val()+", "+$("#thirdBackground").val() + ")");
+        $("body").css("background-image", "radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstBackground").val()+", "+$("#secondBackground").val()+", "+$("#thirdBackground").val() + ")");
+    }
+  }
 	  
 	  
 	  

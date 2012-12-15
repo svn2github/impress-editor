@@ -117,14 +117,16 @@ builder=(function(){
     $('<div></div>').addClass('builder-bt bt-download').appendTo($menu).text('Get file').on('click',downloadResults);
     $('<input type="file" id="files" name="files[]" multiple />').addClass('builder-bt bt-download').appendTo($menu);
     $('<div></div>').addClass('builder-bt bt-new').appendTo($menu).text('New Presentation').on('click',newFile);
-    $('<div></div>').addClass('builder-bt')
-    $('<label for="color">First Gradient</label>').attr('class', 'lctrans').appendTo($menu);
-    $('<input type="text" placeholder="Background">').attr('id', 'firstBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
-    $('<label for="color">Second Gradient</label>').attr('class', 'lctrans').appendTo($menu);
-    $('<input type="text" placeholder="Background">').attr('id', 'secondBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
-    $('<label for="color">Third Gradient</label>').attr('class', 'lctrans').appendTo($menu);
-    $('<input type="text" placeholder="Background">').attr('id', 'thirdBackground').attr('class','ctrans').addClass('builder-bt').text('Edit').appendTo($menu).on("keyup",setBackground);
-    
+    $('<div></div>').addClass('builder-bt');
+    $('<span></span>').addClass('builder-bt').text('Background Color').appendTo($menu).click(mainShowColor);
+    $colors=$('<div></div>').attr('id', 'divcolors');
+    $('<label for="color">First Gradient</label>').attr('class', 'mlctrans').appendTo($colors);
+    $('<input type="text" placeholder="Background">').attr('id', 'firstBackground').attr('class','mctrans').addClass('builder-bt').text('Edit').appendTo($colors).on("keyup",setBackground);
+    $('<label for="color">Second Gradient</label>').attr('class', 'mlctrans').appendTo($colors);
+    $('<input type="text" placeholder="Background">').attr('id', 'secondBackground').attr('class','mctrans').addClass('builder-bt').text('Edit').appendTo($colors).on("keyup",setBackground);
+    $('<label for="color">Third Gradient</label>').attr('class', 'mlctrans').appendTo($colors);
+    $('<input type="text" placeholder="Background">').attr('id', 'thirdBackground').attr('class','mctrans').addClass('builder-bt').text('Edit').appendTo($colors).on("keyup",setBackground);
+    $colors.appendTo($menu)
     $menu.appendTo('body');
     document.getElementById('files').addEventListener('change', openFile, false);
     
@@ -147,7 +149,7 @@ builder=(function(){
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('FlashSlide').appendTo($controls2).click(wrapContents);
     $('<span></span>').addClass('builder-bt').text('Input').appendTo($controls2).click(showMoves);
-    $('<span></span>').addClass('builder-bt').text('RGB Color').appendTo($controls2).click(showColor);
+    $('<span></span>').addClass('builder-bt').text('Slide Color').appendTo($controls2).click(showColor);
     
     
     //Input Box for Color
@@ -594,7 +596,10 @@ builder=(function(){
   	$(".ctrans").toggle("slide", 500);
   	$(".lctrans").toggle("scale", 500);
   }
-
+  function mainShowColor(){
+	  	$(".mctrans").toggle("slide", 500);
+	  	$(".mlctrans").toggle("scale", 500);
+	  }
 
   // Upcoming delete function
   function deleteContents() {

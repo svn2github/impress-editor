@@ -33,7 +33,7 @@ Aloha.ready( function(){
    $(".aloha-sidebar-bar").css("display","none");
 });
 */
-
+var s=0;
 
 document.onclick = function() {
 	
@@ -60,7 +60,122 @@ document.onclick = function() {
 		$('#aloha-loading span').html('Loading Plugins');
 	});
 };
-
+function saveChanges(){
+	var arrayOfTextOfSlides = new Array();
+	var $step = $(".step");
+	$($step).find(".builder-controls").remove();
+	var all="";
+	var counter=0;
+	
+	$($step).each(function(index){
+		arrayOfTextOfSlides[counter++] = $(this).context.outerHTML;
+		arrayOfTextOfSlides[counter++] = "*&"
+	});
+	console.log(arrayOfTextOfSlides)
+	if(typeof(Storage)!=="undefined") {
+		console.log($($step[0]).html())
+		//for(var i=0;i<$step.length;i++)
+			sessionStorage.steps = arrayOfTextOfSlides;//[i];
+			
+		}
+	else {
+		console.log("ERROR. Web storage not supported!!!!!");
+	}
+}
+function loadChanges(){
+	if(typeof(Storage)!=="undefined") {
+		if(sessionStorage.length != 0){
+			var counter = 0;
+			var test = new Array();
+			test[counter] = "";
+			for(var i=0;i<sessionStorage.steps.length-1;i++){
+				//	console.log("eimaste sto "+i+" loop");
+				//	console.log(sessionStorage.HTMLtextOfSlidesArray[i]);
+				if( sessionStorage.steps[i] == "," ) {
+					if( sessionStorage.steps[i+1] == "*" ) {
+						if( sessionStorage.steps[i+2] == "&" ) {
+							// we found the seperator
+							i += 3;
+							counter ++;
+							test[counter] = "";
+							continue;
+						}
+					}
+				}
+				
+				test[counter] += sessionStorage.steps[i];
+				
+			}
+			console.log(test)
+			console.log(test[1]);
+			appendManySlides(test)
+		}
+	}
+	else {
+		console.log("ERROR. Web storage not supported!!!!!");
+	}
+}
+  var sequence = function(){
+    
+    //return function(){
+      return s++;
+    //}
+  }
+function addSlide(contenido){
+	    //query slide id
+	    var id,$step;
+	    id='builderAutoSlide'+sequence();
+	    var $ = Aloha.jQuery;
+	    if (contenido==undefined || contenido.type=="click")		{		
+	    	$step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
+	    	$step[0].dataset.scale=3;
+	    	}
+	   	else{
+	   		$step=$(contenido);
+	   		id=$step[0].id;
+	   		$($step[0]).addClass("future")
+	   	}
+	    $step[0].id=id;
+	    
+	    
+	    $step.insertBefore($('.step:last')); //not too performant, but future proof
+	    
+	    $("#"+id).css("width","512px");
+	    //console.log($step[0],$(".active").parent().children(".step"))
+	    impress().newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
+	    
+	    // jump to the overview slide to make some room to look around
+	    impress()['goto']('overview');
+	  }
+function appendManySlides(slides){
+		  	var parent=$(".active").parent();
+			  	var children=$(".active").parent().children();
+			 	  //console.log($(".active").parent().children())
+			 	  for(var i=0;i<children.length;i++){
+			 	  	//console.log(children[i].id)
+			 	  	impress().deleteStep(children[i].id)
+		  			children[i].parentNode.removeChild(children[i]);
+			 	  }
+			 	  console.log(slides)
+			 	  //console.log($("#impress"))
+			 	  var id,$step;
+				    id='overview';
+				    $step=$('<div></div>').addClass('step');
+				    $step[0].id=id;
+				    $step[0].dataset.scale=1;
+				    $step[0].dataset.z=5000;
+				    parent.append($step[0]) //not too performant, but future proof
+				    impress().newStep($step[0]);
+				    impress()["goto"]("overview")
+				    // jump to the overview slide to make some room to look around
+				
+				for(var y=0;y<slides.length-1;y++){
+				console.log($(slides[y]).attr("id"))
+					if($(slides[y]).attr("id")!="overview")
+					addSlide(slides[y]);
+				}
+				
+		  }
 function saveTextChanges(fromPresToEdit) {
 	var arrayOfTextOfSlides = new Array();
 	var id = "";
@@ -476,7 +591,7 @@ function rmvEditor() {
 
 function goToEditMode() {
 
-	saveTextChanges(true);
+	saveChanges(true);
 	
 
 	var currentURL = document.location.href;
@@ -498,7 +613,7 @@ function goToEditMode() {
 
 function goToPresentationMode() {	
 
-	saveTextChanges(false);
+	saveChanges(false);
 	
 
 	var currentURL = document.location.href;
@@ -640,19 +755,30 @@ $(function() {
 	// to the edit mode
 	
 	if ((document.location.href).indexOf("?edit/") === -1) {
-		loadTextOfSlides();
+		loadChanges();
 		$('body').append('<button id="btnAloha" onclick="goToEditMode()">Edit</button>');
 		rmvEditor();	
 	}
 	// We are in edit mode and want to go to presentation mode
 	else {
-		loadTextOfSlides();
+		loadChanges();
 		//loadSlides();
 		$('body').append('<button id="btnAloha" onclick="goToPresentationMode()"><p>Exit</p><p>edit</p><p>mode</p></button>');
 		$('body').append('<button id="nextBtnEditMode">Next</button>');
 		$('body').append('<button id="prevBtnEditMode">Prev</button>');
 		loadEditor();
 		colorPicker();
+		var iAPI = impress();
+		//iAPI.showMenu();
+		builder.init({
+	  "goto":iAPI['goto'], //it makes me feel better this way
+	  creationFunction:iAPI.newStep, //future API method that adds a new step
+	  redrawFunction:iAPI.initStep, //future API method that (re)draws the step
+	  setTransformationCallback:iAPI.setTransformationCallback, //future API method that lets me know when transformations change
+	  deleteStep:iAPI.deleteStep,
+	  showMenu:iAPI.showMenu,
+	  newStepAtPosition:iAPI.newStepAtPosition
+	});
 	}
 	
     displayAllSlides();

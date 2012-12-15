@@ -280,37 +280,11 @@ var activeStep;
         // but the event is triggered only if the step is different than
         // last entered step.
         var onStepEnter = function (step) {
-        	//console.log("onENTER");
-            //console.log(step);
-        	
         	var contextOfStep = Aloha.jQuery(step).find(".fakeClassNameForAloha");
             	
-            	var data = Aloha.jQuery("body").find(".fakeClassNameForAloha");
-            	var allSlides = new Array();
-            	for( var i = 0 ; i < data.length ; i++ ) {
-            		allSlides[i] = data[i].parentElement;
-            	}
-            //	console.log(allSlides[0].id);
-            	
             	if ((document.location.href).indexOf("?edit/") != -1) {
-            		//console.log("-------CUREENT STEP")		
-            		//console.log(step.id);
-            	
-            		for(var i = 0 ; i < allSlides.length ; i++) {
-            			Aloha.jQuery(allSlides[i]).css("display" , "inline");
-            			if(allSlides[i].id != step.id) {
-            				Aloha.jQuery(allSlides[i]).css("display" , "none");
-            			}
-            		}
-            	}
-            	
-            	if(step.id == "overview") {
-            		for(var i = 0 ; i < allSlides.length ; i++) {
-            			Aloha.jQuery(allSlides[i]).css("display" , "inline");
-            		}
-            	}
-            
-            /*		
+            		
+            		
             		var contextOfStep = Aloha.jQuery(step).find(".fakeClassNameForAloha");          	
             		
             		Aloha.jQuery(document).click(function(e){
@@ -332,7 +306,7 @@ var activeStep;
             		
             	}
         	
-        	*/
+        	
             if (lastEntered !== step) {
                 triggerEvent(step, "impress:stepenter");
                 lastEntered = step;
@@ -724,7 +698,6 @@ var activeStep;
             // Appending it to #impress would mess things up, since
             // `position: absolute` wouldn't work anymore in it.
             document.body.appendChild(menu);
-            
         };
 
 
@@ -947,7 +920,6 @@ var activeStep;
             newStep:newStep,
             setTransformationCallback:setTransformationCallback,
             deleteStep:deleteStep,
-            getStep:getStep,
             newStepAtPosition:newStepAtPosition,
             showMenu: showMenu
         });

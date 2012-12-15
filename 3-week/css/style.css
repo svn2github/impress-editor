@@ -50,6 +50,9 @@ body{
 	width:100px;
 	color: white;
 }
+.mctrans{
+	color: white;
+}
 #nSlide{
 	width: 70px;
 height: 40px;
@@ -65,6 +68,9 @@ textarea{
 }
 .ctrans{
 	width: 100px;
+	color: white;
+}
+.mctrans{
 	color: white;
 }
 #zoomSlider{

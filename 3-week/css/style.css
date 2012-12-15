@@ -100,6 +100,7 @@ background: #0F3584;
 	left:0px;
 	bottom:0px;
 	position:fixed;
+	z-index: 1010;
 	/* W3C */
 	transition-property:width,height;
 	transition-duration:2s;

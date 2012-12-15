@@ -44,7 +44,6 @@ body{
 .text{
 	display: inline;
     position: absolute;
-    top: 120px;
     width: 120px;
 }
 .trans{

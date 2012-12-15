@@ -1065,6 +1065,7 @@ function clearEditor() {
             	        case 37: // left
             	        case 38: // up
             	                 api.prev();
+            	                 ctx.clearTo();
                	             	 break;
                	     	case 9:  // tab
                     	case 32: // space
@@ -1072,6 +1073,7 @@ function clearEditor() {
                     	case 39: // right
                     	case 40: // down
                             	 api.next();
+                            	 ctx.clearTo();
                             	 break;
                 	}
                 
@@ -1118,6 +1120,7 @@ function clearEditor() {
         	    }
            	 
            		if ( api.goto(target) ) {
+           			ctx.clearTo();
            	    	event.preventDefault();
             	}
         	}, false);

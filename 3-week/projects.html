@@ -87,6 +87,15 @@
 		<script type="text/javascript" src="js/jsColorpicker/utils.js"></script>
 		<!--------------------------------------------------------------------->
 		
+		 <style>
+            #canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 100;
+            }
+        </style>
+		
 	</head>
 
 	<body style="background-image: -webkit-radial-gradient(0% 100%, circle farthest-corner,#202020, #A0A0A0 ,#F8F8F8 ); z-index: -100000;">
@@ -99,6 +108,8 @@
 			</p>
 		</div>
 
+		<div id="canvas"></div>
+		
 		<div id="impress" data-transition-duration="1000">
 			
 			<div id="title" class="step" data-x="-1400" data-y="0" data-scale="2" data-rotate="0">
@@ -169,7 +180,114 @@
 
 		</div>
 		<div id="colorSelector"></div>
-
+		
+		<script>
+            function createCanvas(parent, width, height) {
+		        var canvas = {};
+		        canvas.node = document.createElement('canvas');
+		        canvas.context = canvas.node.getContext('2d');
+		        canvas.node.width = width || 100;
+		        canvas.node.height = height || 100;
+		        parent.appendChild(canvas.node);
+		        canvas.lastX = 0;
+		        canvas.lastY = 0;
+		        return canvas;
+		    }
+		
+		    function init(container, width, height, fillColor) {
+		        var canvas = createCanvas(container, width, height);
+		        var ctx = canvas.context;
+		
+		        // define a custom fillCircle method
+		        ctx.fillCircle = function(x1, y1, x2, y2, fillColor, lineThickness) {
+		            this.fillStyle = fillColor;
+		
+		            var steep = (Math.abs(y2 - y1) > Math.abs(x2 - x1));
+		            if (steep) {
+		                var x = x1;
+		                x1 = y1;
+		                y1 = x;
+		
+		                var y = y2;
+		                y2 = x2;
+		                x2 = y;
+		            }
+		            if (x1 > x2) {
+		                var x = x1;
+		                x1 = x2;
+		                x2 = x;
+		
+		                var y = y1;
+		                y1 = y2;
+		                y2 = y;
+		            }
+		
+		            var dx = x2 - x1,
+		                dy = Math.abs(y2 - y1),
+		                error = 0,
+		                de = dy / dx,
+		                yStep = -1,
+		                y = y1;
+		
+		            if (y1 < y2) {
+		                yStep = 1;
+		            }
+		
+		            for (var x = x1; x < x2; x++) {
+		                if (steep) {
+		                    this.fillRect(y, x, lineThickness, lineThickness);
+		                } else {
+		                    this.fillRect(x, y, lineThickness, lineThickness);
+		                }
+		
+		                error += de;
+		                if (error >= 0.5) {
+		                    y += yStep;
+		                    error -= 1.0;
+		                }
+		            }
+		
+		        };
+		        ctx.clearTo = function(fillColor) {
+		            ctx.fillStyle = fillColor;
+		            ctx.fillRect(0, 0, width, height);
+		        };
+		      //  ctx.clearTo(fillColor || "#ddd");
+		
+		        // bind mouse events
+		        canvas.node.onmousemove = function(e) {
+		            if (!canvas.isDrawing) {
+		                return;
+		            }
+		            mouseX = e.pageX - this.offsetLeft;
+		            mouseY = e.pageY - this.offsetTop;
+		
+		            ctx.fillCircle(mouseX,mouseY,canvas.lastX,canvas.lastY,"#ff0000",5);
+		
+		            canvas.lastX = mouseX;
+		            canvas.lastY = mouseY;
+		
+		        };
+		        canvas.node.onmousedown = function(e) {
+		            canvas.isDrawing = true;
+		            canvas.lastX = e.pageX - this.offsetLeft;
+		            canvas.lastY = e.pageY - this.offsetTop;
+		        };
+		        canvas.node.onmouseup = function(e) {
+		            canvas.isDrawing = false;
+		        };
+		    }
+		
+		        
+		        //    var container = document.getElementById('canvas');
+		         //   init(container, 500, 500, '#ddd');
+            var _width = $(window).width();
+            var _height = $(window).height();
+            var container = document.getElementById('canvas');
+            init(container, _width, _height, '#ddd');
+        
+        </script>
+		
 		<script src="js/attachEditor.js"></script>
 		<script src="js/highlight.pack.js"></script>
 		<script src="js/impress.js"></script>

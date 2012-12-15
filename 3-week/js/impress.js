@@ -281,9 +281,24 @@ var activeStep;
         // last entered step.
         var onStepEnter = function (step) {
         	var contextOfStep = Aloha.jQuery(step).find(".fakeClassNameForAloha");
-            	
+        	var data = Aloha.jQuery("body").find(".fakeClassNameForAloha");
+        	var allSlides = new Array();
+        	for( var i = 0 ; i < data.length ; i++ ) {
+        		allSlides[i] = data[i].parentElement;
+        	}
             	if ((document.location.href).indexOf("?edit/") != -1) {
-            		
+            		for(var i = 0 ; i < allSlides.length ; i++)     		            			Aloha.jQuery(allSlides[i]).css("display" , "inline");
+               			if(allSlides[i].id != step.id) {
+            					Aloha.jQuery(allSlides[i]).css("display" , "none");
+            				}
+            			}
+            				}
+            			
+            				if(step.id == "overview") {
+            			for(var i = 0 ; i < allSlides.length ; i++) {
+            				Aloha.jQuery(allSlides[i]).css("display" , "inline");
+            			}
+            			}
             		
             		var contextOfStep = Aloha.jQuery(step).find(".fakeClassNameForAloha");          	
             		
@@ -918,6 +933,7 @@ var activeStep;
             prev: prev,
             initStep: initStep,
             newStep:newStep,
+            getStep:getStep,
             setTransformationCallback:setTransformationCallback,
             deleteStep:deleteStep,
             newStepAtPosition:newStepAtPosition,

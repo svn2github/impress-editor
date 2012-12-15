@@ -44,6 +44,9 @@ font-size:10pt
   padding-left: 20px;
   
 }
+.builder-main #divcolors{
+	background: #222;
+}
 
 .builder-main textarea {
 	resize:both;

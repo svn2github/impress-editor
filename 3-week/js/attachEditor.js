@@ -85,6 +85,7 @@ function saveChanges(){
 function loadChanges(){
 	if(typeof(Storage)!=="undefined") {
 		if(sessionStorage.length != 0){
+			
 			var counter = 0;
 			var test = new Array();
 			test[counter] = "";
@@ -106,8 +107,8 @@ function loadChanges(){
 				test[counter] += sessionStorage.steps[i];
 				
 			}
-			console.log(test)
-			console.log(test[1]);
+			//console.log(test)
+			//console.log(test[1]);
 			appendManySlides(test)
 		}
 	}
@@ -156,7 +157,7 @@ function appendManySlides(slides){
 			 	  	impress().deleteStep(children[i].id)
 		  			children[i].parentNode.removeChild(children[i]);
 			 	  }
-			 	  console.log(slides)
+			 	  //console.log(slides)
 			 	  //console.log($("#impress"))
 			 	  var id,$step;
 				    id='overview';
@@ -170,7 +171,7 @@ function appendManySlides(slides){
 				    // jump to the overview slide to make some room to look around
 				
 				for(var y=0;y<slides.length-1;y++){
-				console.log($(slides[y]).attr("id"))
+				//console.log($(slides[y]).attr("id"))
 					if($(slides[y]).attr("id")!="overview")
 					addSlide(slides[y]);
 				}
@@ -466,9 +467,9 @@ function loadTextOfSlides() {
 				}
 			});
 			
-			console.log(sessionStorage.HTMLOfNewSlidesID);	
-			console.log(sessionStorage.HTMLOfNewSlidesStyle);
-			console.log(sessionStorage.HTMLOfNewSlidesInner);	
+			//console.log(sessionStorage.HTMLOfNewSlidesID);	
+			//console.log(sessionStorage.HTMLOfNewSlidesStyle);
+			//console.log(sessionStorage.HTMLOfNewSlidesInner);	
 			
 			if(sessionStorage.HTMLOfNewSlidesID != "No new slides") {
 				var newSlidesID = new Array();
@@ -684,8 +685,14 @@ function colorPicker() {
 			if( ($(colorpicker).css("display") == "none") ){
 		
 					$(btnColorSelector).click(function(){
-    			
-    					if ( $(".active").attr("id") != "overview" ) {
+						var pos = document.location.href.lastIndexOf("/");
+						var urlID = "";
+						for( var i = pos+1 ; i < document.location.href.length ; i++ ) {
+							urlID += document.location.href.charAt(i);
+						}
+						
+    			//console.log(urlID);
+    					if ( urlID != "overview" ) {
     						var offset = btnColorSelector.offset();
 						
 							if(offset.top != 0 && offset.left !=0) {

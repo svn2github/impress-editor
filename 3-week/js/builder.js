@@ -139,7 +139,7 @@ builder=(function(){
     $controls5=$('<div></div>').addClass('builder-controls rotatex');
     $('<div></div>').addClass('bt-rotateXaxial').attr('title','RotateX').data('func','rotateX').appendTo($controls5);  //added
     $controls6=$('<div></div>').addClass('builder-controls delete');
-	$('<div>X</div>').addClass('bt-delete').appendTo($controls6).click(deleteContents);
+	$('<div></div>').addClass('bt-delete').appendTo($controls6).click(deleteContents);
     // $controls6=$('<div></div>').addClass('builder-controls');
     // $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
 //     

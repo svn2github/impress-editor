@@ -544,6 +544,94 @@ function removeSidebar() {
 	$(".aloha-sidebar-bar").remove();
 }
 
+function colorPicker() {
+	
+		$("body").click(function(e) {
+			// Cache our variables
+			var colorpicker = $(".colorpicker");
+			var btnColorSelector = $("#btnColorSelector");
+			
+			//console.log($(colorpicker).css("display"));
+			//console.log(e.srcElement.id);
+			
+			
+			
+			if(btnColorSelector.length == 0) {
+				// The button is not created, so create it
+				//console.log($(".aloha-ui-toolbar > .ui-tabs > div"));
+				$('.aloha-ui-toolbar > .ui-tabs').append('<div id="colorSelector"></div>');
+			//console.log($("#tab-ui-container-1"));
+				$('#tab-ui-container-1').prepend('<div class="aloha-ui-component-group unselectable="on""><span unselectable="on"><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" id="btnColorSelector"></button></span></div>');
+			}
+			
+			
+			// Show the colorpicker. Hide the toolbar
+			if( ($(colorpicker).css("display") == "none") ){
+		
+					$(btnColorSelector).click(function(){
+    			
+    					if ( $(".active").attr("id") != "overview" ) {
+    						var offset = btnColorSelector.offset();
+						
+							if(offset.top != 0 && offset.left !=0) {
+    							$(colorpicker).css("position" , "absolute").
+    								css("left" , offset.left - 18).css("top" , offset.top + 52);
+    						}
+    					
+    						colorpicker.show();
+    						$(".aloha-toolbar").hide();
+    				
+    					}
+    					else {
+    						console.log("You can not change the color while in overview.");
+    					}
+    				});
+			}
+			else {
+			//console.log(e.srcElement.parentElement.className);
+			//console.log(e.srcElement.className);
+			
+				var classOfParent = e.srcElement.parentElement.className;
+			
+				// Was the click out inside the colorpicker? If no check for the submit.
+				// Or the button may have been clicked.
+				if((e.srcElement.className.indexOf("colorpicker") != -1) 
+					|| (classOfParent.indexOf("colorpicker") != -1) 
+					|| (classOfParent.indexOf("colorpicker_color") != -1) 
+					|| (classOfParent.indexOf("colorpicker_hue") != -1) 
+					|| (classOfParent.indexOf("colorpicker_new_color") != -1) 
+					|| (classOfParent.indexOf("colorpicker_current_color") != -1) 
+					|| (classOfParent.indexOf("colorpicker_hex") != -1) 
+					|| (classOfParent.indexOf("colorpicker_field") != -1) 
+					|| (classOfParent.indexOf("colorpicker_submit") != -1) 			
+					|| (e.srcElement.id == "btnColorSelector") )
+				{
+					//console.log(classOfParent)
+					if(e.srcElement.className.indexOf("colorpicker_submit") != -1) {
+						// Submit, so apply the new color and hide colorpicker
+						
+						var newCol = $(".colorpicker_new_color").css("background-color");
+						
+						//console.log("newCol= " + newCol);
+						//console.log($(".active"));
+						
+						$(".active").css("color" , newCol);
+						
+						colorpicker.hide();
+						$(".aloha-toolbar").show();
+					}
+				}
+				else {
+					// If yes, hide the colorpicker.
+					//console.log("Hide the colorpicker");
+					
+					colorpicker.hide();
+					$(".aloha-toolbar").show();
+				}	
+			}
+		});
+}
+
 // create the aloha button dynamically so that it won't
 // be created when on edit mode
 $(function() {
@@ -564,7 +652,9 @@ $(function() {
 		$('body').append('<button id="nextBtnEditMode">Next</button>');
 		$('body').append('<button id="prevBtnEditMode">Prev</button>');
 		loadEditor();
-    }
+		colorPicker();
+	}
+	
     displayAllSlides();
     removeSidebar();
 }); 

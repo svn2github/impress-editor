@@ -71,9 +71,9 @@ function saveChanges(){
 		arrayOfTextOfSlides[counter++] = $(this).context.outerHTML;
 		arrayOfTextOfSlides[counter++] = "*&"
 	});
-	console.log(arrayOfTextOfSlides)
+	//console.log(arrayOfTextOfSlides)
 	if(typeof(Storage)!=="undefined") {
-		console.log($($step[0]).html())
+		//console.log($($step[0]).html())
 		//for(var i=0;i<$step.length;i++)
 			sessionStorage.steps = arrayOfTextOfSlides;//[i];
 			
@@ -590,10 +590,41 @@ function rmvEditor() {
 	});
 }
 
+function saveBackGroundColor() {
+	 console.log($('body').css("background-image"));
+	if(typeof(Storage)!=="undefined")
+  	{
+		sessionStorage.BackgroundImage = $('body').css("background-image");
+  	}
+	else
+	{
+  		console.log("ERROR!!! No local storage supported..");
+  	}
+}
+
+function loadBackGroundColor() {
+	 
+	if(typeof(Storage)!=="undefined")
+  	{
+		
+		if(sessionStorage.BackgroundImage != undefined) {
+			console.log(sessionStorage.BackgroundImage);
+			
+			$('body').css("background-image" , sessionStorage.BackgroundImage);	
+		}
+		
+  	}
+	else
+	{
+  		console.log("ERROR!!! No local storage supported..");
+  	}
+  	console.log($('body').css("background-image"));
+}
+
 function goToEditMode() {
 
 	saveChanges(true);
-	
+	saveBackGroundColor();
 
 	var currentURL = document.location.href;
 	var splitURL = currentURL.split("/");
@@ -615,7 +646,7 @@ function goToEditMode() {
 function goToPresentationMode() {	
 
 	saveChanges(false);
-	
+	saveBackGroundColor();	
 
 	var currentURL = document.location.href;
 	var splitURL = currentURL.split("/");
@@ -763,12 +794,14 @@ $(function() {
 	
 	if ((document.location.href).indexOf("?edit/") === -1) {
 		loadChanges();
+		loadBackGroundColor();
 		$('body').append('<button id="btnAloha" onclick="goToEditMode()">Edit</button>');
 		rmvEditor();	
 	}
 	// We are in edit mode and want to go to presentation mode
 	else {
 		loadChanges();
+		loadBackGroundColor();
 		//loadSlides();
 		$('body').append('<button id="btnAloha" onclick="goToPresentationMode()"><p>Exit</p><p>edit</p><p>mode</p></button>');
 		$('body').append('<button id="nextBtnEditMode">Next</button>');

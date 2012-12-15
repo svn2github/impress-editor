@@ -1,4 +1,6 @@
-
+body{
+	margin:0;
+}
 .step.flash.future {opacity:0}
 .step.flash.past {opacity:0}
 
@@ -91,7 +93,7 @@ background: #0F3584;
 
 /**************** For the edit button ***********************/
 #btnAloha{
-	opacity : 0.5;
+	opacity : 0.2;
 	width:50px;
 	height:20px;
 	background:grey;
@@ -113,38 +115,45 @@ background: #0F3584;
 	/* Opera */
 	-o-transition-property:width,height;
 	-o-transition-duration:2s;
+		background: black;
+	color:white;
+	border-radius: 6px;
+	font-family: "Courier", "Fixed";
+	font-size: 10pt;
 }
 
-/*
-#btnAloha:hover {
-	display:center; 
+
+#btnAloha:hover { 
 	opacity : 1.0;
-	width:100px;
-	height:100px;
-	background:red;
-	left:0px;
-	bottom:0px;
-	position:fixed;
-	z-index:1;
+
 }
-*/
 
 #prevBtnEditMode {
 	width:50px;
 	height:20px;
-	background:grey;
 	left:0px;
 	bottom:40px;
 	position:fixed;
+	cursor: pointer;
+	background: black;
+	color:white;
+	border-radius: 6px;
+	font-family: "Courier", "Fixed";
+	font-size: 10pt;
 }
 
 #nextBtnEditMode {
 	width:50px;
 	height:20px;
-	background:grey;
 	right:0px;
 	bottom:40px;
 	position:fixed;
+	cursor: pointer;
+	background: black;
+	color:white;
+	border-radius: 6px;
+	font-family: "Courier", "Fixed";
+	font-size: 10pt;
 }
 
 /**************** For the slideshow button ***********************/
@@ -226,6 +235,11 @@ background: #0F3584;
   transition-property: width, height, padding, overflow;
   transition-duration: 1s;
   transition-timing-function: ease-out;
+  	background: black;
+	color:white;
+	border-radius: 6px;
+	font-family: "Courier", "Fixed";
+	font-size: 10pt;
 }
 
 .menu:hover {
@@ -233,6 +247,7 @@ background: #0F3584;
   height: 100%;
   padding: 50px 0px 0px 10px;
   overflow: scroll;
+  
 }
 
 .menu-item {
@@ -241,18 +256,28 @@ background: #0F3584;
   border: 1px solid #ccc;
   margin: 5px 0;
   font-size: 20px;
+  	background: black;
+	color:white;
+	border-radius: 6px;
+	font-family: "Courier", "Fixed";
+	font-size: 10pt;
 }
 
 .menu-button {
   position: fixed;
   top: 10px;
-  right: 20px;
+  right: 5%;
   padding: 10px;
   background: #DDD;
   border-radius: 5px;
   border: 1px solid #ccc;
   cursor: pointer;
   font-size: 30px;
+  	background: black;
+	color:white;
+	border-radius: 6px;
+	font-family: "Courier", "Fixed";
+	font-size: 10pt;
 }
 
 /* FOR THE HINT MESSAGE */
@@ -281,3 +306,7 @@ background: #0F3584;
   display: block;
   opacity: 1;
  }
+/*For THE INPUT */
+#files{
+	background:#333;
+}

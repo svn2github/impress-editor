@@ -15,7 +15,7 @@ body.edit .step:hover{
         
 background-color: #333;
 border-radius: 3px;
-padding: 5px;
+padding: 6px;
 margin: 5px;
 
 text-align: center;
@@ -29,7 +29,6 @@ font-size:10pt
 /* control boxes */ 
 
 .builder-main {
-  padding:5px;
   background-color: #222;
   color: #fff;
   height: 40px;
@@ -42,7 +41,7 @@ font-size:10pt
 .builder-main div,.builder-main a{
   display: inline-block;
   cursor: pointer;
-  padding-left: 23px;
+  padding-left: 20px;
   
 }
 

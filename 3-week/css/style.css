@@ -338,3 +338,8 @@ background: #0F3584;
 #files{
 	background:#333;
 }
+#sidecontrolers{
+	max-height: 75%;
+overflow-y: scroll;
+overflow-x: hidden;
+}

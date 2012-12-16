@@ -146,6 +146,7 @@ background: #0F3584;
 	border-radius: 6px;
 	font-family: "Courier", "Fixed";
 	font-size: 10pt;
+	z-index: 1;
 }
 
 #nextBtnEditMode {
@@ -160,6 +161,7 @@ background: #0F3584;
 	border-radius: 6px;
 	font-family: "Courier", "Fixed";
 	font-size: 10pt;
+	z-index: 1;
 }
 
 /**************** For the slideshow button ***********************/

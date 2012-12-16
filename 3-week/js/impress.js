@@ -1081,7 +1081,7 @@ function clearEditor() {
             	}
         	}, false);
         
-        }
+        
         
        		// delegated handler for clicking on the links to presentation steps
        		document.addEventListener("click", function ( event ) {
@@ -1107,7 +1107,7 @@ function clearEditor() {
             	    event.preventDefault();
             	}
         	}, false);
-        
+        }
         
         if(normalMode) {
         	// delegated handler for clicking on step elements

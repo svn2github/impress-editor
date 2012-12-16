@@ -563,10 +563,6 @@ function loadEditor() {
 		//console.log(this);
 		
 		Aloha.jQuery(this).aloha();
-		
-		//console.log("AFTER:");
-		//console.log(this);
-		
 	});
 }
 
@@ -608,7 +604,7 @@ function loadBackGroundColor() {
   	{
 		
 		if(sessionStorage.BackgroundImage != undefined) {
-			console.log(sessionStorage.BackgroundImage);
+			//console.log(sessionStorage.BackgroundImage);
 			
 			$('body').css("background-image" , sessionStorage.BackgroundImage);	
 		}
@@ -618,7 +614,7 @@ function loadBackGroundColor() {
 	{
   		console.log("ERROR!!! No local storage supported..");
   	}
-  	console.log($('body').css("background-image"));
+  	//console.log($('body').css("background-image"));
 }
 
 function goToEditMode() {
@@ -732,6 +728,8 @@ function colorPicker() {
     						}
     					
     						colorpicker.show();
+    						$("#btnForTextEditing").prop("disabled",true);
+    						$(colorpicker).css("z-index" , 1);
     						$(".aloha-toolbar").hide();
     				
     					}
@@ -741,12 +739,12 @@ function colorPicker() {
     				});
 			}
 			else {
-			//console.log(e.srcElement.parentElement.className);
-			//console.log(e.srcElement.className);
+			console.log(e.srcElement.parentElement.className);
+			console.log(e.srcElement.className);
 			
 				var classOfParent = e.srcElement.parentElement.className;
 			
-				// Was the click out inside the colorpicker? If no check for the submit.
+				// Was the click out of the colorpicker? If no check for the submit.
 				// Or the button may have been clicked.
 				if((e.srcElement.className.indexOf("colorpicker") != -1) 
 					|| (classOfParent.indexOf("colorpicker") != -1) 
@@ -757,7 +755,9 @@ function colorPicker() {
 					|| (classOfParent.indexOf("colorpicker_hex") != -1) 
 					|| (classOfParent.indexOf("colorpicker_field") != -1) 
 					|| (classOfParent.indexOf("colorpicker_submit") != -1) 			
-					|| (e.srcElement.id == "btnColorSelector") )
+					|| (e.srcElement.id == "btnColorSelector") 
+					|| (e.srcElement.className == "")
+					|| (classOfParent == "") )
 				{
 					//console.log(classOfParent)
 					if(e.srcElement.className.indexOf("colorpicker_submit") != -1) {
@@ -768,9 +768,12 @@ function colorPicker() {
 						//console.log("newCol= " + newCol);
 						//console.log($(".active"));
 						
-						$(".active").css("color" , newCol);
+						$("#forTextEditing").css("color" , newCol);
+						$(".active > .fakeClassNameForAloha").css("color" , newCol);
+						
 						
 						colorpicker.hide();
+						$("#btnForTextEditing").prop("disabled",false);
 						$(".aloha-toolbar").show();
 					}
 				}
@@ -779,10 +782,109 @@ function colorPicker() {
 					//console.log("Hide the colorpicker");
 					
 					colorpicker.hide();
+					$("#btnForTextEditing").prop("disabled",false);
 					$(".aloha-toolbar").show();
 				}	
 			}
 		});
+}
+
+function putOnSlideEditText() {
+	var active = $('.active');
+	var forTextEditing = $("#forTextEditing");
+	
+	$(active).find(".fakeClassNameForAloha")[0].innerHTML = $(forTextEditing)[0].innerHTML;
+}
+
+function rmvTextEditing(divForTextEdit, toolbar) {
+	$("#btnForTextEditing").remove();
+	$("#forTextEditing").remove();
+	$(".aloha-toolbar").hide();
+	$(".builder-controls").show("slow");	
+	$(".builder-main").show("slow");	
+	$(".menu").show("slow");	
+	$(".active").show();
+}
+
+function bindEventsForTextEdit() {
+	$('#nextBtnEditMode').bind('click', function() {
+		//console.log("bhka");
+ 		rmvTextEditing();
+	});
+				
+	$('#prevBtnEditMode').bind('click', function() {
+ 		rmvTextEditing();
+	});
+	
+	$('#btnAloha').bind('click', function() {
+ 		rmvTextEditing();
+	});
+	
+	$('#btnForCancelTextEditing').bind('click', function() {
+ 		rmvTextEditing();
+	});
+	
+	
+	//unBindEventsForTextEdit();
+}
+
+function createDivForTextEdit() {
+	var body = $('body');
+	var toolbar = $(".aloha-toolbar");
+	
+	
+	$('.step').click(function(){
+		var pos = document.location.href.lastIndexOf("/");
+		var urlID = "";
+		for( var i = pos+1 ; i < document.location.href.length ; i++ ) {
+			urlID += document.location.href.charAt(i);
+		}
+		
+		if(urlID != "overview") {
+			if($(toolbar).css("display") != "none") {
+		
+				if( $("#forTextEditing")[0] == undefined ) {
+				//console.log($($(this).find(".fakeClassNameForAloha")[0].outerHTML).attr("style"));
+					console.log($($(".active")[0].outerHTML).css("width"));
+					console.log($($(".active")[0].outerHTML).css("height"));
+					
+					$(body).append('<div id="forTextEditing">' + $(this).find(".fakeClassNameForAloha")[0].innerHTML + '</div>');
+					$(body).append('<button id="btnForTextEditing">Apply</div>')
+					$(body).append('<button id="btnForCancelTextEditing">Cacnel</div>')
+					
+					$(toolbar).hide();
+					$(".builder-controls").hide("slow");	
+					$(".builder-main").hide("slow");	
+					$(".menu").hide("slow");
+					$(".active").hide();
+					
+					$("#forTextEditing").css("width" , $($(".active")[0].outerHTML).css("width"));
+					if($($(".active")[0].outerHTML).css("height")!= "0px") {
+						$("#forTextEditing").css("height" , $($(".active")[0].outerHTML).css("height"));
+					}
+					$("#forTextEditing").attr("style",$($(this).find(".fakeClassNameForAloha")[0].outerHTML).attr("style"));
+					Aloha.jQuery("#forTextEditing").aloha().focus();
+					bindEventsForTextEdit();
+				
+					$("#btnForTextEditing").click(function(){
+					//console.log($($("#forTextEditing")[0].innerHTML).attr("style"));
+					//console.log($($('.active').find(".fakeClassNameForAloha")[0]));	
+						
+						putOnSlideEditText();
+						rmvTextEditing();	
+					});			
+				}
+			}
+			else {
+				console.log("the div for text editing is already there");
+			}
+		}
+		else {
+			//toolbar.hide("fast");
+			console.log("You can not get the text div while on overview, so edit there.");
+		}
+	});
+	
 }
 
 // create the aloha button dynamically so that it won't
@@ -791,7 +893,6 @@ $(function() {
 
 	// we are in the presentation mode and we want to go
 	// to the edit mode
-	
 	if ((document.location.href).indexOf("?edit/") === -1) {
 		loadChanges();
 		loadBackGroundColor();
@@ -808,6 +909,9 @@ $(function() {
 		$('body').append('<button id="prevBtnEditMode">Prev</button>');
 		loadEditor();
 		colorPicker();
+		createDivForTextEdit();
+		
+		
 		var iAPI = impress();
 		//iAPI.showMenu();
 		builder.init({

@@ -178,10 +178,32 @@ background: #0F3584;
     background-color: #f3f3f3;
 }
 #btnForTextEditing {
-    
+    width:65px;
+	height:25px;
+	left:0px;
+	bottom:40px;
+	position:fixed;
+	cursor: pointer;
+	background: black;
+	color:white;
+	border-radius: 6px;
+	font-family: "Courier", "Fixed";
+	font-size: 10pt;
+	z-index: 1;
 }
 #btnForCancelTextEditing {
-   
+    width:65px;
+	height:25px;
+	left:0px;
+	bottom:40px;
+	position:fixed;
+	cursor: pointer;
+	background: black;
+	color:white;
+	border-radius: 6px;
+	font-family: "Courier", "Fixed";
+	font-size: 10pt;
+	z-index: 1;
 }
 
 /**************** For the slideshow button ***********************/

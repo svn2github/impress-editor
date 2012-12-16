@@ -738,6 +738,7 @@ function colorPicker() {
     					
     						colorpicker.show();
     						$("#btnForTextEditing").prop("disabled",true);
+    						$("#btnForCancelTextEditing").prop("disabled",true);
     						$(colorpicker).css("z-index" , 1);
     						$(".aloha-toolbar").hide();
     				
@@ -783,6 +784,7 @@ function colorPicker() {
 						
 						colorpicker.hide();
 						$("#btnForTextEditing").prop("disabled",false);
+						$("#btnForCancelTextEditing").prop("disabled",false);
 						$(".aloha-toolbar").show();
 					}
 				}
@@ -792,6 +794,7 @@ function colorPicker() {
 					
 					colorpicker.hide();
 					$("#btnForTextEditing").prop("disabled",false);
+					$("#btnForCancelTextEditing").prop("disabled",false);
 					$(".aloha-toolbar").show();
 				}	
 			}
@@ -867,7 +870,7 @@ function createDivForTextEdit() {
 					
 					$(body).append('<div id="forTextEditing">' + $(this).find(".fakeClassNameForAloha")[0].innerHTML + '</div>');
 					$(body).append('<button id="btnForTextEditing">Apply</div>')
-					$(body).append('<button id="btnForCancelTextEditing">Cacnel</div>')
+					$(body).append('<button id="btnForCancelTextEditing">Cancel</div>')
 					
 					$(toolbar).hide();
 					$(".builder-controls").hide("slow");	
@@ -879,6 +882,28 @@ function createDivForTextEdit() {
 					if($($(".active")[0].outerHTML).css("height")!= "0px") {
 						$("#forTextEditing").css("height" , $($(".active")[0].outerHTML).css("height"));
 					}
+					
+					
+					console.log($("#forTextEditing").offset());
+					console.log($("#forTextEditing").css("width"));
+					console.log($("#forTextEditing").css("height"));
+					
+					
+					var heightInPixels = $("#forTextEditing").css("height");
+					var widthInPixels = $("#forTextEditing").css("width");
+					var offset = $("#forTextEditing").offset();
+					
+					if(offset.top != 0 && offset.left !=0) {
+						$("#btnForTextEditing").css("position" , "absolute").
+							css("left" , offset.left + parseInt(widthInPixels) - 85).css("top" , offset.top + parseInt(heightInPixels) + 4);
+					}
+					
+					
+					if(offset.top != 0 && offset.left !=0) {
+						$("#btnForCancelTextEditing").css("position" , "absolute").
+							css("left" , offset.left).css("top" , offset.top + parseInt(heightInPixels) + 4);
+					}
+				
 					$("#forTextEditing").attr("style",$($(this).find(".fakeClassNameForAloha")[0].outerHTML).attr("style"));
 					Aloha.jQuery("#forTextEditing").aloha().focus();
 					bindEventsForTextEdit();

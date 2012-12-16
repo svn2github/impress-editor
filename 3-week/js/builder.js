@@ -316,7 +316,7 @@ builder=(function(){
 	    id='builderAutoSlide'+sequence();
 	    var $ = Aloha.jQuery;
 	    if (contenido==undefined || contenido.type=="click")		{		
-	    	$step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
+	    	$step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
 	    	$step[0].dataset.scale=3;
 	    	}
 	   	else{
@@ -407,6 +407,7 @@ builder=(function(){
 	    config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
 	    createDivForTextEdit();
 	    config.showMenu();
+	    $(".active").removeClass("active");
 	    // jump to the overview slide to make some room to look around
 	    config['goto']('overview');
 	  }
@@ -494,6 +495,7 @@ builder=(function(){
 		        //console.log($a);
 		        var test = $($a).find(".step");
 		        appendManySlides(test);
+		        loadEditor();
 		      }
 		      
 		    };

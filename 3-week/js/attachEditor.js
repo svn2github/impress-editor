@@ -128,7 +128,7 @@ function addSlide(contenido){
 	    id='builderAutoSlide'+sequence();
 	    var $ = Aloha.jQuery;
 	    if (contenido==undefined || contenido.type=="click")		{		
-	    	$step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForNewAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
+	    	$step=$('<div></div>').addClass('step builder-justcreated').html('<div class="fakeClassNameForAloha"><h1>This is a new step. </h1> How about some contents?</div>').aloha();
 	    	$step[0].dataset.scale=3;
 	    	}
 	   	else{
@@ -793,6 +793,9 @@ function putOnSlideEditText() {
 	var active = $('.active');
 	var forTextEditing = $("#forTextEditing");
 	
+	console.log($(".active"));
+	console.log($(forTextEditing)[0].innerHTML);
+	
 	$(active).find(".fakeClassNameForAloha")[0].innerHTML = $(forTextEditing)[0].innerHTML;
 }
 
@@ -829,6 +832,8 @@ function bindEventsForTextEdit() {
 	//unBindEventsForTextEdit();
 }
 
+
+
 function createDivForTextEdit() {
 	var body = $('body');
 	var toolbar = $(".aloha-toolbar");
@@ -848,6 +853,8 @@ function createDivForTextEdit() {
 				//console.log($($(this).find(".fakeClassNameForAloha")[0].outerHTML).attr("style"));
 					console.log($($(".active")[0].outerHTML).css("width"));
 					console.log($($(".active")[0].outerHTML).css("height"));
+					
+					console.log($(this).find(".fakeClassNameForAloha")[0].innerHTML);
 					
 					$(body).append('<div id="forTextEditing">' + $(this).find(".fakeClassNameForAloha")[0].innerHTML + '</div>');
 					$(body).append('<button id="btnForTextEditing">Apply</div>')

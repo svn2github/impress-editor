@@ -798,6 +798,7 @@ function putOnSlideEditText() {
 
 function rmvTextEditing(divForTextEdit, toolbar) {
 	$("#btnForTextEditing").remove();
+	$("#btnForCancelTextEditing").remove();
 	$("#forTextEditing").remove();
 	$(".aloha-toolbar").hide();
 	$(".builder-controls").show("slow");	

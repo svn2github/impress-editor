@@ -144,7 +144,7 @@ builder=(function(){
     // $('<div></div>').addClass('bt-rotateYaxial').attr('title','RotateY').data('func','rotateY').appendTo($controls6); //added
 //     
 //     
-    $controls2=$('<div></div>').addClass('builder-controls text dragme').attr('id', 'sidecontrolers');
+    $controls2=$('<div></div>').addClass('builder-controls text').attr('id', 'sidecontrolers');
     $('<input type="text" >').attr('id', 'nSlide').addClass('builder-bt').text('Edit').appendTo($controls2).on("keyup",changeSlideOrder);
     $('<span></span>').attr('id', 'edit').addClass('builder-bt').text('Edit').appendTo($controls2).click(editContents);
     $('<span></span>').addClass('builder-bt').text('FlashSlide').appendTo($controls2).click(wrapContents);
@@ -400,10 +400,12 @@ builder=(function(){
 	    // $Scontrols3.appendTo($("#"+id+""));
 	    // $Scontrols4.appendTo($("#"+id+""));
 	    // $Scontrols5.appendTo($("#"+id+""));
+	    
 	     $Scontrols6.appendTo($("#"+id+""));
 	    $("#"+id).css("width","512px");
 	    //console.log($step[0],$(".active").parent().children(".step"))
 	    config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
+	    createDivForTextEdit();
 	    config.showMenu();
 	    // jump to the overview slide to make some room to look around
 	    config['goto']('overview');
@@ -831,10 +833,7 @@ var rotz=function (event,text){
 
 
   $(document).ready(function(){
-  
-  // fix the draggable
-	  $( ".dragme" ).draggable({ cursor: "move" }, { containment: "parent" });
-  
+
 	// for the .hint message
 	    var fade_out = function() {
 	      $(".hint").fadeOut('slow');

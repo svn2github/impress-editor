@@ -575,6 +575,15 @@ function rmvEditor() {
 				.removeClass("aloha-block-blocklevel-sortable")
 				.removeClass("ui-sortable").removeClass("aloha-editable-highlight")
 				.attr("contenteditable","false");
+			
+		}
+		
+		// For new slides
+		if(id == "") {
+			$(this.parentElement).removeClass("aloha-editable")
+			.removeClass("aloha-block-blocklevel-sortable")
+			.removeClass("ui-sortable").removeClass("aloha-editable-highlight")
+			.attr("contenteditable","false");
 		}
 		// this will not work (we have modified it)
 		//	Aloha.jQuery("#"+id).mahalo();

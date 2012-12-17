@@ -372,3 +372,46 @@ overflow-x: hidden;
     left: 0;
     z-index: 1000;
 }
+
+.sidebar {
+  z-index: 2000;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 10px 16px;
+  overflow: auto;
+  -webkit-transition: margin 0.2s ease-in-out;
+  -moz-transition: margin 0.2s ease-in-out;
+  -o-transition: margin 0.2s ease-in-out;
+  transition: margin 0.2s ease-in-out;
+}
+.sidebar.invisible {
+  margin-left: -400px;
+}
+.sidebar table {
+  border-collapse: collapse;
+}
+.sidebar caption {
+  text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 55px;
+}
+.sidebar tr {
+  margin: 2px 0;
+  border-bottom: 1px solid #CCC;
+}
+.sidebar th {
+  text-align: left;
+  max-width: 300px;
+}
+.sidebar td {
+  text-align: right;
+  padding-left: 20px;
+  padding-right: 5px;
+  font-family: Monospace;
+}

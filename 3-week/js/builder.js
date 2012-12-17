@@ -841,10 +841,27 @@ var rotz=function (event,text){
 	      $(".hint").fadeOut('slow');
 	    }
 	    if( (document.location.href).indexOf("?edit/") === -1 ) {
-	      $('body').append('<div class="hint"><p>Press "p" for play and "o" for pause</p></div>');
+	      $('body').append('<div class="hint"><p>Press "h" to see the options</p></div>');
 	       setTimeout(fade_out, 5000);
 	    }
-		  
+		 
+	    
+	    // about the menu for the options
+	    if( (document.location.href).indexOf("?edit/") === -1 ) {
+	    	document.addEventListener("keyup", function ( event ) {
+	    		if ( event.keyCode === 72 ) {
+	    			
+	    			$('.sidebar').css('margin-left',0);
+	    			
+	    			if($('.sidebar').css('margin-left') == '0px') {
+	    				
+	    				$('.sidebar').css('margin-left', -400);
+	    			}
+	    		}
+	    	}, false);
+	    }
+	    
+	    
 		  // slideshow with play and pause
 		  var timing;
 			function slideShow() {
@@ -855,7 +872,8 @@ var rotz=function (event,text){
 					timing = setTimeout(impress().next, duration);
 				});
 			}
-
+			
+			
 		if( (document.location.href).indexOf("?edit/") === -1 ) {
 //			$('body').append('<button id="btnShow">Play</button>');
 //			$('body').append('<button id="btnPause">Pause</button>');
@@ -892,6 +910,8 @@ var rotz=function (event,text){
 	        });
 		}	
 
+		
+		
 	//Function to prevent the user of setting as input letters
 	  $(".trans").keydown(function(event) {
         // Allow: backspace, delete, tab, escape, and enter

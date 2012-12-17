@@ -605,9 +605,7 @@ builder=(function(){
     var $t = $(this);
     if(state.editing===true){
       state.editing=false;
-      state.$node=$(".active");
-      console.log(state.$node)
-      $(".active .fakeClassNameForAloha").html($t.parent().find('textarea').val());
+      state.$node.html($t.parent().find('textarea').val());
       state.$node.removeClass('builder-justcreated');
       $t.parent().find('textarea').remove();
       $t.text('Edit');

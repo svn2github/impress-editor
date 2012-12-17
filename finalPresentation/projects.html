@@ -1,0 +1,251 @@
+<html style="height: 100%;" lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<title>Atelier Final Projects Kick-Off</title>
+
+		<meta name="description" content="Kick-Off of the atelier final projects">
+		<meta name="author" content="Cesare Pautasso">
+
+<!----------------------- Include aloha editor and our modifications ------------------------>
+		<!--
+		Load the CSS styles for Aloha Editor
+		-->
+		<link rel="stylesheet" href="css/aloha.css" type="text/css">
+		<script src="js/aloha-config.js"></script>
+		<script src="lib/require.js"></script>
+		<script src="lib/vendor/jquery-1.7.2.js"></script>
+		<script>
+			// Passing jQuery into Aloha explicitly is not necessary since
+			// newer versions of jQuery will make a call to define which will
+			// be picked up in aloha.js
+			//Aloha.settings.jQuery = $.noConflict(true);
+		</script>
+		<!--
+		Load the Aloha Editor library.
+		The plugin list could also be added to the configuration.
+		-->
+		<!-- Don't commit the sourceview plugin to the list of enabled plugins! -->
+		<script src="lib/aloha.js"
+		data-aloha-plugins="common/ui,
+		common/format,
+		common/table,
+		common/list,
+		common/link,
+		common/highlighteditables,
+		common/undo,
+		common/contenthandler,
+		common/paste,
+		common/characterpicker,
+		common/commands,
+		common/block,
+		common/image,
+		common/abbr,
+		common/horizontalruler,
+		common/align,
+		common/dom-to-xhtml,
+		extra/formatlesspaste,
+		extra/toc,
+		extra/headerids,
+		extra/listenforcer,
+		extra/metaview,
+		extra/numerated-headers,
+		extra/ribbon,
+		extra/wai-lang,
+		extra/flag-icons,
+		extra/linkbrowser,
+		extra/imagebrowser,
+		extra/cite"></script>
+
+		<!-- Include the fake-jquery to make sure that Aloha works even if
+		the user includes his own global jQuery after aloha.js. -->
+		<script src="js/fake-jquery.js"></script>
+		<!--<script src="ribbon-example.js"></script>--
+		<link rel="stylesheet" href="css/styleForAloha.js">-->
+		<script src="js/aloha-boilerplate.js"></script>
+		
+<!----------------------- End of include aloha editor and our modifications ------------------------>
+
+		<link href="css/builder.css" rel="stylesheet">
+		<link href="css/sunburst.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+		
+		<link rel="shortcut icon" href="favicon.png">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+		<script src="js/jquery.1.7.1.min.js"></script>
+		<script src="js/img-svg.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		
+		<!-----------------------Include Colorpicker--------------------------->
+		<link rel="stylesheet" media="screen" type="text/css" href="css/colorpicker.css" />
+		<script type="text/javascript" src="js/jsColorpicker/colorpicker.js"></script>
+		<script type="text/javascript" src="js/jsColorpicker/eye.js"></script>
+		<script type="text/javascript" src="js/jsColorpicker/layout.js"></script>
+		<script type="text/javascript" src="js/jsColorpicker/utils.js"></script>
+		<!--------------------------------------------------------------------->
+		
+	</head>
+
+	<body style="background-image: -webkit-radial-gradient(0% 100%, circle farthest-corner,white, white,white ); z-index: -100000;">
+		<div class="fallback-message">
+			<p>
+				Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.
+			</p>
+			<p>
+				For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.
+			</p>
+		</div>
+
+		<div id="canvas"></div>
+		
+		<div id="impress" data-transition-duration="1000">
+			
+			<div id="title" class="step" data-x="-1400" data-y="0" data-scale="2" data-rotate="0">
+				
+				<div class="fakeClassNameForAloha">
+					<br>
+					<h1>Slide&Impress</h1>
+					<p>A WYSIWYG editor for Impress.js presentations</p>
+					
+				</div>
+			</div>
+			<div id="why" class="step" data-x="-794" data-y="-550" data-scale="2" data-rotate="0" >
+					
+				<div class="fakeClassNameForAloha">
+					<br>
+					<h1>Why?</h1>
+					<ul>
+						<li>Web-based presentations</li>
+						<li>Impress.js designed for users</li>
+						<li>Power of 3D transformation</li>
+					</ul>
+				</div>
+			</div>
+			<div id="impress" class="step flash" data-x="-794" data-y="250" data-scale="2" data-rotate="0" >
+				
+				<div class="fakeClassNameForAloha">
+					<br>
+					<h1>Impress.js</h1>
+					<ul>
+						<li>Presentation framework</li>
+						<li>Power of transformations and transitions</li>
+						<li>Code-based</li>
+					</ul>
+				</div>
+			</div>
+			<div id="Technology" class="step flash" data-x="-1300" data-y="250" data-scale="2" data-rotate="0" data-rotate-y="180">
+				
+				<div class="fakeClassNameForAloha">
+					<br>
+					<br>
+					<h1>Technology</h1>
+					<ul>
+						<li>HTML5</li>
+						<li>CSS3</li>
+						<li>Impress.js</li>
+						<li>Builder.js</li>
+						<li>jQuery</li>
+						<li>Aloha editor</li>
+						<li>Filesaver.js</li>
+						<li>Canvas<li>
+					</ul>
+				</div>
+			</div>
+			
+			<div id="project" class="step flash" data-x="-794" data-y="250" data-scale="2" data-rotate="0" >
+				
+				<div class="fakeClassNameForAloha">
+					<br>
+					<h1>Project</h1>
+					<ul>
+						<li>Presentation visualizer</li>
+						<li>Editor for slides</li>
+						<li>3D translations</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div id="Team" class="step" data-x="-488" data-y="0" data-scale="0.7" data-rotate="0">
+				
+				<div class="fakeClassNameForAloha">
+					<br>
+					<h1>Team</h1>
+					<p>Georgios Kokosoulis </br>
+						Georgios Samaras </br>
+						Filippo Ferrario </br>
+						Hugo Diaz Ferreiro </br>
+						Mendor : Saeed Aghaee 
+					</p>
+				</div>
+			</div>
+			<div id="questions" class="step" data-x="-488" data-y="0" data-scale="0.7" data-rotate="0">
+				
+				<div class="fakeClassNameForAloha">
+					<br>
+					<h1>Questions</h1>
+					<!-- DRAW A QUESTION MARK-->
+					<p><br><br><br></p>
+				</div>
+			</div>
+			<div id="Thanks" class="step" data-x="-488" data-y="0" data-scale="0.7" data-rotate="0">
+				
+				<div class="fakeClassNameForAloha">
+					<br>
+					<h1>THANK YOU</h1>
+					<p></p>
+				</div>
+			</div>
+			
+			
+			<div id="overview" class="step" data-x="1000" data-y="-1000" data-scale="5" data-rotate="0"></div>
+
+		</div>
+		<div id="colorSelector"></div>
+		
+		  <aside id="help" class="sidebar invisible">
+          <table>
+            <caption>Help</caption>
+            <tbody>
+              <tr>
+                <th>Move Around</th>
+                <td>&larr;&nbsp;&rarr;&nbsp;&uarr;&nbsp;&darr;</td>
+              </tr>
+              <tr>
+                <th>Next</th>
+                <td>space</td>
+              </tr>
+              <tr>
+                <th>Previous</th>
+                <td>backspace</td>
+              </tr>
+              <tr>
+                <th>Play/Stop Slideshow</th>
+                <td>p/o</td>
+              </tr>
+              <tr>
+                <th>Enable/Disable Canvas</th>
+                <td>c</td>
+              </tr>
+              <tr>
+                <th>Help</th>
+                <td>h</td>
+              </tr>
+            </tbody>
+          </table>
+        </aside>
+		
+		<script src="js/canvas.js"></script>
+		<script src="js/attachEditor.js"></script>
+		<script src="js/highlight.pack.js"></script>
+		<script src="js/impress.js"></script>
+		<script src="js/builder.js"></script>
+		<script src="js/FileSaver.js"></script>
+		<script src="js/main.js"></script>	
+		
+		
+		
+	</body>
+</html>

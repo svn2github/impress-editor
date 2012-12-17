@@ -1,5 +1,6 @@
    var ctx;
-        
+   var activeCanvas=false;
+   
    if( (document.location.href).indexOf("?edit/") === -1 ) {
   
  
@@ -103,19 +104,20 @@
     var _width = $(window).width();
     var _height = $(window).height();
     var container = document.getElementById('canvas');
-   // init(container, _width, _height, '#ddd');
     
      document.addEventListener("keyup", function ( event ) {
     if ( event.keyCode === 67 ) {
-      event.preventDefault();
-      $('#canvas').show();
-    //  console.log('mpika1')
-        init(container, _width, _height, '#ddd');
-    }
-    if ( event.keyCode === 86 ) {
-    //  console.log('mpika2')
-      ctx.clearTo();
-      $('#canvas').hide();
+    	if (activeCanvas) {
+    		 ctx.clearTo();
+    	      $('#canvas').hide();
+    	      activeCanvas= !activeCanvas;
+    	} else{
+    		if (ctx===undefined) {
+    			init(container, _width, _height, '#ddd');
+    		}
+    		$('#canvas').show();
+  	      activeCanvas= !activeCanvas;
+    	}
     }
     
    }, false);

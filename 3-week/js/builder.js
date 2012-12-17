@@ -843,6 +843,10 @@ var rotz=function (event,text){
 	    if( (document.location.href).indexOf("?edit/") === -1 ) {
 	      $('body').append('<div class="hint"><p>Press "h" to see the options</p></div>');
 	       setTimeout(fade_out, 5000);
+	       $(".hint").click(function ( event ) {
+    	      event.preventDefault();
+    	      $(this).hide();
+	       });
 	    }
 		 
 	    
@@ -850,11 +854,8 @@ var rotz=function (event,text){
 	    if( (document.location.href).indexOf("?edit/") === -1 ) {
 	    	document.addEventListener("keyup", function ( event ) {
 	    		if ( event.keyCode === 72 ) {
-	    			
 	    			$('.sidebar').css('margin-left',0);
-	    			
 	    			if($('.sidebar').css('margin-left') == '0px') {
-	    				
 	    				$('.sidebar').css('margin-left', -400);
 	    			}
 	    		}

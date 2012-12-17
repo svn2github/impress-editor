@@ -533,11 +533,44 @@ builder=(function(){
     var BlobBuilder = (function(w) {
       return w.BlobBuilder || w.WebKitBlobBuilder || w.MozBlobBuilder;
     })(window);
-
+    
     $doc=$(document.documentElement).clone();
-    //$doc.find(".step").css("width","512px");
+    var data = $doc.find(".fakeClassNameForAloha");
+	//console.log(data);
+    var allSlides = new Array();
+    for( var i = 0 ; i < data.length ; i++ ) {
+    	allSlides[i] = data[i].parentElement;
+    }            
+    for(var i = 0 ; i < allSlides.length ; i++) {
+    	Aloha.jQuery(allSlides[i]).css("display" , "inline");
+	}
+    
+    
+    $doc.find(".fakeClassNameForAloha").each(function(){
+		//console.log($(this)[0].id);
+		var id = $(this)[0].id;
+		if(id) {
+			$(this).removeClass("aloha-editable")
+				.removeClass("aloha-block-blocklevel-sortable")
+				.removeClass("ui-sortable").removeClass("aloha-editable-highlight")
+				.attr("contenteditable","false");
+		}
+		// this will not work (we have modified it)
+		//	Aloha.jQuery("#"+id).mahalo();
+		
+		
+		//console.log("AFTER:");
+		//console.log($(this));
+		
+	});
     //remove all scripting
     $doc.find('script').remove();
+    //remove colorpicker
+    $doc.find('.colorpicker').remove();
+    $doc.find('#help').remove();
+    $doc.find('.aloha-character-picker-overlay').remove();
+    $doc.find('.repository-browser-modal-overlay').remove();
+    $doc.find('.repository-browser-modal-window').remove();
     //remove all current transforms
     $doc.find('.fallback-message').remove();
     $doc.find('.menu, .aloha, .aloha-ui,#prevBtnEditMode ,#nextBtnEditMode,#btnAloha').remove();
@@ -553,16 +586,19 @@ builder=(function(){
     $doc.find('.future').each(function(index,element){element.classList.remove('future');});
     //put overview at the end
     $doc.find('#overview').appendTo($doc.find('#impress'));
-    
     //add flash slides
     $doc.find('head').append('<style type="text/css">.step.flash.future {opacity:0;} .step.flash.past {opacity:0;}</style>');
     //add impress.js simple init
     $doc.find('body').attr('class','impress-not-supported')[0].innerHTML+='<script src="https://raw.github.com/bartaz/impress.js/master/js/impress.js"></script><script>impress().init()</script>';
-    content=$doc[0].outerHTML;
-    //remove stuff
-    var bb = new BlobBuilder;
-    bb.append(content);
-    saveAs(bb.getBlob("text/html;charset=utf-8"), "presentation.html");
+    $.get("img/embeddedCanvas.txt",function(data) {
+    	$doc.find('body').attr('class','impress-not-supported')[0].innerHTML+=data;
+    	  content=$doc[0].outerHTML;
+    	   //remove stuff
+    	   var bb = new BlobBuilder;
+    	   bb.append(content);
+    	   saveAs(bb.getBlob("text/html;charset=utf-8"), "presentation.html");
+    	})
+    
   }
   
   function editContents() {

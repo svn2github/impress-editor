@@ -79,10 +79,10 @@ builder=(function(){
       config.setTransformationCallback(function(x){
         // guess what, it indicates slide change too :)
        // $controls.hide();
-    	  console.log("aki")
+    	  //console.log("aki")
     	  if(state.editing==true)
     	  editContents()
-    	  console.log($(".active").attr("id"))
+    	  //console.log($(".active").attr("id"))
     	  if($(".active").attr("id")=="overview"){
     		  $("#sidecontrolers").hide();
     	  }
@@ -292,7 +292,7 @@ builder=(function(){
     });
     
     $(window).on('beforeunload',function(){ return 'All changes will be lost'; });
-    $("#overview .builder-controls").hide();
+    $("#overview .builder-controls").remove();
     config.showMenu();
     config['goto']('start');
     
@@ -312,7 +312,7 @@ builder=(function(){
   function addSlide(contenido){
 	    //query slide id
 	    var id,$step;
-	    console.log(contenido)
+	    //console.log(contenido)
 	    id='builderAutoSlide'+sequence();
 	    var $ = Aloha.jQuery;
 	    if (contenido==undefined || contenido.type=="click")		{		
@@ -328,7 +328,7 @@ builder=(function(){
 	    $step[0].id=id;
 	    
 	    
-	    console.log(id)
+	    //console.log(id)
 	    
 	    $step.insertBefore($('.step:last')); //not too performant, but future proof
 	    
@@ -522,6 +522,7 @@ builder=(function(){
 				    // jump to the overview slide to make some room to look around
 				config['goto']('overview');
 				for(var y=0;y<slides.length-1;y++){
+					console.log(slides[y])
 					addSlide(slides[y]);
 				}
 				

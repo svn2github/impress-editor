@@ -820,6 +820,8 @@ function rmvTextEditing(divForTextEdit, toolbar) {
 	$(".builder-main").show("slow");	
 	$(".menu").show("slow");	
 	$(".active").show();
+	$("#nextBtnEditMode").show("slow");
+	$("#prevBtnEditMode").show("slow");
 }
 
 function bindEventsForTextEdit() {
@@ -876,6 +878,8 @@ function createDivForTextEdit() {
 					$(".builder-controls").hide("slow");	
 					$(".builder-main").hide("slow");	
 					$(".menu").hide("slow");
+					$("#nextBtnEditMode").hide("slow");
+					$("#prevBtnEditMode").hide("slow");
 					$(".active").hide();
 					
 					$("#forTextEditing").css("width" , $($(".active")[0].outerHTML).css("width"));

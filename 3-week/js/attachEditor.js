@@ -901,7 +901,7 @@ function createDivForTextEdit() {
 					
 					if(offset.top != 0 && offset.left !=0) {
 						$("#btnForTextEditing").css("position" , "absolute").
-							css("left" , offset.left + parseInt(widthInPixels) - 85).css("top" , offset.top + parseInt(heightInPixels) + 4);
+							css("left" , offset.left + parseInt(widthInPixels) - 605).css("top" , offset.top + parseInt(heightInPixels) + 4);
 					}
 					
 					

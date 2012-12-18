@@ -950,7 +950,7 @@ $(function() {
 		loadChanges();
 		loadBackGroundColor();
 		//loadSlides();
-		$('body').append('<button id="btnAloha" onclick="goToPresentationMode()"><p>Exit</p><p>edit</p><p>mode</p></button>');
+		$('body').append('<button id="btnAloha" onclick="goToPresentationMode()">Exit</button>');
 		$('body').append('<button id="nextBtnEditMode">Next</button>');
 		$('body').append('<button id="prevBtnEditMode">Prev</button>');
 		loadEditor();

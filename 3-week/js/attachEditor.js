@@ -972,7 +972,7 @@ $(function() {
 	  newStepAtPosition:iAPI.newStepAtPosition
 	});
 	}
-	
+	$(".counter").remove();
     displayAllSlides();
     removeSidebar();
 }); 

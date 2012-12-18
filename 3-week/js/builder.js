@@ -91,6 +91,7 @@ builder=(function(){
     	  }
         //setting pu movement scale
         config.visualScaling=x.scale;
+        console.log("hi")
         numberSlide();
         if(x.rotate.z==undefined)
         config.visualRotation= x.rotate;
@@ -642,9 +643,9 @@ builder=(function(){
 
   // Upcoming delete function
   function deleteContents() {
-	  if($(".active").attr("id")!="overview"){
-	config.deleteStep($(".active").attr("id"))
-    $(".active").remove();
+	  if($(this).attr("id")!="overview"){
+	config.deleteStep($(this).parent().parent().attr("id"))
+    $(this).parent().parent().remove();
 	config.showMenu();
 	config['goto']("overview");}
 	

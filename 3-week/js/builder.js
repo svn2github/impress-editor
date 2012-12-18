@@ -106,13 +106,14 @@ builder=(function(){
     }
     
     $('body').addClass('edit');
-    $(".step").css("width","512px");
+    $(".step").css("width","1024px");
     $impress=$('#impress');
     $overview=$('#overview');
     
     $menu=$('<div></div>').addClass('builder-main');
     $('<div></div>').addClass('builder-bt bt-add').appendTo($menu).text('Add new').on('click',addSlide);
     $('<div></div>').addClass('builder-bt bt-overview').appendTo($menu).text('Overview').on('click',function(){
+    	$("#sidecontrolers").hide();
       config['goto']('overview');
     });
     $('<div></div>').addClass('builder-bt bt-download').appendTo($menu).text('Get file').on('click',downloadResults);
@@ -403,7 +404,7 @@ builder=(function(){
 	    // $Scontrols5.appendTo($("#"+id+""));
 	    
 	     $Scontrols6.appendTo($("#"+id+""));
-	    $("#"+id).css("width","512px");
+	    $("#"+id).css("width","1024px");
 	    //console.log($step[0],$(".active").parent().children(".step"))
 	    config.newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
 	    createDivForTextEdit();

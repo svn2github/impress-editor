@@ -62,6 +62,7 @@ document.onclick = function() {
 };
 function saveChanges(){
 	var arrayOfTextOfSlides = new Array();
+	$(".active").removeClass("active");
 	var $step = $(".step");
 	$($step).find(".builder-controls").remove();
 	var all="";
@@ -109,6 +110,7 @@ function loadChanges(){
 			}
 			//console.log(test)
 			//console.log(test[1]);
+			
 			appendManySlides(test)
 		}
 	}
@@ -141,7 +143,7 @@ function addSlide(contenido){
 	    
 	    $step.insertBefore($('.step:last')); //not too performant, but future proof
 	    
-	    $("#"+id).css("width","512px");
+	    $("#"+id).css("width","1024px");
 	    //console.log($step[0],$(".active").parent().children(".step"))
 	    impress().newStepAtPosition($step[0],$(".active").parent().children(".step").length-2);//get number of childs minus 1;
 	    
@@ -149,8 +151,8 @@ function addSlide(contenido){
 	    impress()['goto']('overview');
 	  }
 function appendManySlides(slides){
-		  	var parent=$(".active").parent();
-			  	var children=$(".active").parent().children();
+		  	var parent=$(".step").parent();
+			  	var children=$(".step").parent().children();
 			 	  //console.log($(".active").parent().children())
 			 	  for(var i=0;i<children.length;i++){
 			 	  	//console.log(children[i].id)

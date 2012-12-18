@@ -451,6 +451,7 @@ builder=(function(){
 	  			var placeid=$(".active").parent().children(".step")[fposition-1]
 	  			console.log(placeid)
 	  			$current = $(".active");
+	  			config.deleteStep($(".active").attr("id"))
 	  			deleteContents();
 	  			if((position+1)<fposition)$current.insertAfter(placeid);
 	  			if((position+1)>fposition)$current.insertBefore(placeid);

@@ -904,6 +904,7 @@ var rotz=function (event,text){
 		  // slideshow with play and pause
 		  var timing;
 			function slideShow() {
+			//	console.log('slideshow')
 				setTimeout(impress().next, 3000);
 				document.addEventListener('impress:stepenter', function(e){
 					if (typeof timing !== 'undefined') clearTimeout(timing);
@@ -914,36 +915,21 @@ var rotz=function (event,text){
 			
 			
 		if( (document.location.href).indexOf("?edit/") === -1 ) {
-//			$('body').append('<button id="btnShow">Play</button>');
-//			$('body').append('<button id="btnPause">Pause</button>');
-//	        var auto = $('#btnShow');
-//	        var pause = $('#btnPause');
-//	        
-//	        auto.click(function () {
-//	          slideShow();
-//	            $('#btnShow').hide();
-//	          $('#btnPause').show();
-//	        });
-//	        pause.click(function () {
-//	          clearTimeout(timing); 
-//	          $('#btnPause').hide();
-//	          $('#btnShow').show();    
-//	        });
 
 	        // press keys for play and pause
 	        // press 'p' for play
 	        $('.impress-supported').keydown(function(event) {
 	          if (event.keyCode == 80) {
-	            slideShow();
-	            $('#btnShow').hide();
-	            $('#btnPause').show();
+	        	//  console.log('mpika')
+	        	  slideShow();
+
 	          }
 	          // press 'o' for pause
 	          else {
 	            if (event.keyCode == 79) {
-	              clearTimeout(timing); 
-	              $('#btnPause').hide();
-	              $('#btnShow').show();   
+	            //	console.log('vgika')
+	            	clearTimeout(timing); 
+	            
 	            }
 	          }
 	        });

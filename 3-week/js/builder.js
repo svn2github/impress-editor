@@ -721,10 +721,10 @@ builder=(function(){
     console.log(event.keyCode)
       if(event.keyCode==13){
         console.log("-webkit-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")")
-        state.$node=$(".active").css("background-image", "-webkit-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
-        state.$node=$(".active").css("background-image", "-moz-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
-        state.$node=$(".active").css("background-image", "-o-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
-        state.$node=$(".active").css("background-image", "radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
+       $(".active").css("background-image", "-webkit-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
+       $(".active").css("background-image", "-moz-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
+       $(".active").css("background-image", "-o-radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
+       $(".active").css("background-image", "radial-gradient(0% 100%, circle farthest-corner,"+  $("#firstColor").val()+", "+$("#secondColor").val()+", "+$("#thirdColor").val() + ")");
       }
     }
     

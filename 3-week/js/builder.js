@@ -913,28 +913,21 @@ var rotz=function (event,text){
 				});
 			}
 			
-			
+		
 		if( (document.location.href).indexOf("?edit/") === -1 ) {
-
-	        // press keys for play and pause
-	        // press 'p' for play
-	        $('.impress-supported').keydown(function(event) {
-	          if (event.keyCode == 80) {
-	        	//  console.log('mpika')
-	        	  slideShow();
-
-	          }
-	          // press 'o' for pause
-	          else {
-	            if (event.keyCode == 79) {
-	            //	console.log('vgika')
-	            	clearTimeout(timing); 
-	            
-	            }
-	          }
-	        });
-		}	
-
+			document.addEventListener("keyup", function ( event ) {
+				
+				if ( event.keyCode === 80 ) {
+				//	console.log('mpika')
+					slideShow();
+				}
+			    if ( event.keyCode === 79 ) {
+				//	console.log('vgika')
+					clearTimeout(timing); 
+			    }
+			
+			}, false);
+		}
 		
 		
 	//Function to prevent the user of setting as input letters
